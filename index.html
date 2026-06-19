@@ -237,6 +237,7 @@
       box-shadow: var(--shadow-card);
     }
 
+
     .card:hover {
       transform: translateY(-6px);
       border-color: rgba(220, 38, 38, .30);
@@ -261,6 +262,88 @@
 
     .card:hover .card-cover img {
       transform: scale(1.06);
+    }
+
+    .image-viewer {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 28px;
+
+      background: rgba(0, 0, 0, .86);
+      backdrop-filter: blur(10px);
+
+      z-index: 300;
+    }
+
+    .image-viewer.active {
+      display: flex;
+    }
+
+    .image-viewer img {
+      max-width: min(1200px, 94vw);
+      max-height: 90vh;
+
+      object-fit: contain;
+
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-main);
+
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, .65),
+        0 0 0 1px rgba(220, 38, 38, .18);
+
+      animation: zoomImage .22s ease;
+    }
+
+    .image-viewer-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      border: 1px solid var(--border-main);
+
+      background: rgba(20, 20, 22, .9);
+      color: var(--text-main);
+
+      font-size: 32px;
+      line-height: 1;
+
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .image-viewer-close:hover {
+      background: var(--primary);
+    }
+
+    .modal-main-img,
+    .modal-thumbs img {
+      cursor: zoom-in;
+    }
+
+    @keyframes zoomImage {
+      from {
+        transform: scale(.96);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .badges {
@@ -934,7 +1017,7 @@
       display: grid;
       gap: 10px;
       margin-bottom: 14px;
-          width: 180px;
+      width: 180px;
     }
 
     .range-row {
@@ -1439,21 +1522,26 @@
     </div>
   </div>
 
+  <div class="image-viewer" id="imageViewer" onclick="closeImageViewer(event)">
+    <span class="image-viewer-close" onclick="closeImageViewer(event)">×</span>
+    <img id="imageViewerImg" src="" alt="">
+  </div>
+
   <script>
     const products = {
       accounts: [
         {
-          title: "Аккаунт Titan 85 lvl",
+          title: "Арбалет 84,31% RU [Эрика]",
           category: "premium",
           price: 5900,
           region: "Россия",
           drop: "Золотой лут",
           typeClass: "gold",
-          cover: "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200",
+          cover: "img/product1_1.jpg",
           images: [
-            "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200",
-            "https://images.unsplash.com/photo-1605902711622-cfb43c44367f?q=80&w=1200",
-            "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200"
+            "img/product1_1.jpg",
+            "img/product1_2.jpg",
+            "img/product1_3.jpg"
           ],
           stats: {
             def: 1280,
@@ -1470,28 +1558,28 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["Titan", "85 lvl", "Premium"],
-          description: "Аккаунт Lineage 2 с персонажем Titan 85 уровня.",
+          tags: ["Арбалет", "84,31%", "Номер телефона"],
+          description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Урона 176, Шанс Тройного Урона 40 , Блокировка Оружия 159, Увеличение Урона от Оружия 326%, Увеличение Урона от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
           details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
         },
         {
-          title: "Аккаунт Archmage 82 lvl",
+          title: "Класс. Нож  Ур.  87.72%",
           category: "ranked",
           price: 3900,
           region: "Украина",
           drop: "Красный лут",
           typeClass: "red",
-          cover: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200",
+          cover: "img/product2_1.jpg",
           images: [
-            "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200",
-            "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200"
+            "img/product2_1.jpg",
+            "img/product2_2.jpg"
           ],
           stats: {
-            def: 640,
-            reduction: 480,
-            resist: 1320,
-            damage: 1760,
-            accuracy: 920
+            def: 406,
+            reduction: 229,
+            resist: 467,
+            damage: 404,
+            accuracy: 470
           },
           skills: [
             { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
@@ -1506,15 +1594,17 @@
           details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
         },
         {
-          title: "Стартовый аккаунт",
+          title: "Маг 85,53% RU [леона]",
           category: "cheap",
           price: 1900,
           region: "Россия",
           drop: "Фиолетовый лут",
           typeClass: "purple",
-          cover: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200",
+          cover: "img/product3_1.jpg",
           images: [
-            "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200"
+            "img/product3_1.jpg",
+            "img/product3_2.jpg",
+            "img/product3_3.jpg"
           ],
           stats: {
             def: 420,
@@ -1539,48 +1629,49 @@
 
       items: [
         {
-          title: "Draconic Bow",
+          title: "Ветер Сайхи",
           category: "premium",
           price: 4500,
           region: "Россия",
           drop: "Золотой лут",
           typeClass: "gold",
-          cover: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200",
+          cover: "img/objects/object1_1.png",
           images: [
-            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200",
-            "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?q=80&w=1200"
+            "img/objects/object1_1.png",
+            "img/objects/object1_2.png",
+            "img/objects/object1_3.png"
           ],
           tags: ["Weapon", "S-grade", "Rare"],
           description: "Редкий лук S-grade для персонажей дальнего боя.",
           details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
         },
         {
-          title: "Imperial Crusader Armor",
+          title: "Перчатки Падшего Ангела",
           category: "ranked",
           price: 3600,
           region: "Украина",
           drop: "Красный лут",
           typeClass: "red",
-          cover: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200",
+          cover: "img/objects/object2_1.png",
           images: [
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200",
-            "https://images.unsplash.com/photo-1615672968435-95ade28e0b38?q=80&w=1200",
-            "https://images.unsplash.com/photo-1605106702734-205df224ecce?q=80&w=1200"
+            "img/objects/object2_1.png"
           ],
           tags: ["Armor", "Heavy", "S-grade"],
           description: "Тяжёлая броня S-grade для танков и воинов.",
           details: ["Регион: Украина", "Тип: броня", "Грейд: S-grade", "Дроп: Красный лут"]
         },
         {
-          title: "Adena Pack",
+          title: "+5 Перчатки из ДК",
           category: "cheap",
           price: 2500,
           region: "Россия",
           drop: "Фиолетовый лут",
           typeClass: "purple",
-          cover: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1200",
+          cover: "img/objects/object3_1.png",
           images: [
-            "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1200"
+            "img/objects/object3_1.png",
+            "img/objects/object3_2.png",
+            "img/objects/object3_3.png"
           ],
           tags: ["Adena", "Currency", "Fast"],
           description: "Пак игровой валюты для покупки экипировки и ресурсов.",
@@ -1740,7 +1831,9 @@
       document.getElementById("modalPrice").textContent =
         product.price.toLocaleString("ru-RU") + " ₽";
 
-      document.getElementById("modalMainImg").src = product.images[0];
+      const modalMainImg = document.getElementById("modalMainImg");
+      modalMainImg.src = product.images[0];
+      modalMainImg.onclick = () => openImageViewer(product.images[0]);
 
       document.getElementById("modalTags").innerHTML = `
       <span class="badge region">${product.region}</span>
@@ -1754,14 +1847,17 @@
 
       document.getElementById("modalThumbs").innerHTML =
         product.images.map(img => `
-        <img src="${img}" onclick="changeMainImage('${img}')">
-      `).join("");
+    <img src="${img}" onclick="changeMainImage('${img}')">
+  `).join("");
 
       document.getElementById("modal").classList.add("active");
     }
 
     function changeMainImage(src) {
-      document.getElementById("modalMainImg").src = src;
+      const modalMainImg = document.getElementById("modalMainImg");
+
+      modalMainImg.src = src;
+      modalMainImg.onclick = () => openImageViewer(src);
     }
 
     function closeModal() {
@@ -1897,10 +1993,37 @@
       input.addEventListener("input", updateRangeLabels);
     });
 
+    function openImageViewer(src) {
+      const viewer = document.getElementById("imageViewer");
+      const img = document.getElementById("imageViewerImg");
+
+      img.src = src;
+      viewer.classList.add("active");
+    }
+
+    function closeImageViewer(event) {
+      if (
+        event.target.id === "imageViewer" ||
+        event.target.classList.contains("image-viewer-close")
+      ) {
+        document.getElementById("imageViewer").classList.remove("active");
+        document.getElementById("imageViewerImg").src = "";
+      }
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        document.getElementById("imageViewer").classList.remove("active");
+        document.getElementById("imageViewerImg").src = "";
+      }
+    });
+
     document.getElementById("searchInput").addEventListener("input", filterProducts);
 
     updateRangeLabels();
     renderProducts();
+
+
   </script>
 
 </body>
