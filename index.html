@@ -80,6 +80,61 @@
       color: var(--text-main);
     }
 
+    .image-viewer-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 54px;
+      height: 54px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      border: 1px solid var(--border-main);
+
+      background: rgba(20, 20, 22, .88);
+      color: var(--text-main);
+
+      font-size: 46px;
+      line-height: 1;
+
+      cursor: pointer;
+      z-index: 310;
+
+      transition: var(--transition);
+    }
+
+    .image-viewer-arrow:hover {
+      background: var(--primary);
+    }
+
+    .image-viewer-prev {
+      left: 28px;
+    }
+
+    .image-viewer-next {
+      right: 28px;
+    }
+
+    @media (max-width: 700px) {
+      .image-viewer-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 36px;
+      }
+
+      .image-viewer-prev {
+        left: 12px;
+      }
+
+      .image-viewer-next {
+        right: 12px;
+      }
+    }
+
     header {
       height: 76px;
       padding: 0 8%;
@@ -223,7 +278,7 @@
     .products {
       margin: 0 8% 70px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 26px;
     }
 
@@ -1526,7 +1581,16 @@
 
   <div class="image-viewer" id="imageViewer" onclick="closeImageViewer(event)">
     <span class="image-viewer-close" onclick="closeImageViewer(event)">×</span>
+
+    <button class="image-viewer-arrow image-viewer-prev" onclick="showPrevImage(event)">
+      ‹
+    </button>
+
     <img id="imageViewerImg" src="" alt="">
+
+    <button class="image-viewer-arrow image-viewer-next" onclick="showNextImage(event)">
+      ›
+    </button>
   </div>
 
   <script>
@@ -1746,6 +1810,8 @@
     };
 
     let currentCategory = "accounts";
+    let viewerImages = [];
+    let viewerIndex = 0;
 
     let activeFilters = {
       region: [],
@@ -1895,10 +1961,9 @@
       document.getElementById("modalText").textContent = product.description;
       document.getElementById("modalPrice").textContent =
         product.price.toLocaleString("ru-RU") + " ₽";
-
       const modalMainImg = document.getElementById("modalMainImg");
       modalMainImg.src = product.images[0];
-      modalMainImg.onclick = () => openImageViewer(product.images[0]);
+      modalMainImg.onclick = () => openImageViewer(product.images, 0);
 
       document.getElementById("modalTags").innerHTML = `
       <span class="badge region">${product.region}</span>
@@ -1911,18 +1976,18 @@
         renderSkills(product);
 
       document.getElementById("modalThumbs").innerHTML =
-        product.images.map(img => `
-    <img src="${img}" onclick="changeMainImage('${img}')">
+        product.images.map((img, index) => `
+    <img src="${img}" onclick="changeMainImage('${img}', ${index})">
   `).join("");
 
       document.getElementById("modal").classList.add("active");
     }
 
-    function changeMainImage(src) {
+    function changeMainImage(src, index = 0) {
       const modalMainImg = document.getElementById("modalMainImg");
 
       modalMainImg.src = src;
-      modalMainImg.onclick = () => openImageViewer(src);
+      modalMainImg.onclick = () => openImageViewer(viewerImages, index);
     }
 
     function closeModal() {
@@ -2058,12 +2123,46 @@
       input.addEventListener("input", updateRangeLabels);
     });
 
-    function openImageViewer(src) {
+    function openImageViewer(images, index = 0) {
+      viewerImages = Array.isArray(images) ? images : [images];
+      viewerIndex = index;
+
       const viewer = document.getElementById("imageViewer");
       const img = document.getElementById("imageViewerImg");
 
-      img.src = src;
+      img.src = viewerImages[viewerIndex];
       viewer.classList.add("active");
+    }
+
+    function updateViewerImage() {
+      const img = document.getElementById("imageViewerImg");
+      img.src = viewerImages[viewerIndex];
+    }
+
+    function showPrevImage(event) {
+      event.stopPropagation();
+
+      if (!viewerImages.length) return;
+
+      viewerIndex =
+        viewerIndex === 0
+          ? viewerImages.length - 1
+          : viewerIndex - 1;
+
+      updateViewerImage();
+    }
+
+    function showNextImage(event) {
+      event.stopPropagation();
+
+      if (!viewerImages.length) return;
+
+      viewerIndex =
+        viewerIndex === viewerImages.length - 1
+          ? 0
+          : viewerIndex + 1;
+
+      updateViewerImage();
     }
 
     function closeImageViewer(event) {
@@ -2077,9 +2176,21 @@
     }
 
     document.addEventListener("keydown", function (event) {
+      const viewer = document.getElementById("imageViewer");
+
+      if (!viewer.classList.contains("active")) return;
+
       if (event.key === "Escape") {
-        document.getElementById("imageViewer").classList.remove("active");
+        viewer.classList.remove("active");
         document.getElementById("imageViewerImg").src = "";
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevImage(event);
+      }
+
+      if (event.key === "ArrowRight") {
+        showNextImage(event);
       }
     });
 
