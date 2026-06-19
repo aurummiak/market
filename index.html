@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+
+    :root {
+
+      /* Backgrounds */
+      --bg-main: #0a0a0b;
+      --bg-header: rgba(10, 10, 11, .92);
+      --bg-footer: #050506;
+
+      --bg-card: #141416;
+      --bg-card-hover: #1c1c20;
+
+      --bg-input: #141416;
+      --bg-modal: #141416;
+      --bg-gallery: #101012;
+      --bg-detail: #1a1a1f;
+
+      /* Brand */
+      --primary: #dc2626;
+      --primary-hover: #ef4444;
+
+      --accent: #f87171;
+
+      /* Text */
+      --text-main: #fafafa;
+      --text-muted: #a1a1aa;
+      --text-soft: #d4d4d8;
+      --text-dark: #ffffff;
+
+      /* Borders */
+      --border-main: rgba(255, 255, 255, .08);
+      --border-hover: rgba(220, 38, 38, .35);
+
+      /* Shadows */
+      --shadow-card:
+        0 4px 20px rgba(0, 0, 0, .25);
+
+      --shadow-card-hover:
+        0 16px 40px rgba(220, 38, 38, .18);
+
+      --shadow-hero:
+        0 20px 60px rgba(220, 38, 38, .22);
+
+      --shadow-modal:
+        0 20px 60px rgba(0, 0, 0, .45);
+
+      /* Badges */
+      --badge-region-ru: #010101;
+      --badge-region-ua: #3b82f6;
+
+      --badge-gold: #f59e0b;
+      --badge-red: #ef4444;
+
+      /* Radius */
+      --radius-sm: 12px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+
+      --transition: .25s ease;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      height: 76px;
+      padding: 0 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border-main);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+      text-transform: lowercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--primary-hover);
+    }
+
+    .hero {
+      margin: 40px 8%;
+      min-height: 340px;
+      border-radius: var(--radius-xl);
+      padding: 52px;
+
+      background:
+        linear-gradient(135deg, rgb(52 42 42 / 92%), rgb(179 0 0 / 82%)), url(img/lineage2-banner.jpg) center / cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      margin-bottom: 14px;
+      color: var(--text-main);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--text-soft);
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      height: 50px;
+      padding: 0 30px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-main);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      font-weight: 900;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-btn.active,
+    .buy-btn,
+    .toolbar button {
+      background: linear-gradient(135deg,
+          #dc2626,
+          #ef4444);
+    }
+
+    .hero-btn:hover,
+    .hero-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--text-main);
+    }
+
+    .toolbar {
+      margin: 0 8% 30px;
+      display: flex;
+      gap: 14px;
+    }
+
+    .toolbar input,
+    .toolbar select,
+    .toolbar button {
+      height: 50px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-main);
+      background: var(--bg-input);
+      color: var(--text-main);
+      padding: 0 18px;
+      outline: none;
+      font-weight: 600;
+    }
+
+    .toolbar input {
+      flex: 1;
+    }
+
+    .toolbar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .toolbar button {
+      cursor: pointer;
+      background: var(--primary);
+      color: var(--text-main);
+      border: none;
+      font-weight: 900;
+      transition: var(--transition);
+    }
+
+    .toolbar button:hover {
+      background: var(--primary-hover);
+    }
+
+    .products {
+      margin: 0 8% 70px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-main);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(220, 38, 38, .30);
+
+      box-shadow:
+        0 0 0 1px rgba(220, 38, 38, .15), 0 16px 40px rgb(200 0 0 / 40%)
+    }
+
+    .card-cover {
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: 0.35s ease;
+    }
+
+    .card:hover .card-cover img {
+      transform: scale(1.06);
+    }
+
+    .badges {
+      position: absolute;
+
+      left: 14px;
+      bottom: 14px;
+
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+
+      z-index: 5;
+    }
+
+    .badge {
+      padding: 7px 12px;
+
+      background: rgba(0, 0, 0, .85);
+
+      color: #fff;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      backdrop-filter: blur(12px);
+
+      border: 1px solid rgba(255, 255, 255, .08);
+
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, .25);
+    }
+
+    .badge.type.purple {
+      background: rgba(0, 0, 0, .85);
+      color: #fff;
+
+      border: 1px solid #a855f7;
+
+      box-shadow:
+        0 0 0 1px rgba(168, 85, 247, .15),
+        0 0 18px rgba(168, 85, 247, .18);
+    }
+
+    .badge.region {
+      background: rgba(0, 0, 0, .85);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .badge.type.gold {
+      background: rgba(0, 0, 0, .85);
+      color: #fff;
+
+      border: 1px solid #f59e0b;
+
+      box-shadow:
+        0 0 0 1px rgba(245, 158, 11, .15),
+        0 0 18px rgba(245, 158, 11, .18);
+    }
+
+    .badge.type.red {
+      background: rgba(0, 0, 0, .85);
+      color: #fff;
+
+      border: 1px solid #ef4444;
+
+      box-shadow:
+        0 0 0 1px rgba(239, 68, 68, .15),
+        0 0 18px rgba(239, 68, 68, .18);
+    }
+
+
+    .card-cover::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(to top,
+          rgba(0, 0, 0, .75) 0%,
+          rgba(0, 0, 0, .35) 30%,
+          transparent 60%);
+
+      pointer-events: none;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    .card-body h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .meta {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: var(--primary-hover);
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 25px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 32px 8%;
+      background: var(--bg-footer);
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-main);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 100;
+      padding: 24px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(1080px, 100%);
+      height: min(760px, calc(100vh - 48px));
+
+      background: var(--bg-modal);
+      border-radius: 28px;
+      border: 1px solid var(--border-main);
+
+      position: relative;
+      overflow: hidden;
+
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      box-shadow: var(--shadow-modal);
+    }
+
+    .modal-gallery {
+      height: 100%;
+      padding: 18px;
+      background: var(--bg-gallery);
+
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 8px;
+
+      overflow: hidden;
+    }
+
+
+    .modal-main-img {
+      min-height: 0;
+      height: 100%;
+
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-detail);
+    }
+
+    .modal-main-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    .modal-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+
+    .modal-thumbs img {
+      width: 100%;
+      height: 82px;
+      object-fit: cover;
+
+      border-radius: var(--radius-md);
+      cursor: pointer;
+
+      border: 3px solid transparent;
+      transition: var(--transition);
+    }
+
+    .modal-thumbs img:hover {
+      border-color: var(--primary);
+    }
+
+    .details-list {
+      display: none;
+    }
+
+    .stats-list {
+      display: grid;
+      gap: 10px;
+      /*margin: 18px 0 20px; */
+    }
+
+    .stat-line {
+      display: flex;
+      align-items: center;
+      /* gap: 12px;
+
+  padding: 12px 14px; */
+      /* 
+  background: var(--bg-detail);
+  border: 1px solid var(--border-main); */
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+      background: rgba(220, 38, 38, .12);
+      border: 1px solid rgba(220, 38, 38, .24);
+
+      font-size: 20px;
+      flex: 0 0 42px;
+    }
+
+    .stat-text {
+      display: grid;
+      gap: 6px !important;
+    }
+
+    .stat-text span {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .stat-text strong {
+      color: var(--text-main);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .skills-table {
+      width: 100%;
+      margin: 18px 0 24px;
+
+      border-collapse: separate;
+      border-spacing: 0;
+
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--primary-hover);
+    }
+
+    .skills-table th,
+    .skills-table td {
+      padding: 12px 14px;
+      background: var(--bg-detail);
+      border-bottom: 1px solid var(--border-main);
+      color: var(--text-soft);
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .skills-table th {
+      color: var(--text-main);
+      font-weight: 900;
+    }
+
+    .skills-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .skills-table td:nth-child(2),
+    .skills-table td:nth-child(3),
+    .skills-table td:nth-child(4) {
+      width: 52px;
+      text-align: center;
+      color: var(--text-main);
+      font-weight: 900;
+    }
+
+    .skills-table td:last-child {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .modal-thumbs img:hover {
+      border-color: var(--primary);
+    }
+
+    .modal-info {
+      height: 100%;
+      min-height: 0;
+
+      padding: 38px;
+      padding-right: 30px;
+
+      position: relative;
+
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+    }
+
+    .modal-info::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-info::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .modal-info::-webkit-scrollbar-thumb {
+      background: rgba(220, 38, 38, 0.45);
+      border-radius: 999px;
+    }
+
+    .modal-info::-webkit-scrollbar-thumb:hover {
+      background: rgba(220, 38, 38, 0.75);
+    }
+
+    .close {
+      position: absolute;
+      right: 20px;
+      margin-left: auto;
+
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid var(--border-main);
+      border-radius: 50%;
+
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text-main);
+
+      z-index: 5;
+      transition: var(--transition);
+    }
+
+    .close:hover {
+      background: var(--primary);
+    }
+
+    .modal-info h2 {
+      font-size: 32px;
+      margin: 0px 0 16px;
+      color: var(--text-main);
+      padding-right: 0;
+    }
+
+    .modal-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .modal-info p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .buy-btn {
+      position: sticky;
+      bottom: 0;
+
+      width: 100%;
+      height: 54px;
+
+      margin-top: 10px;
+
+      border: none;
+      border-radius: 15px;
+
+      background: var(--primary);
+      color: var(--text-main);
+
+      font-size: 16px;
+      font-weight: 900;
+
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 4;
+    }
+
+    .buy-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    @media (max-width: 950px) {
+      .modal {
+        padding: 14px;
+        align-items: flex-start;
+      }
+
+      .modal-box {
+        width: 100%;
+        height: calc(100vh - 28px);
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 42% 58%;
+      }
+
+      .modal-gallery {
+        padding: 14px;
+      }
+
+      .modal-info {
+        padding: 24px;
+        overflow-y: auto;
+      }
+
+      .modal-info h2 {
+        font-size: 26px;
+      }
+
+      .modal-thumbs img {
+        height: 68px;
+      }
+    }
+
+    .details-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .details-list div {
+      /* padding: 12px 14px; */
+      /* background: var(--bg-detail);
+      border: 1px solid var(--border-main); */
+      border-radius: var(--radius-sm);
+      color: var(--text-soft);
+      font-weight: 700;
+      gap: 12px;
+    }
+
+    /* .buy-btn {
+      width: 100%;
+      height: 54px;
+      border: none;
+      border-radius: 15px;
+      background: var(--primary);
+      color: var(--text-main);
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: var(--transition);
+    } */
+
+    .buy-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    @media (max-width: 950px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      /* .toolbar {
+        flex-direction: column;
+      } */
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 34px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .modal-box {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+        overflow-y: auto;
+      }
+
+      .modal-main-img {
+        height: 280px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .filter-wrapper {
+      position: relative;
+    }
+
+    .filter-open-btn {
+      min-width: 118px;
+      padding: 0 18px;
+    }
+
+    .filter-panel {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+
+      width: 400px;
+      max-height: 72vh;
+      overflow-y: auto;
+
+      padding: 14px;
+
+      background: rgba(20, 20, 22, 0.96);
+      border: 1px solid var(--border-main);
+      border-radius: 18px;
+
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, .45),
+        0 0 0 1px rgba(220, 38, 38, .08);
+
+      display: none;
+      z-index: 20;
+
+      backdrop-filter: blur(16px);
+    }
+
+    .filter-panel.active {
+      display: block;
+    }
+
+    .filters-content {
+      display: flex;
+      justify-content: space-between
+    }
+
+    .filter-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .filter-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .filter-panel::-webkit-scrollbar-thumb {
+      background: rgba(220, 38, 38, .45);
+      border-radius: 999px;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .filter-group h4,
+    .range-group h4 {
+      font-size: 14px;
+      line-height: 1;
+      color: var(--primary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .filter-group label {
+      width: 100%;
+      min-height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      gap: 10px;
+
+      padding: 5px 6px;
+
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 700;
+
+      cursor: pointer;
+      text-align: left;
+
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .filter-group label:hover {
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .filter-group input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+
+      border-radius: 30px;
+      border: 2px solid rgba(255, 255, 255, .14);
+      background: var(--bg-detail);
+
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .filter-group input[type="checkbox"]:checked {
+      background: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 0 14px rgba(220, 38, 38, .35);
+    }
+
+    .filter-group input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+      background: var(--text-main);
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .range-group {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+          width: 180px;
+    }
+
+    .range-row {
+      display: grid;
+      gap: 5px;
+    }
+
+    .range-row label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: var(--text-soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .range-row span {
+      color: var(--primary-hover);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .range-row input[type="range"] {
+      height: 4px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      padding: 0px;
+      border: 0px;
+    }
+
+    .filter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+
+      padding-top: 4px;
+    }
+
+    .filter-actions button {
+      height: 38px;
+      border-radius: 12px;
+      border: none;
+
+      background: var(--primary);
+      color: var(--text-main);
+
+      font-size: 13px;
+      font-weight: 800;
+
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-actions button:hover {
+      background: var(--primary-hover);
+    }
+
+    .filter-actions .clear-btn {
+      background: var(--bg-detail);
+      color: var(--text-soft);
+      border: 1px solid var(--border-main);
+    }
+
+    .filter-actions .clear-btn:hover {
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .stat-card {
+      padding: 12px 14px;
+      background: var(--bg-detail);
+      border: 1px solid var(--border-main);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .stat-card strong {
+      color: var(--text-main);
+      font-size: 18px;
+    }
+
+    .filter-group input {
+      accent-color: var(--primary);
+    }
+
+    .filter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .filter-actions button {
+      height: 42px;
+      border-radius: var(--radius-md);
+      border: none;
+
+      background: var(--primary);
+      color: var(--text-main);
+
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter-actions .clear-btn {
+      background: var(--bg-detail);
+      color: var(--text-soft);
+      border: 1px solid var(--border-main);
+    }
+
+
+    .empty-state {
+      grid-column: 1 / -1;
+
+      min-height: 260px;
+
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state.active {
+      display: flex;
+    }
+
+    .empty-icon {
+      /* width: 82px;
+      height: 82px; */
+
+      margin-bottom: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--bg-card);
+      border: 1px solid var(--border-main);
+
+      font-size: 36px;
+
+      animation: emptyPulse 1.8s ease-in-out infinite;
+    }
+
+    .empty-icon svg {
+      /* width: 32px; */
+    }
+
+    .empty-state h3 {
+      margin-bottom: 8px;
+
+      color: var(--text-main);
+      font-size: 22px;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    @keyframes emptyPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, .24);
+      }
+
+      70% {
+        transform: scale(1.04);
+        box-shadow: 0 0 0 18px rgba(220, 38, 38, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+      }
+    }
+
+    /* Fixed modal layout: header and footer stay visible, only stats/table scroll */
+    .modal-info {
+      height: 100%;
+      min-height: 0;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      background: var(--bg-modal);
+    }
+
+    .modal-fixed-top {
+      position: relative;
+      padding: 34px 38px 18px;
+      border-bottom: 1px solid var(--border-main);
+      background:
+        linear-gradient(180deg, rgba(20, 20, 22, .98), rgba(20, 20, 22, .92));
+      z-index: 3;
+    }
+
+    .modal-fixed-top::after {
+      content: "";
+      position: absolute;
+      left: 38px;
+      right: 38px;
+      bottom: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(220, 38, 38, .55), transparent);
+      pointer-events: none;
+    }
+
+    .modal-fixed-top .close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      margin-left: 0;
+    }
+
+    .modal-fixed-top h2 {
+      font-size: 32px;
+      margin: 0 48px 16px 0;
+      color: var(--text-main);
+      padding-right: 0;
+      line-height: 1.15;
+    }
+
+    .modal-fixed-top .modal-tags {
+      margin-bottom: 16px;
+    }
+
+    .modal-fixed-top p {
+      margin-bottom: 0;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .modal-scroll {
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      padding: 22px 30px 22px 38px;
+    }
+
+    .modal-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: rgba(220, 38, 38, 0.45);
+      border-radius: 999px;
+    }
+
+    .modal-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(220, 38, 38, 0.75);
+    }
+
+    .modal-fixed-bottom {
+      padding: 18px 38px 24px;
+      border-top: 1px solid var(--border-main);
+      background:
+        linear-gradient(180deg, rgba(20, 20, 22, .90), rgba(20, 20, 22, 1));
+      box-shadow: 0 -18px 30px rgba(0, 0, 0, .22);
+      z-index: 3;
+    }
+
+    .modal-fixed-bottom .price {
+      margin-bottom: 12px;
+    }
+
+    .modal-fixed-bottom .buy-btn {
+      position: static;
+      margin-top: 0;
+      display: block;
+    }
+
+    .modal-scroll .details-list {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 950px) {
+      .modal-fixed-top {
+        padding: 24px 24px 16px;
+      }
+
+      .modal-fixed-top::after {
+        left: 24px;
+        right: 24px;
+      }
+
+      .modal-fixed-top h2 {
+        font-size: 26px;
+      }
+
+      .modal-scroll {
+        padding: 18px 20px 18px 24px;
+      }
+
+      .modal-fixed-bottom {
+        padding: 16px 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Market</div>
+
+    <nav>
+      <a href="#">Главная</a>
+      <a href="#">Каталог</a>
+      <a href="#">Гарантии</a>
+      <a href="#">Поддержка</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Lineage 2 Market</h1>
+    <p>
+      Продажа игровых аккаунтов и предметов Lineage 2: персонажи, экипировка,
+      адена, оружие и редкие игровые ресурсы.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="hero-btn active" onclick="switchCategory('accounts', this)">Аккаунты</button>
+      <button class="hero-btn" onclick="switchCategory('items', this)">Предметы</button>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <input type="text" id="searchInput" placeholder="Поиск по товарам..." />
+
+    <div class="filter-wrapper">
+      <button class="filter-open-btn" onclick="toggleFilterPanel()">
+        Фильтры
+      </button>
+
+      <div class="filter-panel" id="filterPanel">
+
+        <div class="filters-content">
+          <div class="filers-group">
+            <div class="filter-group">
+              <h4>Регион аккаунта</h4>
+
+              <label>
+                <input type="checkbox" name="region" value="Россия">
+                <span>Россия</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="region" value="Украина">
+                <span>Украина</span>
+              </label>
+            </div>
+
+            <div class="filter-group">
+              <h4>Дроп</h4>
+
+              <label>
+                <input type="checkbox" name="drop" value="Золотой лут">
+                <span>Золотой лут</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="drop" value="Красный лут">
+                <span>Красный лут</span>
+              </label>
+
+              <label>
+                <input type="checkbox" name="drop" value="Фиолетовый лут">
+                <span>Фиолетовый лут</span>
+              </label>
+            </div>
+          </div>
+
+
+          <div class="range-group">
+            <h4>Статы персонажа</h4>
+
+            <div class="range-row">
+              <label>Дэф <span id="defValue">2000</span></label>
+              <input type="range" name="stat" data-stat="def" min="0" max="2000" value="2000">
+            </div>
+
+            <div class="range-row">
+              <label>Сниж <span id="reductionValue">2000</span></label>
+              <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="2000">
+            </div>
+
+            <div class="range-row">
+              <label>Сопротив <span id="resistValue">2000</span></label>
+              <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="2000">
+            </div>
+
+            <div class="range-row">
+              <label>Урон <span id="damageValue">2000</span></label>
+              <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="2000">
+            </div>
+
+            <div class="range-row">
+              <label>Точность <span id="accuracyValue">2000</span></label>
+              <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="2000">
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+        <div class="filter-actions">
+          <button onclick="applyFilters()">Применить</button>
+          <button class="clear-btn" onclick="clearFilters()">Сбросить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="products" id="products">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon"><svg viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+          fill="#000000">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <title>cross</title>
+            <desc>Created with Sketch Beta.</desc>
+            <defs> </defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+              <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-467.000000, -1039.000000)"
+                fill="#000000">
+                <path
+                  d="M489.396,1061.4 C488.614,1062.18 487.347,1062.18 486.564,1061.4 L479.484,1054.32 L472.404,1061.4 C471.622,1062.18 470.354,1062.18 469.572,1061.4 C468.79,1060.61 468.79,1059.35 469.572,1058.56 L476.652,1051.48 L469.572,1044.4 C468.79,1043.62 468.79,1042.35 469.572,1041.57 C470.354,1040.79 471.622,1040.79 472.404,1041.57 L479.484,1048.65 L486.564,1041.57 C487.347,1040.79 488.614,1040.79 489.396,1041.57 C490.179,1042.35 490.179,1043.62 489.396,1044.4 L482.316,1051.48 L489.396,1058.56 C490.179,1059.35 490.179,1060.61 489.396,1061.4 L489.396,1061.4 Z M485.148,1051.48 L490.813,1045.82 C492.376,1044.26 492.376,1041.72 490.813,1040.16 C489.248,1038.59 486.712,1038.59 485.148,1040.16 L479.484,1045.82 L473.82,1040.16 C472.257,1038.59 469.721,1038.59 468.156,1040.16 C466.593,1041.72 466.593,1044.26 468.156,1045.82 L473.82,1051.48 L468.156,1057.15 C466.593,1058.71 466.593,1061.25 468.156,1062.81 C469.721,1064.38 472.257,1064.38 473.82,1062.81 L479.484,1057.15 L485.148,1062.81 C486.712,1064.38 489.248,1064.38 490.813,1062.81 C492.376,1061.25 492.376,1058.71 490.813,1057.15 L485.148,1051.48 L485.148,1051.48 Z"
+                  id="cross" sketch:type="MSShapeGroup"> </path>
+              </g>
+            </g>
+          </g>
+        </svg></div>
+      <h3>Товары не найдены</h3>
+      <p>Результаты поиска не найдены. Пожалуйста, проверьте поисковой запрос или фильтры.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2026 Market</div>
+    <div>Политика сервиса · Поддержка · Контакты</div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-gallery">
+        <div class="modal-main-img">
+          <img id="modalMainImg" src="" alt="">
+        </div>
+        <div class="modal-thumbs" id="modalThumbs"></div>
+      </div>
+
+      <div class="modal-info">
+        <div class="modal-fixed-top">
+          <span class="close" onclick="closeModal()">×</span>
+          <h2 id="modalTitle"></h2>
+
+          <div class="modal-tags" id="modalTags"></div>
+
+          <p id="modalText"></p>
+        </div>
+
+        <div class="modal-scroll">
+          <div class="details-list" id="modalDetails"></div>
+        </div>
+
+        <div class="modal-fixed-bottom">
+          <div class="price" id="modalPrice"></div>
+          <button class="buy-btn">Купить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = {
+      accounts: [
+        {
+          title: "Аккаунт Titan 85 lvl",
+          category: "premium",
+          price: 5900,
+          region: "Россия",
+          drop: "Золотой лут",
+          typeClass: "gold",
+          cover: "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1200",
+            "https://images.unsplash.com/photo-1605902711622-cfb43c44367f?q=80&w=1200",
+            "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200"
+          ],
+          stats: {
+            def: 1280,
+            reduction: 740,
+            resist: 920,
+            damage: 1550,
+            accuracy: 1180
+          },
+          skills: [
+            { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+            { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+            { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+            { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+            { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+            { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+          ],
+          tags: ["Titan", "85 lvl", "Premium"],
+          description: "Аккаунт Lineage 2 с персонажем Titan 85 уровня.",
+          details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
+        },
+        {
+          title: "Аккаунт Archmage 82 lvl",
+          category: "ranked",
+          price: 3900,
+          region: "Украина",
+          drop: "Красный лут",
+          typeClass: "red",
+          cover: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200",
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200"
+          ],
+          stats: {
+            def: 640,
+            reduction: 480,
+            resist: 1320,
+            damage: 1760,
+            accuracy: 920
+          },
+          skills: [
+            { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+            { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+            { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+            { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+            { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+            { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+          ],
+          tags: ["Archmage", "82 lvl", "PvP"],
+          description: "Магический персонаж для PvP и фарма.",
+          details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
+        },
+        {
+          title: "Стартовый аккаунт",
+          category: "cheap",
+          price: 1900,
+          region: "Россия",
+          drop: "Фиолетовый лут",
+          typeClass: "purple",
+          cover: "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200"
+          ],
+          stats: {
+            def: 420,
+            reduction: 260,
+            resist: 380,
+            damage: 520,
+            accuracy: 340
+          },
+          skills: [
+            { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+            { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+            { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+            { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+            { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+            { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+          ],
+          tags: ["76 lvl", "Starter", "Budget"],
+          description: "Бюджетный аккаунт Lineage 2 для старта.",
+          details: ["Регион: Россия", "Уровень: 76", "Тип: стартовый аккаунт", "Дроп: Фиолетовый лут"]
+        }
+      ],
+
+      items: [
+        {
+          title: "Draconic Bow",
+          category: "premium",
+          price: 4500,
+          region: "Россия",
+          drop: "Золотой лут",
+          typeClass: "gold",
+          cover: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1200",
+            "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?q=80&w=1200"
+          ],
+          tags: ["Weapon", "S-grade", "Rare"],
+          description: "Редкий лук S-grade для персонажей дальнего боя.",
+          details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
+        },
+        {
+          title: "Imperial Crusader Armor",
+          category: "ranked",
+          price: 3600,
+          region: "Украина",
+          drop: "Красный лут",
+          typeClass: "red",
+          cover: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200",
+            "https://images.unsplash.com/photo-1615672968435-95ade28e0b38?q=80&w=1200",
+            "https://images.unsplash.com/photo-1605106702734-205df224ecce?q=80&w=1200"
+          ],
+          tags: ["Armor", "Heavy", "S-grade"],
+          description: "Тяжёлая броня S-grade для танков и воинов.",
+          details: ["Регион: Украина", "Тип: броня", "Грейд: S-grade", "Дроп: Красный лут"]
+        },
+        {
+          title: "Adena Pack",
+          category: "cheap",
+          price: 2500,
+          region: "Россия",
+          drop: "Фиолетовый лут",
+          typeClass: "purple",
+          cover: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1200",
+          images: [
+            "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1200"
+          ],
+          tags: ["Adena", "Currency", "Fast"],
+          description: "Пак игровой валюты для покупки экипировки и ресурсов.",
+          details: ["Регион: Россия", "Тип: игровая валюта", "Передача: вручную", "Дроп: Фиолетовый лут"]
+        }
+      ]
+    };
+
+    let currentCategory = "accounts";
+
+    let activeFilters = {
+      region: [],
+      drop: [],
+      stats: {
+        def: 2000,
+        reduction: 2000,
+        resist: 2000,
+        damage: 2000,
+        accuracy: 2000
+      }
+    };
+
+    const statLabels = {
+      def: "Дэф",
+      reduction: "Сниж",
+      resist: "Сопротив",
+      damage: "Урон",
+      accuracy: "Точность"
+    };
+
+    function renderProducts() {
+      const container = document.getElementById("products");
+
+      container.innerHTML = `
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">
+<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M12 12L16 16M8 8L10 10" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>    <h3>Товары не найдены</h3>
+      <p>Результаты поиска не найдены. Пожалуйста, проверьте поисковой запрос или фильтры.</p>
+  </div>
+`;
+
+      products[currentCategory].forEach(product => {
+        const card = document.createElement("div");
+
+        card.className = "card";
+        card.dataset.title = product.title;
+        card.dataset.category = product.category;
+        card.dataset.price = product.price;
+        card.dataset.region = product.region;
+        card.dataset.drop = product.drop;
+
+        if (product.stats) {
+          card.dataset.def = product.stats.def;
+          card.dataset.reduction = product.stats.reduction;
+          card.dataset.resist = product.stats.resist;
+          card.dataset.damage = product.stats.damage;
+          card.dataset.accuracy = product.stats.accuracy;
+        }
+
+        card.innerHTML = `
+        <div class="card-cover">
+          <img src="${product.cover}" alt="${product.title}">
+
+          <div class="badges">
+            <span class="badge region">${product.region}</span>
+            <span class="badge type ${product.typeClass}">${product.drop}</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <h3>${product.title}</h3>
+
+          <div class="meta">
+            ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+          </div>
+
+          <div class="price">${product.price.toLocaleString("ru-RU")} ₽</div>
+        </div>
+      `;
+
+        card.onclick = () => openProduct(product);
+        container.appendChild(card);
+      });
+
+      filterProducts();
+    }
+
+    function switchCategory(category, button) {
+      currentCategory = category;
+
+      document.querySelectorAll(".hero-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      renderProducts();
+    }
+
+    function renderStats(product) {
+      if (!product.stats) return "";
+
+      const icons = {
+        def: "🛡️",
+        reduction: "📉",
+        resist: "💠",
+        damage: "⚔️",
+        accuracy: "🎯"
+      };
+
+      return `
+    <div class="stats-list">
+      ${Object.entries(product.stats).map(([key, value]) => `
+        <div class="stat-line">
+          <div class="stat-icon">${icons[key]}</div>
+          <div class="stat-text">
+            <span>${statLabels[key]}</span>
+            <strong>${value}</strong>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+    }
+
+    function renderSkills(product) {
+      if (!product.skills) return "";
+
+      return `
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th>Персонаж</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>Доп.</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${product.skills.map(skill => `
+          <tr>
+            <td>${skill.name}</td>
+            <td>${skill.a}</td>
+            <td>${skill.b}</td>
+            <td>${skill.c}</td>
+            <td>${skill.note}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+    }
+
+    function openProduct(product) {
+      document.getElementById("modalTitle").textContent = product.title;
+      document.getElementById("modalText").textContent = product.description;
+      document.getElementById("modalPrice").textContent =
+        product.price.toLocaleString("ru-RU") + " ₽";
+
+      document.getElementById("modalMainImg").src = product.images[0];
+
+      document.getElementById("modalTags").innerHTML = `
+      <span class="badge region">${product.region}</span>
+      <span class="badge type ${product.typeClass}">${product.drop}</span>
+      ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+    `;
+
+      document.getElementById("modalDetails").innerHTML =
+        renderStats(product) +
+        renderSkills(product);
+
+      document.getElementById("modalThumbs").innerHTML =
+        product.images.map(img => `
+        <img src="${img}" onclick="changeMainImage('${img}')">
+      `).join("");
+
+      document.getElementById("modal").classList.add("active");
+    }
+
+    function changeMainImage(src) {
+      document.getElementById("modalMainImg").src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("modal").classList.remove("active");
+    }
+
+    function toggleFilterPanel() {
+      document.getElementById("filterPanel").classList.toggle("active");
+    }
+
+    function getCheckedValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+        .map(input => input.value);
+    }
+
+    function getStatValue(stat) {
+      const input = document.querySelector(`input[data-stat="${stat}"]`);
+      return input ? Number(input.value) : 2000;
+    }
+
+    function updateRangeLabels() {
+      document.getElementById("defValue").textContent = getStatValue("def");
+      document.getElementById("reductionValue").textContent = getStatValue("reduction");
+      document.getElementById("resistValue").textContent = getStatValue("resist");
+      document.getElementById("damageValue").textContent = getStatValue("damage");
+      document.getElementById("accuracyValue").textContent = getStatValue("accuracy");
+    }
+
+    function applyFilters() {
+      activeFilters.region = getCheckedValues("region");
+      activeFilters.drop = getCheckedValues("drop");
+
+      activeFilters.stats = {
+        def: getStatValue("def"),
+        reduction: getStatValue("reduction"),
+        resist: getStatValue("resist"),
+        damage: getStatValue("damage"),
+        accuracy: getStatValue("accuracy")
+      };
+
+      filterProducts();
+      document.getElementById("filterPanel").classList.remove("active");
+    }
+
+    function clearFilters() {
+      document.querySelectorAll('#filterPanel input[type="checkbox"]').forEach(input => {
+        input.checked = false;
+      });
+
+      document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
+        input.value = 2000;
+      });
+
+      activeFilters.region = [];
+      activeFilters.drop = [];
+
+      activeFilters.stats = {
+        def: 2000,
+        reduction: 2000,
+        resist: 2000,
+        damage: 2000,
+        accuracy: 2000
+      };
+
+      updateRangeLabels();
+      filterProducts();
+    }
+
+    function matchesStats(card) {
+      if (currentCategory !== "accounts") return true;
+
+      return (
+        Number(card.dataset.def) <= activeFilters.stats.def &&
+        Number(card.dataset.reduction) <= activeFilters.stats.reduction &&
+        Number(card.dataset.resist) <= activeFilters.stats.resist &&
+        Number(card.dataset.damage) <= activeFilters.stats.damage &&
+        Number(card.dataset.accuracy) <= activeFilters.stats.accuracy
+      );
+    }
+
+    function filterProducts() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      const emptyState = document.getElementById("emptyState");
+
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const region = card.dataset.region;
+        const drop = card.dataset.drop;
+
+        const matchesSearch = title.includes(search);
+
+        const matchesRegion =
+          activeFilters.region.length === 0 ||
+          activeFilters.region.includes(region);
+
+        const matchesDrop =
+          activeFilters.drop.length === 0 ||
+          activeFilters.drop.includes(drop);
+
+        const isVisible =
+          matchesSearch &&
+          matchesRegion &&
+          matchesDrop &&
+          matchesStats(card);
+
+        card.style.display = isVisible ? "block" : "none";
+
+        if (isVisible) visibleCount++;
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle("active", visibleCount === 0);
+      }
+    }
+
+    document.addEventListener("click", function (event) {
+      const filterPanel = document.getElementById("filterPanel");
+      const filterWrapper = document.querySelector(".filter-wrapper");
+
+      if (
+        filterPanel &&
+        filterWrapper &&
+        !filterWrapper.contains(event.target)
+      ) {
+        filterPanel.classList.remove("active");
+      }
+    });
+
+    document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
+      input.addEventListener("input", updateRangeLabels);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", filterProducts);
+
+    updateRangeLabels();
+    renderProducts();
+  </script>
+
+</body>
+
+</html>
