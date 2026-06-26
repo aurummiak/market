@@ -894,6 +894,42 @@
       background: var(--primary-hover);
     }
 
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .tag.stat-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      height: 30px;
+      padding: 0 9px;
+
+      border-radius: 999px;
+
+      background: rgba(0, 0, 0, .72);
+      border: 1px solid rgba(255, 255, 255, .1);
+
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .tag.stat-tag img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .tag.stat-tag span {
+      line-height: 1;
+    }
+
     @media (max-width: 950px) {
       .products {
         grid-template-columns: 1fr;
@@ -1397,6 +1433,25 @@
         padding: 16px 24px 20px;
       }
     }
+
+
+    @media (max-width: 1820px) and (min-width:1500px) {
+      .products {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 1499px) and (min-width:1000px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 999px) and (min-width: 950px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 
@@ -1603,6 +1658,28 @@
           region: "Россия",
           drop: "Золотой лут",
           typeClass: "gold",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
           cover: "img/product1_1.jpg",
           images: [
             "img/product1_1.jpg",
@@ -1624,7 +1701,6 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["Арбалет", "84,31%", "Номер телефона"],
           description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Урона 176, Шанс Тройного Урона 40 , Блокировка Оружия 159, Увеличение Урона от Оружия 326%, Увеличение Урона от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
           details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
         },
@@ -1635,6 +1711,29 @@
           region: "Украина",
           drop: "Красный лут",
           typeClass: "red",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/product2_1.jpg",
           images: [
             "img/product2_1.jpg",
@@ -1655,7 +1754,6 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["Archmage", "82 lvl", "PvP"],
           description: "Магический персонаж для PvP и фарма.",
           details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
         },
@@ -1666,6 +1764,29 @@
           region: "Россия",
           drop: "Золотой лут",
           typeClass: "gold",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/product1_1.jpg",
           images: [
             "img/product1_1.jpg",
@@ -1687,7 +1808,28 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["Арбалет", "84,31%", "Номер телефона"],
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
           description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Урона 176, Шанс Тройного Урона 40 , Блокировка Оружия 159, Увеличение Урона от Оружия 326%, Увеличение Урона от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
           details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
         },
@@ -1698,6 +1840,29 @@
           region: "Украина",
           drop: "Красный лут",
           typeClass: "red",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/product2_1.jpg",
           images: [
             "img/product2_1.jpg",
@@ -1718,7 +1883,6 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["Archmage", "82 lvl", "PvP"],
           description: "Магический персонаж для PvP и фарма.",
           details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
         },
@@ -1729,6 +1893,29 @@
           region: "Россия",
           drop: "Фиолетовый лут",
           typeClass: "purple",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/product3_1.jpg",
           images: [
             "img/product3_1.jpg",
@@ -1750,7 +1937,6 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          tags: ["76 lvl", "Starter", "Budget"],
           description: "Бюджетный аккаунт Lineage 2 для старта.",
           details: ["Регион: Россия", "Уровень: 76", "Тип: стартовый аккаунт", "Дроп: Фиолетовый лут"]
         }
@@ -1764,13 +1950,35 @@
           region: "Россия",
           drop: "Золотой лут",
           typeClass: "gold",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/objects/object1_1.png",
           images: [
             "img/objects/object1_1.png",
             "img/objects/object1_2.png",
             "img/objects/object1_3.png"
           ],
-          tags: ["Weapon", "S-grade", "Rare"],
           description: "Редкий лук S-grade для персонажей дальнего боя.",
           details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
         },
@@ -1781,11 +1989,33 @@
           region: "Украина",
           drop: "Красный лут",
           typeClass: "red",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/objects/object2_1.png",
           images: [
             "img/objects/object2_1.png"
           ],
-          tags: ["Armor", "Heavy", "S-grade"],
           description: "Тяжёлая броня S-grade для танков и воинов.",
           details: ["Регион: Украина", "Тип: броня", "Грейд: S-grade", "Дроп: Красный лут"]
         },
@@ -1796,13 +2026,35 @@
           region: "Россия",
           drop: "Фиолетовый лут",
           typeClass: "purple",
+          cardStats: [
+            {
+              icon: "img/tags/damage.png",
+              value: 570
+            },
+            {
+              icon: "img/tags/accuracy.png",
+              value: 430
+            },
+            {
+              icon: "img/tags/defence.png",
+              value: 690
+            },
+            {
+              icon: "img/tags/reduction.png",
+              value: 285
+            },
+            {
+              icon: "img/tags/resistance.png",
+              value: 910
+            }
+          ],
+
           cover: "img/objects/object3_1.png",
           images: [
             "img/objects/object3_1.png",
             "img/objects/object3_2.png",
             "img/objects/object3_3.png"
           ],
-          tags: ["Adena", "Currency", "Fast"],
           description: "Пак игровой валюты для покупки экипировки и ресурсов.",
           details: ["Регион: Россия", "Тип: игровая валюта", "Передача: вручную", "Дроп: Фиолетовый лут"]
         }
@@ -1875,9 +2127,21 @@
         <div class="card-body">
           <h3>${product.title}</h3>
 
-          <div class="meta">
-            ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-          </div>
+<div class="meta">
+  ${product.cardStats.map(stat => `
+    <span class="tag stat-tag">
+
+      <img
+        src="${stat.icon}"
+        alt=""
+        draggable="false"
+      >
+
+      <span>${stat.value}</span>
+
+    </span>
+  `).join("")}
+</div>
 
           <div class="price">${product.price.toLocaleString("ru-RU")} ₽</div>
         </div>
