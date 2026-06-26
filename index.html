@@ -549,8 +549,8 @@
     }
 
     .modal-box {
-      /* width: min(1080px, 100%); */
-      height: min(760px, calc(100vh - 48px));
+      width: min(80%, 100%);
+      height: min(760px, 80%);
 
       background: var(--bg-modal);
       border-radius: 28px;
@@ -623,6 +623,7 @@
 
     .stats-list {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       /*margin: 18px 0 20px; */
     }
@@ -643,16 +644,24 @@
       width: 42px;
       height: 42px;
 
+      flex: 0 0 42px;
+
       display: flex;
       align-items: center;
       justify-content: center;
 
       border-radius: 14px;
-      background: rgba(220, 38, 38, .12);
-      border: 1px solid rgba(220, 38, 38, .24);
 
-      font-size: 20px;
-      flex: 0 0 42px;
+      background: rgba(220, 38, 38, .08);
+      border: 1px solid rgba(220, 38, 38, .15);
+    }
+
+    .stat-icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
     }
 
     .stat-text {
@@ -792,14 +801,14 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px; */
     }
 
     .modal-info p {
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 20px;
-      font-size: 16px;
+      /* font-size: 16px; */
     }
 
     .buy-btn {
@@ -865,6 +874,7 @@
       display: grid;
       gap: 10px;
       margin-bottom: 24px;
+      /* grid-template-columns: repeat(3, 1fr); */
     }
 
     .details-list div {
@@ -875,6 +885,7 @@
       color: var(--text-soft);
       font-weight: 700;
       gap: 12px;
+      /* grid-template-columns: repeat(3, 1fr); */
     }
 
     /* .buy-btn {
@@ -1351,7 +1362,7 @@
     }
 
     .modal-fixed-top .modal-tags {
-      margin-bottom: 16px;
+      /* margin-bottom: 16px; */
     }
 
     .modal-fixed-top p {
@@ -2169,30 +2180,40 @@
       renderProducts();
     }
 
+
     function renderStats(product) {
       if (!product.stats) return "";
 
       const icons = {
-        def: "🛡️",
-        reduction: "📉",
-        resist: "💠",
-        damage: "⚔️",
-        accuracy: "🎯"
+        damage: "img/tags/damage.png",
+        accuracy: "img/tags/accuracy.png",
+        def: "img/tags/defence.png",
+        reduction: "img/tags/reduction.png",
+        resist: "img/tags/resistance.png"
       };
 
       return `
-    <div class="stats-list">
-      ${Object.entries(product.stats).map(([key, value]) => `
-        <div class="stat-line">
-          <div class="stat-icon">${icons[key]}</div>
-          <div class="stat-text">
-            <span>${statLabels[key]}</span>
-            <strong>${value}</strong>
-          </div>
+        <div class="stats-list">
+
+            ${Object.entries(product.stats).map(([key, value]) => `
+
+                <div class="stat-line">
+
+                    <div class="stat-icon">
+                        <img src="${icons[key]}" alt="">
+                    </div>
+
+                    <div class="stat-text">
+                        <span>${statLabels[key]}</span>
+                        <strong>${value}</strong>
+                    </div>
+
+                </div>
+
+            `).join("")}
+
         </div>
-      `).join("")}
-    </div>
-  `;
+    `;
     }
 
     function renderSkills(product) {
