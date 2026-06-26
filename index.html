@@ -1542,28 +1542,28 @@
             <h4>Статы персонажа</h4>
 
             <div class="range-row">
-              <label>Дэф <span id="defValue">2000</span></label>
-              <input type="range" name="stat" data-stat="def" min="0" max="2000" value="2000">
+              <label>Дэф <span id="defValue">0</span></label>
+              <input type="range" name="stat" data-stat="def" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Сниж <span id="reductionValue">2000</span></label>
-              <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="2000">
+              <label>Сниж <span id="reductionValue">0</span></label>
+              <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Сопротив <span id="resistValue">2000</span></label>
-              <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="2000">
+              <label>Сопротив <span id="resistValue">0</span></label>
+              <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Урон <span id="damageValue">2000</span></label>
-              <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="2000">
+              <label>Урон <span id="damageValue">0</span></label>
+              <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Точность <span id="accuracyValue">2000</span></label>
-              <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="2000">
+              <label>Точность <span id="accuracyValue">0</span></label>
+              <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="0">
             </div>
           </div>
 
@@ -1611,7 +1611,7 @@
     <div>Политика сервиса · Поддержка · Контакты</div>
   </footer>
 
-  <div class="modal" id="modal">
+  <div class="modal" id="modal" onclick="closeModalOutside(event)">
     <div class="modal-box">
       <div class="modal-gallery">
         <div class="modal-main-img">
@@ -1697,11 +1697,11 @@
             "img/product1_3.jpg"
           ],
           stats: {
-            def: 1280,
-            reduction: 740,
-            resist: 920,
-            damage: 1550,
-            accuracy: 1180
+            def: 0,
+            reduction: 0,
+            resist: 0,
+            damage: 0,
+            accuracy: 0
           },
           skills: [
             { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
@@ -2079,11 +2079,11 @@
       region: [],
       drop: [],
       stats: {
-        def: 2000,
-        reduction: 2000,
-        resist: 2000,
-        damage: 2000,
-        accuracy: 2000
+        def: 0,
+        reduction: 0,
+        resist: 0,
+        damage: 0,
+        accuracy: 0
       }
     };
 
@@ -2291,6 +2291,12 @@
       document.getElementById("modal").classList.remove("active");
     }
 
+    function closeModalOutside(event) {
+      if (event.target.id === "modal") {
+        closeModal();
+      }
+    }
+
     function toggleFilterPanel() {
       document.getElementById("filterPanel").classList.toggle("active");
     }
@@ -2302,7 +2308,7 @@
 
     function getStatValue(stat) {
       const input = document.querySelector(`input[data-stat="${stat}"]`);
-      return input ? Number(input.value) : 2000;
+      return input ? Number(input.value) : 0;
     }
 
     function updateRangeLabels() {
@@ -2335,18 +2341,18 @@
       });
 
       document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
-        input.value = 2000;
+        input.value = 0;
       });
 
       activeFilters.region = [];
       activeFilters.drop = [];
 
       activeFilters.stats = {
-        def: 2000,
-        reduction: 2000,
-        resist: 2000,
-        damage: 2000,
-        accuracy: 2000
+        def: 0,
+        reduction: 0,
+        resist: 0,
+        damage: 0,
+        accuracy: 0
       };
 
       updateRangeLabels();
@@ -2357,11 +2363,11 @@
       if (currentCategory !== "accounts") return true;
 
       return (
-        Number(card.dataset.def) <= activeFilters.stats.def &&
-        Number(card.dataset.reduction) <= activeFilters.stats.reduction &&
-        Number(card.dataset.resist) <= activeFilters.stats.resist &&
-        Number(card.dataset.damage) <= activeFilters.stats.damage &&
-        Number(card.dataset.accuracy) <= activeFilters.stats.accuracy
+        Number(card.dataset.def) >= activeFilters.stats.def &&
+        Number(card.dataset.reduction) >= activeFilters.stats.reduction &&
+        Number(card.dataset.resist) >= activeFilters.stats.resist &&
+        Number(card.dataset.damage) >= activeFilters.stats.damage &&
+        Number(card.dataset.accuracy) >= activeFilters.stats.accuracy
       );
     }
 
