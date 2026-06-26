@@ -2085,6 +2085,23 @@
       accuracy: "Точность"
     };
 
+    function renderCardStats(product) {
+      if (!product.cardStats || !Array.isArray(product.cardStats)) {
+        return "";
+      }
+
+      return product.cardStats.map(stat => `
+    <span class="tag stat-tag">
+      <img
+        src="${stat.icon}"
+        alt=""
+        draggable="false"
+      >
+      <span>${stat.value}</span>
+    </span>
+  `).join("");
+    }
+
     function renderProducts() {
       const container = document.getElementById("products");
 
@@ -2126,21 +2143,8 @@
 
         <div class="card-body">
           <h3>${product.title}</h3>
-
 <div class="meta">
-  ${product.cardStats.map(stat => `
-    <span class="tag stat-tag">
-
-      <img
-        src="${stat.icon}"
-        alt=""
-        draggable="false"
-      >
-
-      <span>${stat.value}</span>
-
-    </span>
-  `).join("")}
+  ${renderCardStats(product)}
 </div>
 
           <div class="price">${product.price.toLocaleString("ru-RU")} ₽</div>
@@ -2225,28 +2229,37 @@
       document.getElementById("modalText").textContent = product.description;
       document.getElementById("modalPrice").textContent =
         product.price.toLocaleString("ru-RU") + " ₽";
+
+      viewerImages = product.images || [];
+      viewerIndex = 0;
+
       const modalMainImg = document.getElementById("modalMainImg");
-      modalMainImg.src = product.images[0];
-      modalMainImg.onclick = () => openImageViewer(product.images, 0);
+
+      if (viewerImages.length > 0) {
+        modalMainImg.src = viewerImages[0];
+        modalMainImg.onclick = () => openImageViewer(viewerImages, 0);
+      } else {
+        modalMainImg.src = "";
+        modalMainImg.onclick = null;
+      }
 
       document.getElementById("modalTags").innerHTML = `
-      <span class="badge region">${product.region}</span>
-      <span class="badge type ${product.typeClass}">${product.drop}</span>
-      ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
-    `;
+    <span class="badge region">${product.region}</span>
+    <span class="badge type ${product.typeClass}">${product.drop}</span>
+    ${(product.tags || []).map(tag => `<span class="tag">${tag}</span>`).join("")}
+  `;
 
       document.getElementById("modalDetails").innerHTML =
         renderStats(product) +
         renderSkills(product);
 
       document.getElementById("modalThumbs").innerHTML =
-        product.images.map((img, index) => `
-    <img src="${img}" onclick="changeMainImage('${img}', ${index})">
-  `).join("");
+        viewerImages.map((img, index) => `
+      <img src="${img}" onclick="changeMainImage('${img}', ${index})">
+    `).join("");
 
       document.getElementById("modal").classList.add("active");
     }
-
     function changeMainImage(src, index = 0) {
       const modalMainImg = document.getElementById("modalMainImg");
 
