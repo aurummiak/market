@@ -153,7 +153,7 @@
       font-size: 24px;
       font-weight: 900;
       color: var(--primary);
-      text-transform: lowercase;
+      text-transform: capitalize;
     }
 
     nav {
@@ -178,9 +178,10 @@
       min-height: 340px;
       border-radius: var(--radius-xl);
       padding: 52px;
-
       background:
-        linear-gradient(135deg, rgb(52 42 42 / 92%), rgb(179 0 0 / 82%)), url(img/main/banner-img.jpg) center / cover;
+        linear-gradient(31deg, rgb(16 15 15 / 92%), rgb(176 0 0 / 82%)), url(img/main/banner-img.jpg) center / cover;
+
+
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -317,6 +318,92 @@
 
     .card:hover .card-cover img {
       transform: scale(1.06);
+    }
+
+    .badge.region {
+      position: relative;
+    }
+
+    .badge.region::before {
+      content: attr(data-tooltip);
+
+      position: absolute;
+
+      left: 50%;
+      bottom: calc(100% + 10px);
+
+      transform: translateX(-50%) translateY(6px);
+
+      padding: 8px 11px;
+
+      min-width: max-content;
+
+      background: rgba(10, 10, 11, .96);
+      color: var(--text-main);
+
+      border: 1px solid rgba(220, 38, 38, .35);
+      border-radius: 12px;
+
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, .38),
+        0 0 0 1px rgba(220, 38, 38, .08);
+
+      backdrop-filter: blur(12px);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition: var(--transition);
+
+      z-index: 100;
+    }
+
+    .badge.region::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      bottom: calc(100% + 4px);
+
+      width: 9px;
+      height: 9px;
+
+      background: rgba(10, 10, 11, .96);
+
+      border-right: 1px solid rgba(220, 38, 38, .35);
+      border-bottom: 1px solid rgba(220, 38, 38, .35);
+
+      transform:
+        translateX(-50%) translateY(6px) rotate(45deg);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transition: var(--transition);
+
+      z-index: 99;
+    }
+
+    .badge.region:hover::before,
+    .badge.region:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .badge.region:hover::before {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .badge.region:hover::after {
+      transform:
+        translateX(-50%) translateY(0) rotate(45deg);
     }
 
     .image-viewer {
@@ -550,7 +637,7 @@
 
     .modal-box {
       width: min(80%, 100%);
-      height: min(760px, 80%);
+      height: min(800px, 100%);
 
       background: var(--bg-modal);
       border-radius: 28px;
@@ -560,7 +647,7 @@
       overflow: hidden;
 
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 0.85fr 1fr;
 
       box-shadow: var(--shadow-modal);
     }
@@ -575,6 +662,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
     }
 
 
@@ -602,7 +690,7 @@
 
     .modal-thumbs img {
       width: 100%;
-      height: 82px;
+      /* height: 82px; */
       object-fit: cover;
 
       border-radius: var(--radius-md);
@@ -618,6 +706,10 @@
 
     .details-list {
       display: none;
+    }
+
+    img.exit-cross {
+      width: 32px;
     }
 
     .stats-list {
@@ -763,6 +855,7 @@
     .close {
       position: absolute;
       right: 20px;
+      top: 28px;
       margin-left: auto;
 
       width: 38px;
@@ -789,12 +882,13 @@
       background: var(--primary);
     }
 
+    /* 
     .modal-info h2 {
       font-size: 32px;
       margin: 0px 0 16px;
       color: var(--text-main);
       padding-right: 0;
-    }
+    } */
 
     .modal-tags {
       display: flex;
@@ -803,12 +897,12 @@
       /* margin-bottom: 20px; */
     }
 
-    .modal-info p {
+    /* .modal-info p {
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 20px;
-      /* font-size: 16px; */
-    }
+      /* font-size: 16px; }*/
+
 
     .buy-btn {
       position: sticky;
@@ -942,82 +1036,83 @@
 
 
     .tag.stat-tag {
-  position: relative;
-}
+      position: relative;
+    }
 
-.tag.stat-tag::before {
-  content: attr(data-tooltip);
+    .tag.stat-tag::before {
+      content: attr(data-tooltip);
 
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
 
-  transform: translateX(-50%) translateY(6px);
+      transform: translateX(-50%) translateY(6px);
 
-  min-width: max-content;
-  max-width: 220px;
+      min-width: max-content;
+      max-width: 220px;
 
-  padding: 8px 11px;
+      padding: 8px 11px;
 
-  background: rgba(10, 10, 11, .96);
-  color: var(--text-main);
+      background: rgba(10, 10, 11, .96);
+      color: var(--text-main);
 
-  border: 1px solid rgba(220, 38, 38, .35);
-  border-radius: 12px;
+      border: 1px solid rgba(220, 38, 38, .35);
+      border-radius: 12px;
 
-  box-shadow:
-    0 14px 32px rgba(0, 0, 0, .38),
-    0 0 0 1px rgba(220, 38, 38, .08);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, .38),
+        0 0 0 1px rgba(220, 38, 38, .08);
 
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
 
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
 
-  transition: var(--transition);
-  z-index: 30;
+      transition: var(--transition);
+      z-index: 30;
 
-  backdrop-filter: blur(12px);
-}
+      backdrop-filter: blur(12px);
+    }
 
-.tag.stat-tag::after {
-  content: "";
+    .tag.stat-tag::after {
+      content: "";
 
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 4px);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 4px);
 
-  transform: translateX(-50%) translateY(6px) rotate(45deg);
+      transform: translateX(-50%) translateY(6px) rotate(45deg);
 
-  width: 9px;
-  height: 9px;
+      width: 9px;
+      height: 9px;
 
-  background: rgba(10, 10, 11, .96);
+      background: rgba(10, 10, 11, .96);
 
-  border-right: 1px solid rgba(220, 38, 38, .35);
-  border-bottom: 1px solid rgba(220, 38, 38, .35);
+      border-right: 1px solid rgba(220, 38, 38, .35);
+      border-bottom: 1px solid rgba(220, 38, 38, .35);
 
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
 
-  transition: var(--transition);
-  z-index: 29;
-}
+      transition: var(--transition);
+      z-index: 29;
+    }
 
-.tag.stat-tag:hover::before,
-.tag.stat-tag:hover::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
+    .tag.stat-tag:hover::before,
+    .tag.stat-tag:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
 
-.tag.stat-tag:hover::after {
-  transform: translateX(-50%) translateY(0) rotate(45deg);
-}
+    .tag.stat-tag:hover::after {
+      transform: translateX(-50%) translateY(0) rotate(45deg);
+    }
+
     @media (max-width: 950px) {
       .products {
         grid-template-columns: 1fr;
@@ -1392,7 +1487,7 @@
     }
 
     /* Fixed modal layout: header and footer stay visible, only stats/table scroll */
-    .modal-info {
+    /* .modal-info {
       height: 100%;
       min-height: 0;
       padding: 0;
@@ -1401,14 +1496,14 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       background: var(--bg-modal);
-    }
+    } */
 
     .modal-fixed-top {
       position: relative;
-      padding: 34px 38px 18px;
+      padding: 22px;
       border-bottom: 1px solid var(--border-main);
-      background:
-        linear-gradient(180deg, rgba(20, 20, 22, .98), rgba(20, 20, 22, .92));
+      /* background:
+        linear-gradient(180deg, rgba(20, 20, 22, .98), rgba(20, 20, 22, .92)); */
       z-index: 3;
     }
 
@@ -1454,7 +1549,7 @@
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
-      padding: 22px 30px 22px 38px;
+      /* padding: 22px 30px 22px 38px; */
     }
 
     .modal-scroll::-webkit-scrollbar {
@@ -1477,9 +1572,9 @@
     .modal-fixed-bottom {
       padding: 18px 38px 24px;
       border-top: 1px solid var(--border-main);
-      background:
-        linear-gradient(180deg, rgba(20, 20, 22, .90), rgba(20, 20, 22, 1));
-      box-shadow: 0 -18px 30px rgba(0, 0, 0, .22);
+      /* background:
+        linear-gradient(180deg, rgba(20, 20, 22, .90), rgba(20, 20, 22, 1)); */
+      /* box-shadow: 0 -18px 30px rgba(0, 0, 0, .22); */
       z-index: 3;
     }
 
@@ -1497,6 +1592,7 @@
       display: grid;
       gap: 14px;
       margin-bottom: 0;
+      padding-top: 60px;
     }
 
     @media (max-width: 950px) {
@@ -1514,7 +1610,7 @@
       }
 
       .modal-scroll {
-        padding: 18px 20px 18px 24px;
+        /* padding: 18px 20px 18px 24px; */
       }
 
       .modal-fixed-bottom {
@@ -1546,7 +1642,7 @@
 <body>
 
   <header>
-    <div class="logo">Market</div>
+    <div class="logo">haronShop</div>
 
     <nav>
       <a href="#">Главная</a>
@@ -1566,6 +1662,8 @@
     <div class="hero-buttons">
       <button class="hero-btn active" onclick="switchCategory('accounts', this)">Аккаунты</button>
       <button class="hero-btn" onclick="switchCategory('items', this)">Предметы</button>
+      <button class="hero-btn" onclick="">Алмазы</button>
+
     </div>
   </section>
 
@@ -1620,27 +1718,27 @@
             <h4>Статы персонажа</h4>
 
             <div class="range-row">
-              <label>Дэф <span id="defValue">0</span></label>
+              <label>Сопротивление умениям<span id="defValue">0</span></label>
               <input type="range" name="stat" data-stat="def" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Сниж <span id="reductionValue">0</span></label>
+              <label>Защита<span id="reductionValue">0</span></label>
               <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Сопротив <span id="resistValue">0</span></label>
+              <label>Снижение урона<span id="resistValue">0</span></label>
               <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Урон <span id="damageValue">0</span></label>
+              <label>Защита<span id="damageValue">0</span></label>
               <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Точность <span id="accuracyValue">0</span></label>
+              <label>Снижение урона<span id="accuracyValue">0</span></label>
               <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="0">
             </div>
           </div>
@@ -1691,16 +1789,9 @@
 
   <div class="modal" id="modal" onclick="closeModalOutside(event)">
     <div class="modal-box">
-      <div class="modal-gallery">
-        <div class="modal-main-img">
-          <img id="modalMainImg" src="" alt="">
-        </div>
-        <div class="modal-thumbs" id="modalThumbs"></div>
-      </div>
 
-      <div class="modal-info">
+      <div class="modal-gallery">
         <div class="modal-fixed-top">
-          <span class="close" onclick="closeModal()">×</span>
           <h2 id="modalTitle"></h2>
 
           <div class="modal-tags" id="modalTags"></div>
@@ -1708,16 +1799,27 @@
 
         </div>
 
+        <div class="modal-main-img">
+          <img id="modalMainImg" src="" alt="">
+        </div>
+        <div class="modal-thumbs" id="modalThumbs"></div>
+        <div class="modal-fixed-bottom">
+          <div class="price" id="modalPrice"></div>
+          <button class="buy-btn">Купить</button>
+        </div>
+      </div>
+
+      <div class="modal-info">
+        <span class="close" onclick="closeModal()">
+          <img src="img/main/cross-small-svgrepo-com.svg" alt="exit" class="exit-cross"></span>
+
         <div class="modal-scroll">
           <div class="details-list" id="modalDetails"></div>
           <p id="modalText"></p>
         </div>
 
 
-        <div class="modal-fixed-bottom">
-          <div class="price" id="modalPrice"></div>
-          <button class="buy-btn">Купить</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -1747,11 +1849,11 @@
           drop: "Золотой лут",
           typeClass: "gold",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Защита", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Снижение урона", value: 910 }
           ],
           cover: "img/product1_1.jpg",
           images: [
@@ -1774,7 +1876,7 @@
             { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
-          description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Урона 176, Шанс Тройного Урона 40 , Блокировка Оружия 159, Увеличение Урона от Оружия 326%, Увеличение Урона от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
+          description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Защитаа 176, Шанс Тройного Защитаа 40 , Блокировка Оружия 159, Увеличение Защитаа от Оружия 326%, Увеличение Защитаа от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
           details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
         },
         {
@@ -1785,11 +1887,11 @@
           drop: "Красный лут",
           typeClass: "red",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
           cover: "img/product2_1.jpg",
           images: [
@@ -1822,11 +1924,11 @@
           drop: "Золотой лут",
           typeClass: "gold",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/product1_1.jpg",
@@ -1851,13 +1953,13 @@
             { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
           ],
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
-          description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Урона 176, Шанс Тройного Урона 40 , Блокировка Оружия 159, Увеличение Урона от Оружия 326%, Увеличение Урона от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
+          description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Защитаа 176, Шанс Тройного Защитаа 40 , Блокировка Оружия 159, Увеличение Защитаа от Оружия 326%, Увеличение Защитаа от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
           details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
         },
         {
@@ -1868,11 +1970,11 @@
           drop: "Красный лут",
           typeClass: "red",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/product2_1.jpg",
@@ -1906,11 +2008,11 @@
           drop: "Фиолетовый лут",
           typeClass: "purple",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/product3_1.jpg",
@@ -1948,11 +2050,11 @@
           drop: "Золотой лут",
           typeClass: "gold",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/objects/object1_1.png",
@@ -1972,11 +2074,11 @@
           drop: "Красный лут",
           typeClass: "red",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/objects/object2_1.png",
@@ -1994,11 +2096,11 @@
           drop: "Фиолетовый лут",
           typeClass: "purple",
           cardStats: [
-            { icon: "img/tags/damage.png", label: "Урон", value: 570 },
-            { icon: "img/tags/accuracy.png", label: "Точность", value: 430 },
-            { icon: "img/tags/defence.png", label: "Дэф", value: 690 },
-            { icon: "img/tags/reduction.png", label: "Сниж", value: 285 },
-            { icon: "img/tags/resistance.png", label: "Сопротив", value: 910 }
+            { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+            { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+            { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+            { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+            { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
           ],
 
           cover: "img/objects/object3_1.png",
@@ -2030,19 +2132,19 @@
     };
 
     const statLabels = {
-      def: "Дэф",
-      reduction: "Сниж",
-      resist: "Сопротив",
-      damage: "Урон",
-      accuracy: "Точность"
+      def: "Сопротивление умениям",
+      reduction: "Урон",
+      resist: "Точность",
+      damage: "Защита",
+      accuracy: "Снижение урона"
     };
 
-function renderCardStats(product) {
-  if (!product.cardStats || !Array.isArray(product.cardStats)) {
-    return "";
-  }
+    function renderCardStats(product) {
+      if (!product.cardStats || !Array.isArray(product.cardStats)) {
+        return "";
+      }
 
-  return product.cardStats.map(stat => `
+      return product.cardStats.map(stat => `
     <span class="tag stat-tag" data-tooltip="${stat.label}: ${stat.value}">
       <img
         src="${stat.icon}"
@@ -2052,7 +2154,7 @@ function renderCardStats(product) {
       <span>${stat.value}</span>
     </span>
   `).join("");
-}
+    }
 
     function renderProducts() {
       const container = document.getElementById("products");
@@ -2088,7 +2190,12 @@ function renderCardStats(product) {
           <img src="${product.cover}" alt="${product.title}">
 
           <div class="badges">
-            <span class="badge region">${product.region}</span>
+       <span
+    class="badge region"
+    data-tooltip="Страна регистрации аккаунта"
+>
+    ${product.region}
+</span>
             <span class="badge type ${product.typeClass}">${product.drop}</span>
           </div>
         </div>
@@ -2206,7 +2313,12 @@ function renderCardStats(product) {
       }
 
       document.getElementById("modalTags").innerHTML = `
-    <span class="badge region">${product.region}</span>
+   <span
+    class="badge region"
+    data-tooltip="Страна регистрации аккаунта"
+>
+    ${product.region}
+</span>
     <span class="badge type ${product.typeClass}">${product.drop}</span>
     ${(product.tags || []).map(tag => `<span class="tag">${tag}</span>`).join("")}
   `;
