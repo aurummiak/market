@@ -1885,6 +1885,14 @@
             .modal-gallery.show-another-right:hover {
               opacity: 0.5;
             }
+
+            .modal-gallery:has(.show-another-left:hover) .modal-gallery-prev {
+              background: var(--primary);
+            }
+
+            .modal-gallery:has(.show-another-right:hover) .modal-gallery-next {
+              background: var(--primary);
+            }
           </style>
           <img id="modalMainImg" src="" alt="">
 
