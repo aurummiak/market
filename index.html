@@ -476,6 +476,50 @@
       cursor: zoom-in;
     }
 
+    .modal-main-img {
+      position: relative;
+    }
+
+    .modal-gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      border: 1px solid var(--border-main);
+
+      background: rgba(20, 20, 22, .82);
+      color: var(--text-main);
+
+      font-size: 34px;
+      line-height: 1;
+
+      cursor: pointer;
+      z-index: 6;
+
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-gallery-arrow:hover {
+      background: var(--primary);
+    }
+
+    .modal-gallery-prev {
+      left: 14px;
+    }
+
+    .modal-gallery-next {
+      right: 14px;
+    }
+
     @keyframes zoomImage {
       from {
         transform: scale(.96);
@@ -1800,7 +1844,57 @@
         </div>
 
         <div class="modal-main-img">
+          <button class="modal-gallery-arrow modal-gallery-prev" onclick="showPrevModalImage(event)">
+            <img src="img/main/cross-to-side-white.svg" alt="" class="" style="transform: rotate(180deg);">
+          </button>
+          <div class="modal-gallery show-another-left" onclick="showPrevModalImage(event)">
+
+
+          </div>
+
+          <style>
+            .modal-gallery.show-another-left {
+              position: absolute;
+              height: 100%;
+              width: 80px;
+              background: linear-gradient(to right, red, transparent);
+              opacity: 0;
+              transition: 0.3s ease-in-out;
+              cursor: pointer;
+            }
+
+            .modal-gallery.show-another-left:hover {
+              opacity: 0.5;
+            }
+
+            .modal-gallery.show-another-right {
+              position: absolute;
+              height: 100%;
+              width: 80px;
+              background: linear-gradient(to right, red, transparent);
+              opacity: 0;
+              transition: 0.3s ease-in-out;
+              cursor: pointer;
+              right: 0;
+              display: flex;
+              z-index: 999;
+              top: 0;
+              transform: rotate(180deg);
+            }
+
+            .modal-gallery.show-another-right:hover {
+              opacity: 0.5;
+            }
+          </style>
           <img id="modalMainImg" src="" alt="">
+
+          <button class="modal-gallery-arrow modal-gallery-next" onclick="showNextModalImage(event)">
+            <img src="img/main/cross-to-side-white.svg" alt="" class="">
+          </button>
+          <div class="modal-gallery show-another-right" onclick="showPrevModalImage(event)">
+
+
+          </div>
         </div>
         <div class="modal-thumbs" id="modalThumbs"></div>
         <div class="modal-fixed-bottom">
@@ -2117,6 +2211,7 @@
 
     let currentCategory = "accounts";
     let viewerImages = [];
+    let modalImageIndex = 0;
     let viewerIndex = 0;
 
     let activeFilters = {
@@ -2301,6 +2396,7 @@
 
       viewerImages = product.images || [];
       viewerIndex = 0;
+      modalImageIndex = 0;
 
       const modalMainImg = document.getElementById("modalMainImg");
 
@@ -2334,11 +2430,53 @@
 
       document.getElementById("modal").classList.add("active");
     }
+
     function changeMainImage(src, index = 0) {
       const modalMainImg = document.getElementById("modalMainImg");
 
+      modalImageIndex = index;
+      viewerIndex = index;
+
       modalMainImg.src = src;
       modalMainImg.onclick = () => openImageViewer(viewerImages, index);
+    }
+
+
+    function updateModalImage() {
+      const modalMainImg = document.getElementById("modalMainImg");
+
+      if (!viewerImages.length) return;
+
+      modalMainImg.src = viewerImages[modalImageIndex];
+      modalMainImg.onclick = () => openImageViewer(viewerImages, modalImageIndex);
+    }
+
+    function showPrevModalImage(event) {
+      event.stopPropagation();
+
+      if (!viewerImages.length) return;
+
+      modalImageIndex =
+        modalImageIndex === 0
+          ? viewerImages.length - 1
+          : modalImageIndex - 1;
+
+      viewerIndex = modalImageIndex;
+      updateModalImage();
+    }
+
+    function showNextModalImage(event) {
+      event.stopPropagation();
+
+      if (!viewerImages.length) return;
+
+      modalImageIndex =
+        modalImageIndex === viewerImages.length - 1
+          ? 0
+          : modalImageIndex + 1;
+
+      viewerIndex = modalImageIndex;
+      updateModalImage();
     }
 
     function closeModal() {
