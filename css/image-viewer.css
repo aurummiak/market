@@ -1,0 +1,136 @@
+.image-viewer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 1px solid var(--border-main);
+
+  background: rgba(20, 20, 22, .88);
+  color: var(--text-main);
+
+  font-size: 46px;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 310;
+
+  transition: var(--transition);
+}
+
+.image-viewer-arrow:hover {
+  background: var(--primary);
+}
+
+.image-viewer-prev {
+  left: 28px;
+}
+
+.image-viewer-next {
+  right: 28px;
+}
+
+.image-viewer {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px;
+
+  background: rgba(0, 0, 0, .86);
+  backdrop-filter: blur(10px);
+
+  z-index: 300;
+}
+
+.image-viewer.active {
+  display: flex;
+}
+
+.image-viewer img {
+  max-width: min(1200px, 94vw);
+  max-height: 90vh;
+
+  object-fit: contain;
+
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-main);
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, .65),
+    0 0 0 1px rgba(220, 38, 38, .18);
+
+  animation: zoomImage .22s ease;
+}
+
+.image-viewer-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 1px solid var(--border-main);
+
+  background: rgba(20, 20, 22, .9);
+  color: var(--text-main);
+
+  font-size: 32px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.image-viewer-close:hover {
+  background: var(--primary);
+}
+
+.modal-main-img,
+.modal-thumbs img {
+  cursor: zoom-in;
+}
+
+@keyframes zoomImage {
+  from {
+    transform: scale(.96);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .image-viewer-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 36px;
+  }
+
+  .image-viewer-prev {
+    left: 12px;
+  }
+
+  .image-viewer-next {
+    right: 12px;
+  }
+}

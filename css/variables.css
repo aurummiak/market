@@ -1,0 +1,58 @@
+:root {
+  /* Backgrounds */
+  --bg-main: #0a0a0b;
+  --bg-header: rgba(10, 10, 11, .92);
+  --bg-footer: #050506;
+
+  --bg-card: #141416;
+  --bg-card-hover: #1c1c20;
+
+  --bg-input: #141416;
+  --bg-modal: #141416;
+  --bg-gallery: #101012;
+  --bg-detail: #1a1a1f;
+
+  /* Brand */
+  --primary: #dc2626;
+  --primary-hover: #ef4444;
+
+  --accent: #f87171;
+
+  /* Text */
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-soft: #d4d4d8;
+  --text-dark: #ffffff;
+
+  /* Borders */
+  --border-main: rgba(255, 255, 255, .08);
+  --border-hover: rgba(220, 38, 38, .35);
+
+  /* Shadows */
+  --shadow-card:
+    0 4px 20px rgba(0, 0, 0, .25);
+
+  --shadow-card-hover:
+    0 16px 40px rgba(220, 38, 38, .18);
+
+  --shadow-hero:
+    0 20px 60px rgba(220, 38, 38, .22);
+
+  --shadow-modal:
+    0 20px 60px rgba(0, 0, 0, .45);
+
+  /* Badges */
+  --badge-region-ru: #010101;
+  --badge-region-ua: #3b82f6;
+
+  --badge-gold: #f59e0b;
+  --badge-red: #ef4444;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+
+  --transition: .25s ease;
+}

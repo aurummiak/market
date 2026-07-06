@@ -1,0 +1,238 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(220, 38, 38, .30);
+
+  box-shadow:
+    0 0 0 1px rgba(220, 38, 38, .15), 0 16px 40px rgb(200 0 0 / 40%)
+}
+
+.card-cover {
+  height: 210px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: 0.35s ease;
+}
+
+.card:hover .card-cover img {
+  transform: scale(1.06);
+}
+
+.card-cover::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(to top,
+      rgba(0, 0, 0, .75) 0%,
+      rgba(0, 0, 0, .35) 30%,
+      transparent 60%);
+
+  pointer-events: none;
+}
+
+.card-body {
+  padding: 22px;
+}
+
+.card-body h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.badges {
+  position: absolute;
+
+  left: 14px;
+  bottom: 14px;
+
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  z-index: 5;
+}
+
+.badge {
+  padding: 7px 12px;
+
+  background: rgba(0, 0, 0, .85);
+
+  color: #fff;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, .08);
+
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, .25);
+}
+
+.badge.type.purple {
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
+
+  border: 1px solid #a855f7;
+
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, .15),
+    0 0 18px rgba(168, 85, 247, .18);
+}
+
+.badge.region {
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .12);
+  position: relative;
+}
+
+.badge.region::before {
+  content: attr(data-tooltip);
+
+  position: absolute;
+
+  left: 50%;
+  bottom: calc(100% + 10px);
+
+  transform: translateX(-50%) translateY(6px);
+
+  padding: 8px 11px;
+
+  min-width: max-content;
+
+  background: rgba(10, 10, 11, .96);
+  color: var(--text-main);
+
+  border: 1px solid rgba(220, 38, 38, .35);
+  border-radius: 12px;
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, .38),
+    0 0 0 1px rgba(220, 38, 38, .08);
+
+  backdrop-filter: blur(12px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: var(--transition);
+
+  z-index: 100;
+}
+
+.badge.region::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: calc(100% + 4px);
+
+  width: 9px;
+  height: 9px;
+
+  background: rgba(10, 10, 11, .96);
+
+  border-right: 1px solid rgba(220, 38, 38, .35);
+  border-bottom: 1px solid rgba(220, 38, 38, .35);
+
+  transform:
+    translateX(-50%) translateY(6px) rotate(45deg);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: var(--transition);
+
+  z-index: 99;
+}
+
+.badge.region:hover::before,
+.badge.region:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.badge.region:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+.badge.region:hover::after {
+  transform:
+    translateX(-50%) translateY(0) rotate(45deg);
+}
+
+.badge.type.gold {
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
+
+  border: 1px solid #f59e0b;
+
+  box-shadow:
+    0 0 0 1px rgba(245, 158, 11, .15),
+    0 0 18px rgba(245, 158, 11, .18);
+}
+
+.badge.type.red {
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
+
+  border: 1px solid #ef4444;
+
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, .15),
+    0 0 18px rgba(239, 68, 68, .18);
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--primary-hover);
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--accent);
+}

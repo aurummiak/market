@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.zoom-img.next-btn {
+  width: 45px;
+}
+
+.image-viewer img .zoom-img.next-btn {
+  border: none;
+  box-shadow: none;
+}
+
+.zoom-img.next-btn {
+  width: 45px;
+}
+
+.image-viewer img .zoom-img.next-btn {
+  border: none;
+  box-shadow: none;
+}
