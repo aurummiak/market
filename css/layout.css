@@ -1,196 +1,196 @@
 header {
-  height: 76px;
-  padding: 0 8%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--bg-header);
-  border-bottom: 1px solid var(--border-main);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(14px);
+    height: 76px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border-main);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(14px);
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--primary);
-  text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--primary);
+    text-transform: capitalize;
 }
 
 nav {
-  display: flex;
-  gap: 28px;
+    display: flex;
+    gap: 28px;
 }
 
 nav a {
-  color: var(--text-soft);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  transition: var(--transition);
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 nav a:hover {
-  color: var(--primary-hover);
+    color: var(--primary-hover);
 }
 
 .hero {
-  margin: 40px 8%;
-  min-height: 340px;
-  border-radius: var(--radius-xl);
-  padding: 52px;
-  background:
-    linear-gradient(31deg, rgb(16 15 15 / 92%), rgb(176 0 0 / 82%)), url(img/main/banner-img.jpg) center / cover;
+    margin: 40px 8%;
+    min-height: 340px;
+    border-radius: var(--radius-xl);
+    padding: 52px;
+    background:
+        linear-gradient(31deg, rgb(16 15 15 / 92%), rgb(176 0 0 / 82%)), url(img/main/banner-img.jpg) center / cover;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .hero h1 {
-  font-size: 52px;
-  margin-bottom: 14px;
-  color: var(--text-main);
+    font-size: 52px;
+    margin-bottom: 14px;
+    color: var(--text-main);
 }
 
 .hero p {
-  max-width: 650px;
-  color: var(--text-soft);
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 28px;
+    max-width: 650px;
+    color: var(--text-soft);
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 28px;
 }
 
 .hero-buttons {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
 .hero-btn {
-  height: 50px;
-  padding: 0 30px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-main);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-main);
-  font-weight: 900;
-  cursor: pointer;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
+    height: 50px;
+    padding: 0 30px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-main);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
 }
 
 .hero-btn.active,
 .buy-btn,
 .toolbar button {
-  background: linear-gradient(135deg,
-      #dc2626,
-      #ef4444);
+    background: linear-gradient(135deg,
+            #dc2626,
+            #ef4444);
 }
 
 .hero-btn:hover,
 .hero-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: var(--text-main);
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-main);
 }
 
 .toolbar {
-  margin: 0 8% 30px;
-  display: flex;
-  gap: 14px;
+    margin: 0 8% 30px;
+    display: flex;
+    gap: 14px;
 }
 
 .toolbar input,
 .toolbar select,
 .toolbar button {
-  height: 50px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-main);
-  background: var(--bg-input);
-  color: var(--text-main);
-  padding: 0 18px;
-  outline: none;
-  font-weight: 600;
+    height: 50px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-main);
+    background: var(--bg-input);
+    color: var(--text-main);
+    padding: 0 18px;
+    outline: none;
+    font-weight: 600;
 }
 
 .toolbar input {
-  flex: 1;
+    flex: 1;
 }
 
 .toolbar input::placeholder {
-  color: var(--text-muted);
+    color: var(--text-muted);
 }
 
 .toolbar button {
-  cursor: pointer;
-  background: var(--primary);
-  color: var(--text-main);
-  border: none;
-  font-weight: 900;
-  transition: var(--transition);
+    cursor: pointer;
+    background: var(--primary);
+    color: var(--text-main);
+    border: none;
+    font-weight: 900;
+    transition: var(--transition);
 }
 
 .toolbar button:hover {
-  background: var(--primary-hover);
+    background: var(--primary-hover);
 }
 
 .products {
-  margin: 0 8% 70px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 26px;
+    margin: 0 8% 70px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 26px;
 }
 
 footer {
-  padding: 32px 8%;
-  background: var(--bg-footer);
-  color: var(--text-muted);
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid var(--border-main);
+    padding: 32px 8%;
+    background: var(--bg-footer);
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-main);
 }
 
 @media (max-width: 950px) {
-  nav {
-    display: none;
-  }
+    nav {
+        display: none;
+    }
 
-  .hero {
-    padding: 34px;
-  }
+    .hero {
+        padding: 34px;
+    }
 
-  .hero h1 {
-    font-size: 36px;
-  }
+    .hero h1 {
+        font-size: 36px;
+    }
 
-  .products {
-    grid-template-columns: 1fr;
-  }
+    .products {
+        grid-template-columns: 1fr;
+    }
 
-  footer {
-    flex-direction: column;
-    gap: 10px;
-  }
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 1820px) and (min-width:1500px) {
-  .products {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .products {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media (max-width: 1499px) and (min-width:1000px) {
-  .products {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 999px) and (min-width: 950px) {
-  .products {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

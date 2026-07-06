@@ -1,2 +1,95 @@
-/* Стили для модального окна алмазов */
-/* Специфичные стили для алмазов можно добавить здесь */
+.diamond-modal-box {
+  width: min(640px, 100%);
+  max-height: calc(100vh - 48px);
+
+  padding: 42px;
+
+  overflow-y: auto;
+}
+
+.diamond-modal-content {
+  display: grid;
+  gap: 24px;
+}
+
+.diamond-modal-content h2 {
+  font-size: 34px;
+  color: var(--text-main);
+  padding-right: 48px;
+}
+
+.diamond-modal-description {
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.diamond-section {
+  display: grid;
+  gap: 12px;
+}
+
+.diamond-section h3 {
+  color: var(--text-main);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.diamond-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.diamond-option {
+  height: 44px;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-main);
+
+  background: var(--bg-detail);
+  color: var(--text-soft);
+
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.diamond-option:hover,
+.diamond-option.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-main);
+  box-shadow: 0 0 20px rgba(220, 38, 38, .28);
+}
+
+.diamond-amount {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 12px;
+  align-items: center;
+}
+
+.diamond-amount input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+.diamond-amount input[type="number"] {
+  height: 46px;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-main);
+
+  background: var(--bg-detail);
+  color: var(--text-main);
+
+  padding: 0 14px;
+
+  font-weight: 900;
+  outline: none;
+}
+
+.diamond-modal-bottom .price {
+  margin-bottom: 14px;
+}

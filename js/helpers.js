@@ -1,17 +1,17 @@
 const statLabels = {
-  def: "Сопротивление умениям",
-  reduction: "Урон",
-  resist: "Точность",
-  damage: "Защита",
-  accuracy: "Снижение урона"
+    def: "Сопротивление умениям",
+    reduction: "Урон",
+    resist: "Точность",
+    damage: "Защита",
+    accuracy: "Снижение урона"
 };
 
 function renderCardStats(product) {
-  if (!product.cardStats || !Array.isArray(product.cardStats)) {
-    return "";
-  }
+    if (!product.cardStats || !Array.isArray(product.cardStats)) {
+        return "";
+    }
 
-  return product.cardStats.map(stat => `
+    return product.cardStats.map(stat => `
     <span class="tag stat-tag" data-tooltip="${stat.label}: ${stat.value}">
       <img
         src="${stat.icon}"
@@ -23,18 +23,22 @@ function renderCardStats(product) {
   `).join("");
 }
 
+function formatPrice(price) {
+    return price.toLocaleString("ru-RU") + " ₽";
+}
+
 function renderStats(product) {
-  if (!product.stats) return "";
+    if (!product.stats) return "";
 
-  const icons = {
-    damage: "img/tags/damage.png",
-    accuracy: "img/tags/accuracy.png",
-    def: "img/tags/defence.png",
-    reduction: "img/tags/reduction.png",
-    resist: "img/tags/resistance.png"
-  };
+    const icons = {
+        damage: "img/tags/damage.png",
+        accuracy: "img/tags/accuracy.png",
+        def: "img/tags/defence.png",
+        reduction: "img/tags/reduction.png",
+        resist: "img/tags/resistance.png"
+    };
 
-  return `
+    return `
     <div class="stats-list">
       ${Object.entries(product.stats).map(([key, value]) => `
         <div class="stat-line">
@@ -52,9 +56,9 @@ function renderStats(product) {
 }
 
 function renderSkills(product) {
-  if (!product.skills) return "";
+    if (!product.skills) return "";
 
-  return `
+    return `
     <table class="skills-table">
       <thead>
         <tr>
@@ -81,19 +85,19 @@ function renderSkills(product) {
 }
 
 function getCheckedValues(name) {
-  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
-    .map(input => input.value);
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+        .map(input => input.value);
 }
 
 function getStatValue(stat) {
-  const input = document.querySelector(`input[data-stat="${stat}"]`);
-  return input ? Number(input.value) : 0;
+    const input = document.querySelector(`input[data-stat="${stat}"]`);
+    return input ? Number(input.value) : 0;
 }
 
 function updateRangeLabels() {
-  document.getElementById("defValue").textContent = getStatValue("def");
-  document.getElementById("reductionValue").textContent = getStatValue("reduction");
-  document.getElementById("resistValue").textContent = getStatValue("resist");
-  document.getElementById("damageValue").textContent = getStatValue("damage");
-  document.getElementById("accuracyValue").textContent = getStatValue("accuracy");
+    document.getElementById("defValue").textContent = getStatValue("def");
+    document.getElementById("reductionValue").textContent = getStatValue("reduction");
+    document.getElementById("resistValue").textContent = getStatValue("resist");
+    document.getElementById("damageValue").textContent = getStatValue("damage");
+    document.getElementById("accuracyValue").textContent = getStatValue("accuracy");
 }

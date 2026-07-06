@@ -26,7 +26,6 @@
     <nav>
       <a href="#">Главная</a>
       <a href="#">Каталог</a>
-      <a href="#">Гарантии</a>
       <a href="#">Поддержка</a>
     </nav>
   </header>
@@ -166,66 +165,7 @@
   </footer>
 
   <div class="modal" id="modal" onclick="closeModalOutside(event)">
-    <div class="modal-box">
-
-      <div class="modal-gallery">
-        <div class="modal-fixed-top">
-          <h2 id="modalTitle"></h2>
-
-          <div class="modal-tags" id="modalTags"></div>
-
-
-        </div>
-
-        <div class="modal-main-img">
-          <button class="modal-gallery-arrow modal-gallery-prev" onclick="showPrevModalImage(event)">
-            <img src="img/main/cross-to-side-white.svg" alt="" class="" style="transform: rotate(180deg);">
-          </button>
-          <div class="modal-gallery show-another-left" onclick="showPrevModalImage(event)">
-
-
-          </div>
-
-          <link rel="stylesheet" href="css/variables.css">
-          <link rel="stylesheet" href="css/base.css">
-          <link rel="stylesheet" href="css/layout.css">
-          <link rel="stylesheet" href="css/cards.css">
-          <link rel="stylesheet" href="css/filters.css">
-          <link rel="stylesheet" href="css/modal.css">
-          <link rel="stylesheet" href="css/modal-account.css">
-          <link rel="stylesheet" href="css/modal-item.css">
-          <link rel="stylesheet" href="css/modal-diamond.css">
-          <link rel="stylesheet" href="css/image-viewer.css">
-          <img id="modalMainImg" src="" alt="">
-
-          <button class="modal-gallery-arrow modal-gallery-next" onclick="showNextModalImage(event)">
-            <img src="img/main/cross-to-side-white.svg" alt="" class="">
-          </button>
-          <div class="modal-gallery show-another-right" onclick="showPrevModalImage(event)">
-
-
-          </div>
-        </div>
-        <div class="modal-thumbs" id="modalThumbs"></div>
-        <div class="modal-fixed-bottom">
-          <div class="price" id="modalPrice"></div>
-          <button class="buy-btn">Купить</button>
-        </div>
-      </div>
-
-      <div class="modal-info">
-        <span class="close" onclick="closeModal()">
-          <img src="img/main/cross-small-svgrepo-com.svg" alt="exit" class="exit-cross"></span>
-
-        <div class="modal-scroll">
-          <div class="details-list" id="modalDetails"></div>
-          <p id="modalText" class="extra-modal-text"></p>
-        </div>
-
-
-
-      </div>
-    </div>
+    <div id="modalContent"></div>
   </div>
 
   <div class="image-viewer" id="imageViewer" onclick="closeImageViewer(event)">
@@ -245,10 +185,10 @@
   <script src="js/data.js"></script>
   <script src="js/state.js"></script>
   <script src="js/helpers.js"></script>
-  <script src="js/renderCards.js"></script>
-  <script src="js/renderModals.js"></script>
-  <script src="js/gallery.js"></script>
   <script src="js/filters.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/renderModals.js"></script>
+  <script src="js/renderCards.js"></script>
   <script src="js/main.js"></script>
 
 </body>

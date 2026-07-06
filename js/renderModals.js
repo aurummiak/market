@@ -1,158 +1,305 @@
 function openProduct(product) {
-  const modal = document.getElementById("modal");
-
-  modal.classList.remove("modal-accounts", "modal-items", "modal-diamonds");
-  modal.classList.add(`modal-${currentCategory}`);
-
   if (currentCategory === "items") {
-    openItemProduct(product);
+    openItemModal(product);
     return;
   }
 
   if (currentCategory === "diamonds") {
-    openDiamondProduct(product);
+    openDiamondModal(product);
     return;
   }
 
-  openAccountProduct(product);
+  openAccountModal(product);
 }
 
-function openAccountProduct(product) {
-  document.getElementById("modalTitle").textContent = product.title;
-  document.getElementById("modalText").textContent = product.description;
-  document.getElementById("modalPrice").textContent =
-    product.price.toLocaleString("ru-RU") + " ₽";
-
+function openAccountModal(product) {
   viewerImages = product.images || [];
   viewerIndex = 0;
   modalImageIndex = 0;
 
-  const modalMainImg = document.getElementById("modalMainImg");
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
 
-  if (viewerImages.length > 0) {
-    modalMainImg.src = viewerImages[0];
-    modalMainImg.onclick = () => openImageViewer(viewerImages, 0);
-  } else {
-    modalMainImg.src = "";
-    modalMainImg.onclick = null;
-  }
+  modal.className = "modal active modal-accounts";
 
-  document.getElementById("modalTags").innerHTML = `
-    <span class="badge region" data-tooltip="Страна регистрации аккаунта">
-      ${product.region}
-    </span>
-    <span class="badge type ${product.typeClass}">${product.drop}</span>
-  `;
+  modalContent.innerHTML = `
+    <div class="modal-box account-modal-box">
+      <div class="modal-gallery">
+        <div class="modal-fixed-top">
+          <h2>${product.title}</h2>
 
-  document.getElementById("modalDetails").innerHTML =
-    renderStats(product) + renderSkills(product);
+          <div class="modal-tags">
+            <span class="badge region" data-tooltip="Страна регистрации аккаунта">
+              ${product.region}
+            </span>
 
-  document.getElementById("modalThumbs").innerHTML =
-    viewerImages.map((img, index) => `
-      <img src="${img}" onclick="changeMainImage('${img}', ${index})">
-    `).join("");
+            <span class="badge type ${product.typeClass}">
+              ${product.drop}
+            </span>
+          </div>
+        </div>
 
-  document.getElementById("modal").classList.add("active");
-}
+        ${renderModalGallery(product)}
 
-function openItemProduct(product) {
-  document.getElementById("modalTitle").textContent = product.title;
-  document.getElementById("modalText").textContent = product.description;
-  document.getElementById("modalPrice").textContent =
-    product.price.toLocaleString("ru-RU") + " ₽";
+        <div class="modal-thumbs">
+          ${renderModalThumbs(product)}
+        </div>
 
-  viewerImages = product.images || [];
-  viewerIndex = 0;
-  modalImageIndex = 0;
-
-  const modalMainImg = document.getElementById("modalMainImg");
-
-  if (viewerImages.length > 0) {
-    modalMainImg.src = viewerImages[0];
-    modalMainImg.onclick = () => openImageViewer(viewerImages, 0);
-  } else {
-    modalMainImg.src = "";
-    modalMainImg.onclick = null;
-  }
-
-  document.getElementById("modalTags").innerHTML = "";
-  document.getElementById("modalDetails").innerHTML = "";
-  document.getElementById("modalThumbs").innerHTML = "";
-
-  document.getElementById("modal").classList.add("active");
-}
-
-function openDiamondProduct(product) {
-  document.getElementById("modalTitle").textContent = product.title;
-  document.getElementById("modalText").textContent = product.description;
-  document.getElementById("modalPrice").textContent = "";
-
-  document.getElementById("modalTags").innerHTML = "";
-  document.getElementById("modalThumbs").innerHTML = "";
-
-  const serverButtons = product.servers.map((server, index) => `
-    <button
-      class="diamond-option ${index === 0 ? "active" : ""}"
-      onclick="selectDiamondOption(this)"
-    >
-      ${server}
-    </button>
-  `).join("");
-
-  const clusterButtons = product.clusters.map((cluster, index) => `
-    <button
-      class="diamond-option ${index === 0 ? "active" : ""}"
-      onclick="selectDiamondOption(this)"
-    >
-      ${cluster}
-    </button>
-  `).join("");
-
-  document.getElementById("modalDetails").innerHTML = `
-    <div class="diamond-panel">
-      <div class="diamond-section">
-        <h3>Сервер</h3>
-        <div class="diamond-options">
-          ${serverButtons}
+        <div class="modal-fixed-bottom">
+          <div class="price">${formatPrice(product.price)}</div>
+          <button class="buy-btn">Купить</button>
         </div>
       </div>
 
-      <div class="diamond-section">
-        <h3>Кластер</h3>
-        <div class="diamond-options">
-          ${clusterButtons}
-        </div>
-      </div>
+      <div class="modal-info">
+        ${renderCloseButton()}
 
-      <div class="diamond-section">
-        <h3>Количество алмазов</h3>
+        <div class="modal-scroll">
+          <div class="details-list">
+            ${renderStats(product)}
+            ${renderSkills(product)}
+          </div>
 
-        <div class="diamond-amount">
-          <input
-            type="range"
-            id="diamondRange"
-            min="${product.minAmount}"
-            max="${product.maxAmount}"
-            step="${product.amountStep}"
-            value="${product.defaultAmount}"
-            oninput="syncDiamondAmount(this.value)"
-          >
-
-          <input
-            type="number"
-            id="diamondInput"
-            min="${product.minAmount}"
-            max="${product.maxAmount}"
-            step="${product.amountStep}"
-            value="${product.defaultAmount}"
-            oninput="syncDiamondAmount(this.value)"
-          >
+          <p class="extra-modal-text">
+            ${product.description || ""}
+          </p>
         </div>
       </div>
     </div>
   `;
 
-  document.getElementById("modal").classList.add("active");
+  initModalMainImage();
+}
+
+function openItemModal(product) {
+  viewerImages = product.images || [];
+  viewerIndex = 0;
+  modalImageIndex = 0;
+
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+
+  modal.className = "modal active modal-items";
+
+  modalContent.innerHTML = `
+    <div class="modal-box item-modal-box">
+      <div class="item-modal-image-side">
+        ${renderModalGallery(product)}
+      </div>
+
+      <div class="item-modal-info">
+        ${renderCloseButton()}
+
+        <h2>${product.title}</h2>
+
+        <p class="item-modal-description">
+          ${product.description || ""}
+        </p>
+
+        <div class="item-modal-bottom">
+          <div class="price">${formatPrice(product.price)}</div>
+          <button class="buy-btn">Купить</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  initModalMainImage();
+}
+
+function openDiamondModal(product) {
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+
+  modal.className = "modal active modal-diamonds";
+
+  modalContent.innerHTML = `
+    <div class="modal-box diamond-modal-box">
+      ${renderCloseButton()}
+
+      <div class="diamond-modal-content">
+        <h2>${product.title}</h2>
+
+        <p class="diamond-modal-description">
+          ${product.description || ""}
+        </p>
+
+        <div class="diamond-section">
+          <h3>Сервер</h3>
+
+          <div class="diamond-options">
+            ${product.servers.map((server, index) => `
+              <button
+                class="diamond-option ${index === 0 ? "active" : ""}"
+                onclick="selectDiamondOption(this)"
+              >
+                ${server}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="diamond-section">
+          <h3>Кластер</h3>
+
+          <div class="diamond-options">
+            ${product.clusters.map((cluster, index) => `
+              <button
+                class="diamond-option ${index === 0 ? "active" : ""}"
+                onclick="selectDiamondOption(this)"
+              >
+                ${cluster}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="diamond-section">
+          <h3>Количество алмазов</h3>
+
+          <div class="diamond-amount">
+            <input
+              type="range"
+              id="diamondRange"
+              min="${product.minAmount}"
+              max="${product.maxAmount}"
+              step="${product.amountStep}"
+              value="${product.defaultAmount}"
+              oninput="syncDiamondAmount(this.value)"
+            >
+
+            <input
+              type="number"
+              id="diamondInput"
+              min="${product.minAmount}"
+              max="${product.maxAmount}"
+              step="${product.amountStep}"
+              value="${product.defaultAmount}"
+              oninput="syncDiamondAmount(this.value)"
+            >
+          </div>
+        </div>
+
+        <div class="diamond-modal-bottom">
+          <div class="price">
+            ${formatPrice(product.defaultAmount * product.price)}
+          </div>
+
+          <button class="buy-btn">Купить</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderCloseButton() {
+  return `
+    <span class="close" onclick="closeModal()">
+      <img src="img/main/cross-small-svgrepo-com.svg" alt="Закрыть" class="exit-cross">
+    </span>
+  `;
+}
+
+function renderModalGallery(product) {
+  const firstImage = product.images && product.images.length > 0
+    ? product.images[0]
+    : "";
+
+  return `
+    <div class="modal-main-img">
+      <button class="modal-gallery-arrow modal-gallery-prev" onclick="showPrevModalImage(event)">
+        <img src="img/main/cross-to-side-white.svg" alt="" style="transform: rotate(180deg);">
+      </button>
+
+      <div class="show-another-left" onclick="showPrevModalImage(event)"></div>
+
+      <img id="modalMainImg" src="${firstImage}" alt="${product.title}">
+
+      <button class="modal-gallery-arrow modal-gallery-next" onclick="showNextModalImage(event)">
+        <img src="img/main/cross-to-side-white.svg" alt="">
+      </button>
+
+      <div class="show-another-right" onclick="showNextModalImage(event)"></div>
+    </div>
+  `;
+}
+
+function renderModalThumbs(product) {
+  if (!product.images || !product.images.length) {
+    return "";
+  }
+
+  return product.images.map((img, index) => `
+    <img src="${img}" onclick="changeMainImage('${img}', ${index})">
+  `).join("");
+}
+
+function initModalMainImage() {
+  const modalMainImg = document.getElementById("modalMainImg");
+
+  if (!modalMainImg || !viewerImages.length) return;
+
+  modalMainImg.src = viewerImages[0];
+  modalMainImg.onclick = () => openImageViewer(viewerImages, 0);
+}
+
+function renderStats(product) {
+  if (!product.stats) return "";
+
+  const icons = {
+    damage: "img/tags/damage.png",
+    accuracy: "img/tags/accuracy.png",
+    def: "img/tags/defence.png",
+    reduction: "img/tags/reduction.png",
+    resist: "img/tags/resistance.png"
+  };
+
+  return `
+    <div class="stats-list">
+      ${Object.entries(product.stats).map(([key, value]) => `
+        <div class="stat-line">
+          <div class="stat-icon">
+            <img src="${icons[key]}" alt="">
+          </div>
+
+          <div class="stat-text">
+            <span>${statLabels[key]}</span>
+            <strong>${value}</strong>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderSkills(product) {
+  if (!product.skills) return "";
+
+  return `
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th>Персонаж</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>Доп.</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        ${product.skills.map(skill => `
+          <tr>
+            <td>${skill.name}</td>
+            <td>${skill.a}</td>
+            <td>${skill.b}</td>
+            <td>${skill.c}</td>
+            <td>${skill.note}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
 }
 
 function selectDiamondOption(button) {
@@ -168,6 +315,7 @@ function selectDiamondOption(button) {
 function syncDiamondAmount(value) {
   const range = document.getElementById("diamondRange");
   const input = document.getElementById("diamondInput");
+  const price = document.querySelector(".diamond-modal-bottom .price");
 
   if (!range || !input) return;
 
@@ -181,57 +329,18 @@ function syncDiamondAmount(value) {
 
   range.value = amount;
   input.value = amount;
-}
 
-function changeMainImage(src, index = 0) {
-  const modalMainImg = document.getElementById("modalMainImg");
-
-  modalImageIndex = index;
-  viewerIndex = index;
-
-  modalMainImg.src = src;
-  modalMainImg.onclick = () => openImageViewer(viewerImages, index);
-}
-
-function updateModalImage() {
-  const modalMainImg = document.getElementById("modalMainImg");
-
-  if (!viewerImages.length) return;
-
-  modalMainImg.src = viewerImages[modalImageIndex];
-  modalMainImg.onclick = () => openImageViewer(viewerImages, modalImageIndex);
-}
-
-function showPrevModalImage(event) {
-  event.stopPropagation();
-
-  if (!viewerImages.length) return;
-
-  modalImageIndex =
-    modalImageIndex === 0
-      ? viewerImages.length - 1
-      : modalImageIndex - 1;
-
-  viewerIndex = modalImageIndex;
-  updateModalImage();
-}
-
-function showNextModalImage(event) {
-  event.stopPropagation();
-
-  if (!viewerImages.length) return;
-
-  modalImageIndex =
-    modalImageIndex === viewerImages.length - 1
-      ? 0
-      : modalImageIndex + 1;
-
-  viewerIndex = modalImageIndex;
-  updateModalImage();
+  if (price) {
+    price.textContent = formatPrice(amount);
+  }
 }
 
 function closeModal() {
-  document.getElementById("modal").classList.remove("active");
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modalContent");
+
+  modal.classList.remove("active", "modal-accounts", "modal-items", "modal-diamonds");
+  modalContent.innerHTML = "";
 }
 
 function closeModalOutside(event) {
