@@ -1194,6 +1194,15 @@
       }
     }
 
+    .zoom-img.next-btn {
+      width: 45px;
+    }
+
+    .image-viewer img .zoom-img.next-btn  {
+      border: none;
+      box-shadow: none;
+    }
+
     .extra-modal-text {
       margin: 2% 0px;
     }
@@ -1938,13 +1947,13 @@
     <span class="image-viewer-close" onclick="closeImageViewer(event)">×</span>
 
     <button class="image-viewer-arrow image-viewer-prev" onclick="showPrevImage(event)">
-      ‹
+      <img src="img/main/cross-to-side-white.svg" alt="" class="zoom-img next-btn" style="transform: rotate(180deg);">
     </button>
 
     <img id="imageViewerImg" src="" alt="">
 
     <button class="image-viewer-arrow image-viewer-next" onclick="showNextImage(event)">
-      ›
+      <img src="img/main/cross-to-side-white.svg" alt="" class="zoom-img next-btn">
     </button>
   </div>
 
