@@ -41,10 +41,6 @@ function renderItemCard(product) {
     <div class="card-body item-card-body">
       <h3>${product.title}</h3>
 
-      <p class="item-card-text">
-        ${product.description || ""}
-      </p>
-
       <div class="price">${formatPrice(product.price)}</div>
     </div>
   `;
@@ -63,7 +59,6 @@ function renderDiamondCard(product) {
         ${product.description || ""}
       </p>
 
-      <div class="price">от ${formatPrice(product.price)}</div>
     </div>
   `;
 }

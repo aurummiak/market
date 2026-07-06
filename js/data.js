@@ -219,8 +219,8 @@ const products = {
       cover: "img/objects/object1_1.png",
       images: [
         "img/objects/object1_1.png",
-        "img/objects/object1_2.png",
-        "img/objects/object1_3.png"
+        "img/objects/object1_1.png",
+        "img/objects/object1_1.png"
       ],
       description: "Редкий лук S-grade для персонажей дальнего боя.",
       details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
@@ -280,7 +280,7 @@ const products = {
       region: "Россия",
       drop: "Алмазы",
       typeClass: "red",
-      cover: "img/diamonds/diamonds-cover.png",
+      cover: "img/catalog/diamonds/diamonds-preview.png",
       images: [
         "img/diamonds/diamonds-cover.png"
       ],

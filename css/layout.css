@@ -42,8 +42,7 @@ nav a:hover {
     border-radius: var(--radius-xl);
     padding: 52px;
     background:
-        linear-gradient(31deg, rgb(16 15 15 / 92%), rgb(176 0 0 / 82%)), url(img/main/banner-img.jpg) center / cover;
-
+        linear-gradient(31deg, rgb(16 15 15 / 92%), rgb(176 0 0 / 82%)), url("../img/main/banner-img.jpg") center / cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
