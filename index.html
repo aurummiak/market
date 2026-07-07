@@ -95,27 +95,42 @@
             <h4>Статы персонажа</h4>
 
             <div class="range-row">
-              <label>Сопротивление умениям<span id="defValue">0</span></label>
+              <label class="range-row-label">
+                <span class="range-title">Сопротивление умениям</span>
+                <input class="range-value-input" id="defValue" type="number" data-stat="def" min="0" max="2000" value="0" inputmode="numeric">
+              </label>
               <input type="range" name="stat" data-stat="def" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Защита<span id="reductionValue">0</span></label>
+              <label class="range-row-label">
+                <span class="range-title">Защита</span>
+                <input class="range-value-input" id="reductionValue" type="number" data-stat="reduction" min="0" max="2000" value="0" inputmode="numeric">
+              </label>
               <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Снижение урона<span id="resistValue">0</span></label>
+              <label class="range-row-label">
+                <span class="range-title">Снижение урона</span>
+                <input class="range-value-input" id="resistValue" type="number" data-stat="resist" min="0" max="2000" value="0" inputmode="numeric">
+              </label>
               <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Защита<span id="damageValue">0</span></label>
+              <label class="range-row-label">
+                <span class="range-title">Защита</span>
+                <input class="range-value-input" id="damageValue" type="number" data-stat="damage" min="0" max="2000" value="0" inputmode="numeric">
+              </label>
               <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="0">
             </div>
 
             <div class="range-row">
-              <label>Снижение урона<span id="accuracyValue">0</span></label>
+              <label class="range-row-label">
+                <span class="range-title">Снижение урона</span>
+                <input class="range-value-input" id="accuracyValue" type="number" data-stat="accuracy" min="0" max="2000" value="0" inputmode="numeric">
+              </label>
               <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="0">
             </div>
           </div>

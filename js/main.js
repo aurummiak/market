@@ -44,7 +44,37 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchInput").addEventListener("input", filterProducts);
 
   document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
-    input.addEventListener("input", updateRangeLabels);
+    input.addEventListener("input", () => {
+      const stat = input.dataset.stat;
+      if (stat) {
+        const valueInput = document.querySelector(`input[type="number"][data-stat="${stat}"]`);
+        if (valueInput) {
+          valueInput.value = input.value;
+        }
+      }
+
+      updateRangeLabels();
+    });
+  });
+
+  document.querySelectorAll('#filterPanel input[type="number"]').forEach(input => {
+    input.addEventListener("input", () => {
+      const stat = input.dataset.stat;
+      if (stat) {
+        syncStatValue(stat);
+      }
+
+      updateRangeLabels();
+    });
+
+    input.addEventListener("change", () => {
+      const stat = input.dataset.stat;
+      if (stat) {
+        syncStatValue(stat);
+      }
+
+      updateRangeLabels();
+    });
   });
 
   updateRangeLabels();

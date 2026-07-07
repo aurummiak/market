@@ -89,15 +89,47 @@ function getCheckedValues(name) {
         .map(input => input.value);
 }
 
+function getRangeInput(stat) {
+    return document.querySelector(`input[type="range"][data-stat="${stat}"]`);
+}
+
+function getValueInput(stat) {
+    return document.querySelector(`input[type="number"][data-stat="${stat}"]`);
+}
+
+function syncStatValue(stat) {
+    const rangeInput = getRangeInput(stat);
+    const valueInput = getValueInput(stat);
+
+    if (!rangeInput || !valueInput) return;
+
+    const min = Number(rangeInput.min) || 0;
+    const max = Number(rangeInput.max) || 2000;
+    const rawValue = Number(valueInput.value);
+
+    if (!Number.isFinite(rawValue)) {
+        valueInput.value = rangeInput.value;
+        return;
+    }
+
+    const clampedValue = Math.min(max, Math.max(min, Math.floor(rawValue)));
+    rangeInput.value = clampedValue;
+    valueInput.value = clampedValue;
+}
+
 function getStatValue(stat) {
-    const input = document.querySelector(`input[data-stat="${stat}"]`);
+    const input = getRangeInput(stat);
     return input ? Number(input.value) : 0;
 }
 
 function updateRangeLabels() {
-    document.getElementById("defValue").textContent = getStatValue("def");
-    document.getElementById("reductionValue").textContent = getStatValue("reduction");
-    document.getElementById("resistValue").textContent = getStatValue("resist");
-    document.getElementById("damageValue").textContent = getStatValue("damage");
-    document.getElementById("accuracyValue").textContent = getStatValue("accuracy");
+    document.querySelectorAll('#filterPanel input[type="range"]').forEach(rangeInput => {
+        const stat = rangeInput.dataset.stat;
+        if (!stat) return;
+
+        const valueInput = getValueInput(stat);
+        if (valueInput) {
+            valueInput.value = rangeInput.value;
+        }
+    });
 }

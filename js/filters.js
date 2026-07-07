@@ -27,6 +27,10 @@ function clearFilters() {
     input.value = 0;
   });
 
+  document.querySelectorAll('#filterPanel input[type="number"]').forEach(input => {
+    input.value = 0;
+  });
+
   activeFilters.region = [];
   activeFilters.drop = [];
 
