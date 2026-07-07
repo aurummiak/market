@@ -218,9 +218,7 @@ const products = {
 
       cover: "img/objects/object1_1.png",
       images: [
-        "img/objects/object1_1.png",
-        "img/objects/object1_1.png",
-        "img/objects/object1_1.png"
+        "img/objects/object1_2.png",
       ],
       description: "Редкий лук S-grade для персонажей дальнего боя.",
       details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
@@ -240,7 +238,7 @@ const products = {
         { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
       ],
 
-      cover: "img/objects/object2_1.png",
+      cover: "img/objects/object3_1.png",
       images: [
         "img/objects/object2_1.png"
       ],
@@ -264,7 +262,6 @@ const products = {
 
       cover: "img/objects/object3_1.png",
       images: [
-        "img/objects/object3_1.png",
         "img/objects/object3_2.png",
         "img/objects/object3_3.png"
       ],

@@ -344,7 +344,45 @@ function closeModal() {
 }
 
 function closeModalOutside(event) {
-  if (event.target.id === "modal") {
+  if (event.target.id === "modalContent") {
     closeModal();
   }
+}
+
+function showPrevModalImage(event) {
+  event.stopPropagation();
+
+  if (!viewerImages || !viewerImages.length) return;
+
+  modalImageIndex =
+    modalImageIndex === 0
+      ? viewerImages.length - 1
+      : modalImageIndex - 1;
+
+  updateModalMainImage();
+}
+
+function showNextModalImage(event) {
+  event.stopPropagation();
+
+  if (!viewerImages || !viewerImages.length) return;
+
+  modalImageIndex =
+    modalImageIndex === viewerImages.length - 1
+      ? 0
+      : modalImageIndex + 1;
+
+  updateModalMainImage();
+}
+
+function updateModalMainImage() {
+  const modalMainImg = document.getElementById("modalMainImg");
+  if (modalMainImg && viewerImages && viewerImages.length > 0) {
+    modalMainImg.src = viewerImages[modalImageIndex];
+  }
+}
+
+function changeMainImage(src, index) {
+  modalImageIndex = index;
+  updateModalMainImage();
 }
