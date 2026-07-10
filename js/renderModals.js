@@ -125,30 +125,30 @@ function openDiamondModal(product) {
         </p>
 
         <div class="diamond-section">
-          <h3>Сервер</h3>
+          <h3>Кластер</h3>
 
           <div class="diamond-options">
-            ${product.servers.map((server, index) => `
+            ${product.servers.map((cluster, index) => `
               <button
                 class="diamond-option ${index === 0 ? "active" : ""}"
                 onclick="selectDiamondOption(this)"
               >
-                ${server}
+                ${cluster}
               </button>
             `).join("")}
           </div>
         </div>
 
         <div class="diamond-section">
-          <h3>Кластер</h3>
+          <h3>Сервер</h3>
 
           <div class="diamond-options">
-            ${product.clusters.map((cluster, index) => `
+            ${product.clusters.map((server, index) => `
               <button
                 class="diamond-option ${index === 0 ? "active" : ""}"
                 onclick="selectDiamondOption(this)"
               >
-                ${cluster}
+                ${server}
               </button>
             `).join("")}
           </div>
