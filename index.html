@@ -97,41 +97,79 @@
             <div class="range-row">
               <label class="range-row-label">
                 <span class="range-title">Сопротивление умениям</span>
-                <input class="range-value-input" id="defValue" type="number" data-stat="def" min="0" max="2000" value="0" inputmode="numeric">
+                <div class="filters number-field"> <input class="range-value-input" id="defMinValue" type="text"
+                    data-stat="def" data-bound="min" min="0" max="2000" value="0" inputmode="numeric" pattern="[0-9]*"
+                    autocomplete="off" placeholder="от">
+                  <input class="range-value-input" id="defMaxValue" type="text" data-stat="def" data-bound="max" min="0"
+                    max="2000" value="2000" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="до">
+                </div>
+
               </label>
-              <input type="range" name="stat" data-stat="def" min="0" max="2000" value="0">
+              <div class="range-sliders">
+                <input type="range" name="stat" data-stat="def" data-bound="min" min="0" max="2000" value="0">
+                <input type="range" name="stat" data-stat="def" data-bound="max" min="0" max="2000" value="2000">
+              </div>
             </div>
 
             <div class="range-row">
               <label class="range-row-label">
                 <span class="range-title">Защита</span>
-                <input class="range-value-input" id="reductionValue" type="number" data-stat="reduction" min="0" max="2000" value="0" inputmode="numeric">
+                <input class="range-value-input" id="reductionMinValue" type="text" data-stat="reduction"
+                  data-bound="min" min="0" max="2000" value="0" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                  placeholder="от">
+                <input class="range-value-input" id="reductionMaxValue" type="text" data-stat="reduction"
+                  data-bound="max" min="0" max="2000" value="2000" inputmode="numeric" pattern="[0-9]*"
+                  autocomplete="off" placeholder="до">
               </label>
-              <input type="range" name="stat" data-stat="reduction" min="0" max="2000" value="0">
+              <div class="range-sliders">
+                <input type="range" name="stat" data-stat="reduction" data-bound="min" min="0" max="2000" value="0">
+                <input type="range" name="stat" data-stat="reduction" data-bound="max" min="0" max="2000" value="2000">
+              </div>
             </div>
 
             <div class="range-row">
               <label class="range-row-label">
                 <span class="range-title">Снижение урона</span>
-                <input class="range-value-input" id="resistValue" type="number" data-stat="resist" min="0" max="2000" value="0" inputmode="numeric">
+                <input class="range-value-input" id="resistMinValue" type="text" data-stat="resist" data-bound="min"
+                  min="0" max="2000" value="0" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="от">
+                <input class="range-value-input" id="resistMaxValue" type="text" data-stat="resist" data-bound="max"
+                  min="0" max="2000" value="2000" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                  placeholder="до">
               </label>
-              <input type="range" name="stat" data-stat="resist" min="0" max="2000" value="0">
+              <div class="range-sliders">
+                <input type="range" name="stat" data-stat="resist" data-bound="min" min="0" max="2000" value="0">
+                <input type="range" name="stat" data-stat="resist" data-bound="max" min="0" max="2000" value="2000">
+              </div>
             </div>
 
             <div class="range-row">
               <label class="range-row-label">
                 <span class="range-title">Защита</span>
-                <input class="range-value-input" id="damageValue" type="number" data-stat="damage" min="0" max="2000" value="0" inputmode="numeric">
+                <input class="range-value-input" id="damageMinValue" type="text" data-stat="damage" data-bound="min"
+                  min="0" max="2000" value="0" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="от">
+                <input class="range-value-input" id="damageMaxValue" type="text" data-stat="damage" data-bound="max"
+                  min="0" max="2000" value="2000" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                  placeholder="до">
               </label>
-              <input type="range" name="stat" data-stat="damage" min="0" max="2000" value="0">
+              <div class="range-sliders">
+                <input type="range" name="stat" data-stat="damage" data-bound="min" min="0" max="2000" value="0">
+                <input type="range" name="stat" data-stat="damage" data-bound="max" min="0" max="2000" value="2000">
+              </div>
             </div>
 
             <div class="range-row">
               <label class="range-row-label">
                 <span class="range-title">Снижение урона</span>
-                <input class="range-value-input" id="accuracyValue" type="number" data-stat="accuracy" min="0" max="2000" value="0" inputmode="numeric">
+                <input class="range-value-input" id="accuracyMinValue" type="text" data-stat="accuracy" data-bound="min"
+                  min="0" max="2000" value="0" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="от">
+                <input class="range-value-input" id="accuracyMaxValue" type="text" data-stat="accuracy" data-bound="max"
+                  min="0" max="2000" value="2000" inputmode="numeric" pattern="[0-9]*" autocomplete="off"
+                  placeholder="до">
               </label>
-              <input type="range" name="stat" data-stat="accuracy" min="0" max="2000" value="0">
+              <div class="range-sliders">
+                <input type="range" name="stat" data-stat="accuracy" data-bound="min" min="0" max="2000" value="0">
+                <input type="range" name="stat" data-stat="accuracy" data-bound="max" min="0" max="2000" value="2000">
+              </div>
             </div>
           </div>
 

@@ -24,37 +24,58 @@ function clearFilters() {
   });
 
   document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
-    input.value = 0;
+    // set min-bound to its min and max-bound to its max
+    if (input.dataset.bound === "min") {
+      input.value = input.min || 0;
+    } else if (input.dataset.bound === "max") {
+      input.value = input.max || 0;
+    } else {
+      input.value = 0;
+    }
   });
 
-  document.querySelectorAll('#filterPanel input[type="number"]').forEach(input => {
-    input.value = 0;
+  document.querySelectorAll('#filterPanel input[type="text"].range-value-input[data-stat]').forEach(input => {
+    if (input.dataset.bound === "min") input.value = input.min || 0;
+    else if (input.dataset.bound === "max") input.value = input.max || 0;
   });
 
   activeFilters.region = [];
   activeFilters.drop = [];
 
   activeFilters.stats = {
-    def: 0,
-    reduction: 0,
-    resist: 0,
-    damage: 0,
-    accuracy: 0
+    def: { min: 0, max: 0 },
+    reduction: { min: 0, max: 0 },
+    resist: { min: 0, max: 0 },
+    damage: { min: 0, max: 0 },
+    accuracy: { min: 0, max: 0 }
   };
 
   updateRangeLabels();
+  // update visual tracks for all stats
+  ["def","reduction","resist","damage","accuracy"].forEach(stat => {
+    if (typeof updateRangeTrack === 'function') updateRangeTrack(stat);
+  });
+
   filterProducts();
 }
 
 function matchesStats(card) {
   if (currentCategory !== "accounts") return true;
+  const checkBetween = (value, range) => {
+    if (!range) return true;
+    const num = Number(value);
+    if (!Number.isFinite(num)) return false;
+    if (range.min && num < range.min) return false;
+    if (range.max && num > range.max) return false;
+    return true;
+  };
 
   return (
-    Number(card.dataset.def) >= activeFilters.stats.def &&
-    Number(card.dataset.reduction) >= activeFilters.stats.reduction &&
-    Number(card.dataset.resist) >= activeFilters.stats.resist &&
-    Number(card.dataset.damage) >= activeFilters.stats.damage &&
-    Number(card.dataset.accuracy) >= activeFilters.stats.accuracy
+    checkBetween(card.dataset.def, activeFilters.stats.def) &&
+    checkBetween(card.dataset.reduction, activeFilters.stats.reduction) &&
+    checkBetween(card.dataset.resist, activeFilters.stats.resist) &&
+    checkBetween(card.dataset.damage, activeFilters.stats.damage) &&
+    checkBetween(card.dataset.accuracy, activeFilters.stats.accuracy)
   );
 }
 

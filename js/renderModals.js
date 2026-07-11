@@ -111,7 +111,12 @@ function openDiamondModal(product) {
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modalContent");
 
+  window.currentDiamondProduct = product;
+
   modal.className = "modal active modal-diamonds";
+
+  const initialCluster = product.clusters?.[0] || "";
+  const initialServers = product.clusterServers?.[initialCluster] || [];
 
   modalContent.innerHTML = `
     <div class="modal-box diamond-modal-box">
@@ -127,8 +132,8 @@ function openDiamondModal(product) {
         <div class="diamond-section">
           <h3>Кластер</h3>
 
-          <div class="diamond-options">
-            ${product.servers.map((cluster, index) => `
+          <div class="diamond-options" id="clusterOptions">
+            ${product.clusters.map((cluster, index) => `
               <button
                 class="diamond-option ${index === 0 ? "active" : ""}"
                 onclick="selectDiamondOption(this)"
@@ -142,8 +147,8 @@ function openDiamondModal(product) {
         <div class="diamond-section">
           <h3>Сервер</h3>
 
-          <div class="diamond-options">
-            ${product.clusters.map((server, index) => `
+          <div class="diamond-options" id="serverOptions">
+            ${initialServers.map((server, index) => `
               <button
                 class="diamond-option ${index === 0 ? "active" : ""}"
                 onclick="selectDiamondOption(this)"
@@ -169,12 +174,15 @@ function openDiamondModal(product) {
             >
 
             <input
-              type="number"
+              type="text"
               id="diamondInput"
               min="${product.minAmount}"
               max="${product.maxAmount}"
               step="${product.amountStep}"
               value="${product.defaultAmount}"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              autocomplete="off"
               oninput="syncDiamondAmount(this.value)"
             >
           </div>
@@ -305,11 +313,31 @@ function renderSkills(product) {
 function selectDiamondOption(button) {
   const group = button.closest(".diamond-options");
 
+  if (!group) return;
+
   group.querySelectorAll(".diamond-option").forEach(item => {
     item.classList.remove("active");
   });
 
   button.classList.add("active");
+
+  if (group.id === "clusterOptions" && window.currentDiamondProduct?.clusterServers) {
+    const selectedCluster = button.textContent.trim();
+    const serverOptions = document.getElementById("serverOptions");
+
+    if (!serverOptions) return;
+
+    const servers = window.currentDiamondProduct.clusterServers[selectedCluster] || [];
+
+    serverOptions.innerHTML = servers.map((server, index) => `
+      <button
+        class="diamond-option ${index === 0 ? "active" : ""}"
+        onclick="selectDiamondOption(this)"
+      >
+        ${server}
+      </button>
+    `).join("");
+  }
 }
 
 function syncDiamondAmount(value) {
@@ -319,16 +347,21 @@ function syncDiamondAmount(value) {
 
   if (!range || !input) return;
 
-  let amount = Number(value);
-
+  const digitsOnly = String(value ?? "").replace(/\D/g, "");
   const min = Number(range.min);
   const max = Number(range.max);
+
+  let amount = digitsOnly ? Number(digitsOnly) : 0;
+
+  if (!Number.isFinite(amount)) {
+    amount = min;
+  }
 
   if (amount < min) amount = min;
   if (amount > max) amount = max;
 
   range.value = amount;
-  input.value = amount;
+  input.value = String(amount);
 
   if (price) {
     price.textContent = formatPrice(amount);

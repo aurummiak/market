@@ -75,7 +75,7 @@
   accent-color: var(--primary);
 }
 
-.diamond-amount input[type="number"] {
+.diamond-amount input[type="text"] {
   height: 46px;
 
   border-radius: var(--radius-md);
