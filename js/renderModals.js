@@ -70,6 +70,7 @@ function openAccountModal(product) {
   `;
 
   initModalMainImage();
+  modal.scrollTop = 0;
 }
 
 function openItemModal(product) {
@@ -107,6 +108,7 @@ function openItemModal(product) {
   `;
 
   initModalMainImage();
+  modal.scrollTop = 0;
 }
 
 function openDiamondModal(product) {
@@ -201,6 +203,8 @@ function openDiamondModal(product) {
       </div>
     </div>
   `;
+
+  modal.scrollTop = 0;
 }
 
 function renderCloseButton() {
@@ -377,6 +381,7 @@ function closeModal() {
 
   modal.classList.remove("active", "modal-accounts", "modal-items", "modal-diamonds");
   modalContent.innerHTML = "";
+  modal.scrollTop = 0;
   document.body.classList.remove("modal-open");
 }
 
