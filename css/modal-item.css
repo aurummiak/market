@@ -1,15 +1,18 @@
 .item-modal-box {
   width: min(900px, 100%);
   height: min(640px, calc(100vh - 48px));
-
   display: grid;
   grid-template-columns: .9fr 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "image details"
+    "image bottom";
 }
 
 .item-modal-image-side {
+  grid-area: image;
   padding: 28px;
   background: var(--bg-gallery);
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,20 +27,16 @@
   object-fit: contain;
 }
 
-.item-modal-info {
-  padding: 54px 46px;
-
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 22px;
-
-  position: relative;
+.item-modal-details {
+  grid-area: details;
+  padding: 54px 46px 20px;
 }
 
-.item-modal-info h2 {
+.item-modal-details h2 {
   font-size: 34px;
   color: var(--text-main);
   padding-right: 42px;
+  margin-bottom: 22px;
 }
 
 .item-modal-description {
@@ -46,6 +45,82 @@
   font-size: 16px;
 }
 
+.item-modal-bottom {
+  grid-area: bottom;
+  padding: 18px 46px 34px;
+}
+
 .item-modal-bottom .price {
   margin-bottom: 14px;
+}
+
+@media (max-width: 1024px) {
+  .item-modal-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+    height: auto;
+  }
+
+  .item-modal-details {
+    order: 1;
+    padding: 26px 24px 22px;
+  }
+
+  .item-modal-details h2 {
+    max-width: calc(100% - 52px);
+    font-size: 28px;
+    line-height: 1.16;
+    margin-bottom: 18px;
+  }
+
+  .item-modal-image-side {
+    order: 2;
+    padding: 0 24px 20px;
+    background: var(--bg-modal);
+  }
+
+  .item-modal-image-side .modal-main-img {
+    height: 380px;
+  }
+
+  .item-modal-bottom {
+    order: 3;
+    position: sticky;
+    bottom: 0;
+    padding: 16px 24px 20px;
+    background: rgba(20, 20, 22, .96);
+    border-top: 1px solid var(--border-main);
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, .38);
+    backdrop-filter: blur(14px);
+    z-index: 25;
+  }
+}
+
+@media (max-width: 560px) {
+  .item-modal-details {
+    padding: 22px 18px 18px;
+  }
+
+  .item-modal-details h2 {
+    font-size: 23px;
+    padding-right: 42px;
+  }
+
+  .item-modal-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .item-modal-image-side {
+    padding: 0 18px 16px;
+  }
+
+  .item-modal-image-side .modal-main-img {
+    height: 280px;
+  }
+
+  .item-modal-bottom {
+    padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
+  }
 }

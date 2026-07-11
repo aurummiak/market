@@ -134,3 +134,28 @@
     right: 12px;
   }
 }
+
+@media (max-width: 700px) {
+  .image-viewer {
+    padding: 12px;
+  }
+
+  .image-viewer img {
+    max-width: calc(100vw - 24px);
+    max-height: 82dvh;
+    border-radius: 16px;
+  }
+
+  .image-viewer-close {
+    top: max(12px, env(safe-area-inset-top));
+    right: 12px;
+  }
+
+  .image-viewer-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .image-viewer-prev { left: 10px; }
+  .image-viewer-next { right: 10px; }
+}

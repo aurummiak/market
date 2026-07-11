@@ -161,3 +161,131 @@
   color: var(--text-muted);
   line-height: 1.6;
 }
+
+
+
+@media (max-width: 1024px) {
+  .account-modal-box {
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+  }
+
+  .account-modal-box .modal-gallery,
+  .account-modal-box .modal-info {
+    display: contents;
+  }
+
+  .account-modal-box .modal-fixed-top {
+    order: 1;
+    padding: 26px 24px 20px;
+    background: var(--bg-modal);
+  }
+
+  .account-modal-box .modal-fixed-top h2 {
+    max-width: calc(100% - 52px);
+    font-size: 28px;
+    line-height: 1.16;
+  }
+
+  .account-modal-box .modal-scroll {
+    order: 2;
+    padding: 24px;
+    overflow: visible;
+  }
+
+  .account-modal-box .details-list {
+    display: grid;
+    gap: 20px;
+  }
+
+  .stats-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-line {
+    padding: 12px;
+    background: var(--bg-detail);
+    border: 1px solid var(--border-main);
+  }
+
+  .skills-table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .account-modal-box .modal-main-img {
+    order: 3;
+    height: 380px;
+    margin: 0 24px;
+  }
+
+  .account-modal-box .modal-thumbs {
+    order: 4;
+    padding: 12px 24px 20px;
+  }
+
+  .account-modal-box .modal-thumbs img {
+    height: 92px;
+  }
+
+  .account-modal-box .modal-fixed-bottom {
+    order: 5;
+    position: sticky;
+    bottom: 0;
+    padding: 16px 24px 20px;
+    background: rgba(20, 20, 22, .96);
+    border-top: 1px solid var(--border-main);
+    box-shadow: 0 -16px 36px rgba(0, 0, 0, .38);
+    backdrop-filter: blur(14px);
+    z-index: 25;
+  }
+}
+
+@media (max-width: 560px) {
+  .account-modal-box .modal-fixed-top {
+    padding: 22px 18px 16px;
+  }
+
+  .account-modal-box .modal-fixed-top h2 {
+    font-size: 23px;
+    padding-right: 42px;
+  }
+
+  .account-modal-box .modal-scroll {
+    padding: 18px;
+  }
+
+  .stats-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-text span { font-size: 12px; }
+  .stat-text strong { font-size: 17px; }
+
+  .skills-table th,
+  .skills-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .account-modal-box .modal-main-img {
+    height: 270px;
+    margin: 0 18px;
+  }
+
+  .account-modal-box .modal-thumbs {
+    padding: 10px 18px 16px;
+    gap: 7px;
+  }
+
+  .account-modal-box .modal-thumbs img {
+    height: 68px;
+  }
+
+  .account-modal-box .modal-fixed-bottom {
+    padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
+  }
+}

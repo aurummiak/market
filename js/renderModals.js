@@ -21,6 +21,7 @@ function openAccountModal(product) {
   const modalContent = document.getElementById("modalContent");
 
   modal.className = "modal active modal-accounts";
+  document.body.classList.add("modal-open");
 
   modalContent.innerHTML = `
     <div class="modal-box account-modal-box">
@@ -80,26 +81,27 @@ function openItemModal(product) {
   const modalContent = document.getElementById("modalContent");
 
   modal.className = "modal active modal-items";
+  document.body.classList.add("modal-open");
 
   modalContent.innerHTML = `
     <div class="modal-box item-modal-box">
-      <div class="item-modal-image-side">
-        ${renderModalGallery(product)}
-      </div>
+      ${renderCloseButton()}
 
-      <div class="item-modal-info">
-        ${renderCloseButton()}
-
+      <div class="item-modal-details">
         <h2>${product.title}</h2>
 
         <p class="item-modal-description">
           ${product.description || ""}
         </p>
+      </div>
 
-        <div class="item-modal-bottom">
-          <div class="price">${formatPrice(product.price)}</div>
-          <button class="buy-btn">Купить</button>
-        </div>
+      <div class="item-modal-image-side">
+        ${renderModalGallery(product)}
+      </div>
+
+      <div class="item-modal-bottom">
+        <div class="price">${formatPrice(product.price)}</div>
+        <button class="buy-btn">Купить</button>
       </div>
     </div>
   `;
@@ -114,6 +116,7 @@ function openDiamondModal(product) {
   window.currentDiamondProduct = product;
 
   modal.className = "modal active modal-diamonds";
+  document.body.classList.add("modal-open");
 
   const initialCluster = product.clusters?.[0] || "";
   const initialServers = product.clusterServers?.[initialCluster] || [];
@@ -374,10 +377,11 @@ function closeModal() {
 
   modal.classList.remove("active", "modal-accounts", "modal-items", "modal-diamonds");
   modalContent.innerHTML = "";
+  document.body.classList.remove("modal-open");
 }
 
 function closeModalOutside(event) {
-  if (event.target.id === "modalContent") {
+  if (event.target.id === "modal" || event.target.id === "modalContent") {
     closeModal();
   }
 }
