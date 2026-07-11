@@ -135,4 +135,57 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   renderProducts();
+
+  const burgerButton = document.getElementById("burgerButton");
+  const mainNavigation = document.getElementById("mainNavigation");
+
+  function closeMobileMenu() {
+    if (!burgerButton || !mainNavigation) return;
+
+    burgerButton.classList.remove("active");
+    mainNavigation.classList.remove("active");
+    burgerButton.setAttribute("aria-expanded", "false");
+    burgerButton.setAttribute("aria-label", "Открыть меню");
+  }
+
+  if (burgerButton && mainNavigation) {
+    burgerButton.addEventListener("click", event => {
+      event.stopPropagation();
+
+      const isOpen = mainNavigation.classList.toggle("active");
+
+      burgerButton.classList.toggle("active", isOpen);
+      burgerButton.setAttribute("aria-expanded", String(isOpen));
+      burgerButton.setAttribute(
+        "aria-label",
+        isOpen ? "Закрыть меню" : "Открыть меню"
+      );
+    });
+
+    mainNavigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    document.addEventListener("click", event => {
+      if (
+        !mainNavigation.contains(event.target) &&
+        !burgerButton.contains(event.target)
+      ) {
+        closeMobileMenu();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1024) {
+        closeMobileMenu();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+      }
+    });
+  }
+
 });

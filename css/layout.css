@@ -317,3 +317,137 @@ footer {
     width: 100%;
   }
 }
+
+
+/* Mobile/tablet navigation */
+.burger-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  border: 1px solid var(--border-main);
+  border-radius: 12px;
+
+  background: rgba(20, 20, 22, .88);
+  color: var(--text-main);
+
+  cursor: pointer;
+  position: relative;
+  z-index: 42;
+
+  transition: var(--transition);
+}
+
+.burger-button:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+
+.burger-button span {
+  width: 21px;
+  height: 2px;
+
+  display: block;
+
+  border-radius: 999px;
+  background: currentColor;
+
+  transition:
+    transform var(--transition),
+    opacity var(--transition);
+}
+
+.burger-button.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger-button.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-button.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+  header {
+    position: sticky;
+    overflow: visible;
+  }
+
+  .burger-button {
+    display: flex;
+    margin-left: auto;
+  }
+
+  header nav {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 5%;
+
+    width: min(320px, calc(100vw - 36px));
+    padding: 10px;
+
+    display: grid;
+    gap: 4px;
+
+    background: rgba(20, 20, 22, .98);
+    border: 1px solid var(--border-main);
+    border-radius: 18px;
+
+    box-shadow:
+      0 22px 60px rgba(0, 0, 0, .5),
+      0 0 0 1px rgba(220, 38, 38, .08);
+
+    backdrop-filter: blur(18px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-8px) scale(.98);
+    transform-origin: top right;
+
+    transition:
+      opacity var(--transition),
+      visibility var(--transition),
+      transform var(--transition);
+
+    z-index: 40;
+  }
+
+  header nav.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  header nav a {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 12px;
+  }
+
+  header nav a:hover {
+    background: rgba(220, 38, 38, .12);
+  }
+}
+
+@media (max-width: 700px) {
+  header nav {
+    right: 18px;
+  }
+}
