@@ -43,11 +43,11 @@ function clearFilters() {
   activeFilters.drop = [];
 
   activeFilters.stats = {
-    def: { min: 0, max: 0 },
-    reduction: { min: 0, max: 0 },
-    resist: { min: 0, max: 0 },
-    damage: { min: 0, max: 0 },
-    accuracy: { min: 0, max: 0 }
+    def: { min: 0, max: 2000 },
+    reduction: { min: 0, max: 2000 },
+    resist: { min: 0, max: 2000 },
+    damage: { min: 0, max: 2000 },
+    accuracy: { min: 0, max: 2000 }
   };
 
   updateRangeLabels();
@@ -63,10 +63,15 @@ function matchesStats(card) {
   if (currentCategory !== "accounts") return true;
   const checkBetween = (value, range) => {
     if (!range) return true;
-    const num = Number(value);
-    if (!Number.isFinite(num)) return false;
-    if (range.min && num < range.min) return false;
-    if (range.max && num > range.max) return false;
+
+    const numericValue = Number(value);
+    const minimum = Number(range.min);
+    const maximum = Number(range.max);
+
+    if (!Number.isFinite(numericValue)) return false;
+    if (Number.isFinite(minimum) && numericValue < minimum) return false;
+    if (Number.isFinite(maximum) && numericValue > maximum) return false;
+
     return true;
   };
 

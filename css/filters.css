@@ -202,64 +202,21 @@
     border: 0px;
 }
 
-.range-sliders {
-    position: relative;
-    height: 28px;
-    display: block;
-}
 
-.range-sliders input[type="range"] {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    margin: 0;
-    pointer-events: none; /* allow only thumb to be interactive via pseudo handling */
-    -webkit-appearance: none;
-    appearance: none;
-}
 
-.range-sliders input[type="range"][data-bound="min"] {
-    z-index: 1;
-}
 
-.range-sliders input[type="range"][data-bound="max"] {
-    z-index: 2;
-}
 
-.range-sliders input[type="range"]::-webkit-slider-thumb {
-    pointer-events: auto;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--primary);
-    border: 2px solid var(--bg-card);
-    box-shadow: 0 2px 6px rgba(0,0,0,.25);
-    cursor: pointer;
-}
 
-.range-sliders input[type="range"]::-moz-range-thumb {
-    pointer-events: auto;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--primary);
-    border: 2px solid var(--bg-card);
-    box-shadow: 0 2px 6px rgba(0,0,0,.25);
-    cursor: pointer;
-}
 
-.range-sliders input[type="range"]::-webkit-slider-runnable-track {
-    height: 4px;
-    background: transparent;
-}
 
-.range-sliders input[type="range"]::-moz-range-track {
-    height: 4px;
-    background: transparent;
-}
+
+
+
+
+
+
+
+
 
 .filter-actions {
     display: grid;
@@ -377,140 +334,37 @@
 }
 
 /* Исправленное позиционирование контейнера и полоски */
-.range-sliders {
-    position: relative;
-    height: 32px;
-    display: block;
-    padding: 0; /* Убираем отступы */
-    margin: 0 6px; /* Добавляем отступы снаружи, чтобы точки не обрезались */
-}
+
 
 /* Линия-фон */
-.range-sliders::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-    pointer-events: none;
-}
+
 
 /* Активная область между ползунками */
-.range-sliders::after {
-    /* content: ''; */
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 4px;
-    border-radius: 4px;
-    background: var(--primary);
-    pointer-events: none;
-    transition: left 0.1s ease, right 0.1s ease;
-    box-shadow: 0 0 12px rgba(220, 38, 38, 0.3);
-}
+
 
 /* Сам ползунок */
-.range-sliders input[type="range"] {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 4px;
-    margin: 0;
-    padding: 0; /* Убираем внутренние отступы */
-    pointer-events: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-}
+
 
 /* Для WebKit - убираем отступы у трека */
-.range-sliders input[type="range"]::-webkit-slider-runnable-track {
-    height: 4px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-}
+
 
 /* Для Firefox - убираем отступы у трека */
-.range-sliders input[type="range"]::-moz-range-track {
-    height: 4px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-}
+
 
 /* Точки ползунков */
-.range-sliders input[type="range"]::-webkit-slider-thumb {
-    pointer-events: auto;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--primary);
-    border: 2.5px solid var(--bg-card);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4),
-        0 0 0 0 rgba(220, 38, 38, 0);
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    z-index: 3;
-    margin-top: -7px;
-}
+
 
 /* Для Firefox */
-.range-sliders input[type="range"]::-moz-range-thumb {
-    pointer-events: auto;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--primary);
-    border: 2.5px solid var(--bg-card);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4),
-        0 0 0 0 rgba(220, 38, 38, 0);
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: translateY(-2px);
-}
+
 
 /* Hover и Active эффекты */
-.range-sliders input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    box-shadow: 
-        0 2px 12px rgba(0, 0, 0, 0.5),
-        0 0 0 6px rgba(220, 38, 38, 0.15);
-}
 
-.range-sliders input[type="range"]::-webkit-slider-thumb:active {
-    transform: scale(1.1);
-    box-shadow: 
-        0 2px 16px rgba(0, 0, 0, 0.6),
-        0 0 0 10px rgba(220, 38, 38, 0.2);
-}
 
-.range-sliders input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.2) translateY(-2px);
-    box-shadow: 
-        0 2px 12px rgba(0, 0, 0, 0.5),
-        0 0 0 6px rgba(220, 38, 38, 0.15);
-}
 
-.range-sliders input[type="range"]::-moz-range-thumb:active {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 
-        0 2px 16px rgba(0, 0, 0, 0.6),
-        0 0 0 10px rgba(220, 38, 38, 0.2);
-}
+
+
+
+
 
 @media (max-width: 1024px) {
   .filter-panel {
@@ -576,64 +430,166 @@
 
 
 /* Range slider geometry fix */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.range-sliders input[type="range"]::-webkit-slider-thumb:hover,
+
+
+.range-sliders input[type="range"]::-webkit-slider-thumb:active,
+
+
+
+/* True dual-handle range slider */
+
+
+/* Неактивная линия целиком */
+
+
+/* Выбранный промежуток между минимумом и максимумом */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Final dual-range alignment
+   The line runs strictly between the centres of the two edge handles. */
+
+
+/* Full line and selected interval are drawn as one inset track. */
+
+
+/* Disable the previous separate selected-line layer. */
+
+
+
+
+
+
+
+
+
+
+
+
+.range-sliders input[type="range"]::-webkit-slider-thumb:active,
+
+
+
+/* Dual range: track aligned exactly with handle centres */
 .range-sliders {
   --thumb-size: 18px;
   --track-height: 4px;
+  --range-min: 0%;
+  --range-max: 100%;
 
   position: relative;
   width: 100%;
-  height: 32px;
-
-  margin: 0;
-  padding: 0 calc(var(--thumb-size) / 2);
-
-  display: block;
-  overflow: visible;
-}
-
-.range-sliders::before {
-  content: "";
-
-  position: absolute;
-  left: calc(var(--thumb-size) / 2);
-  right: calc(var(--thumb-size) / 2);
-  top: 50%;
-
-  height: var(--track-height);
-
-  transform: translateY(-50%);
-
-  border-radius: 999px;
-  background: rgba(255, 255, 255, .10);
-
-  pointer-events: none;
-}
-
-.range-sliders input[type="range"] {
-  position: absolute;
-
-  left: calc(var(--thumb-size) / 2);
-  top: 50%;
-
-  width: calc(100% - var(--thumb-size));
-  height: var(--thumb-size);
+  height: 34px;
 
   margin: 0;
   padding: 0;
 
+  overflow: visible;
+}
+
+/*
+  The visible line is inset by half the thumb diameter.
+  Both native ranges occupy the full container width, so their
+  extreme thumb centres are at the same inset points.
+*/
+.range-sliders::before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: calc(var(--thumb-size) / 2);
+  right: calc(var(--thumb-size) / 2);
+
+  height: var(--track-height);
+
   transform: translateY(-50%);
 
-  appearance: none;
-  -webkit-appearance: none;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, .14) 0%,
+      rgba(255, 255, 255, .14) var(--range-min),
+      var(--primary) var(--range-min),
+      var(--primary) var(--range-max),
+      rgba(255, 255, 255, .14) var(--range-max),
+      rgba(255, 255, 255, .14) 100%
+    );
 
-  border: 0;
-  outline: 0;
-  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.range-sliders::after {
+  content: none;
+}
+
+.range-sliders > input[type="range"] {
+  position: absolute !important;
+
+  top: 50% !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  height: var(--thumb-size) !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  transform: translateY(-50%) !important;
+
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
 
   pointer-events: none;
 }
 
-.range-sliders input[type="range"]::-webkit-slider-runnable-track {
+.range-sliders > input[type="range"][data-bound="min"] {
+  z-index: 4;
+}
+
+.range-sliders > input[type="range"][data-bound="max"] {
+  z-index: 5;
+}
+
+.range-sliders > input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: var(--track-height);
 
@@ -642,7 +598,7 @@
   background: transparent;
 }
 
-.range-sliders input[type="range"]::-moz-range-track {
+.range-sliders > input[type="range"]::-moz-range-track {
   width: 100%;
   height: var(--track-height);
 
@@ -651,7 +607,7 @@
   background: transparent;
 }
 
-.range-sliders input[type="range"]::-webkit-slider-thumb {
+.range-sliders > input[type="range"]::-webkit-slider-thumb {
   width: var(--thumb-size);
   height: var(--thumb-size);
 
@@ -660,45 +616,40 @@
   appearance: none;
   -webkit-appearance: none;
 
-  border: 2px solid var(--bg-card);
+  border: 4px solid var(--primary);
   border-radius: 50%;
 
-  background: var(--primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+  background: var(--bg-card);
 
-  cursor: pointer;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, .35),
+    0 0 0 1px rgba(255, 255, 255, .06);
+
+  cursor: grab;
   pointer-events: auto;
-
-  position: relative;
-  z-index: 4;
 }
 
-.range-sliders input[type="range"]::-moz-range-thumb {
+.range-sliders > input[type="range"]::-moz-range-thumb {
   width: var(--thumb-size);
   height: var(--thumb-size);
 
-  border: 2px solid var(--bg-card);
+  border: 4px solid var(--primary);
   border-radius: 50%;
 
-  background: var(--primary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+  background: var(--bg-card);
 
-  cursor: pointer;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, .35),
+    0 0 0 1px rgba(255, 255, 255, .06);
+
+  cursor: grab;
   pointer-events: auto;
-
-  transform: none;
 }
 
-.range-sliders input[type="range"]::-webkit-slider-thumb:hover,
-.range-sliders input[type="range"]::-moz-range-thumb:hover {
-  box-shadow:
-    0 2px 12px rgba(0, 0, 0, .5),
-    0 0 0 6px rgba(220, 38, 38, .15);
+.range-sliders > input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
 }
 
-.range-sliders input[type="range"]::-webkit-slider-thumb:active,
-.range-sliders input[type="range"]::-moz-range-thumb:active {
-  box-shadow:
-    0 2px 16px rgba(0, 0, 0, .6),
-    0 0 0 9px rgba(220, 38, 38, .2);
+.range-sliders > input[type="range"]::-moz-range-thumb:active {
+  cursor: grabbing;
 }

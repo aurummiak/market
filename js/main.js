@@ -43,38 +43,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("searchInput").addEventListener("input", filterProducts);
 
-  document.querySelectorAll('#filterPanel input[type="range"]').forEach(input => {
+  document.querySelectorAll('#filterPanel input[type="range"][data-stat][data-bound]').forEach(input => {
     input.addEventListener("input", () => {
       const stat = input.dataset.stat;
-      const bound = input.dataset.bound || "max";
-      if (stat) {
-        const valueInput = document.querySelector(`input[type="text"].range-value-input[data-stat="${stat}"][data-bound="${bound}"]`);
-        if (valueInput) {
-          valueInput.value = input.value;
-        }
+      const bound = input.dataset.bound;
 
-        // ensure min <= max
-        const minRange = document.querySelector(`input[type="range"][data-stat="${stat}"][data-bound="min"]`);
-        const maxRange = document.querySelector(`input[type="range"][data-stat="${stat}"][data-bound="max"]`);
-        if (minRange && maxRange) {
-          if (Number(minRange.value) > Number(maxRange.value)) {
-            if (bound === "min") {
-              maxRange.value = minRange.value;
-              const maxValInput = document.querySelector(`input[type="text"].range-value-input[data-stat="${stat}"][data-bound="max"]`);
-              if (maxValInput) maxValInput.value = maxRange.value;
-            } else {
-              minRange.value = maxRange.value;
-              const minValInput = document.querySelector(`input[type="text"].range-value-input[data-stat="${stat}"][data-bound="min"]`);
-              if (minValInput) minValInput.value = minRange.value;
-            }
-          }
-        }
-
-        // update visual track
-        if (typeof updateRangeTrack === 'function') updateRangeTrack(stat);
-      }
-
+      clampRangePair(stat, bound);
       updateRangeLabels();
+    });
+
+    /*
+     * При нажатии поднимаем выбранный range над вторым,
+     * чтобы оба кружка оставались доступными даже рядом.
+     */
+    input.addEventListener("pointerdown", () => {
+      const stat = input.dataset.stat;
+      const minRange = getRangeInput(stat, "min");
+      const maxRange = getRangeInput(stat, "max");
+
+      if (minRange) minRange.style.zIndex = input === minRange ? "6" : "4";
+      if (maxRange) maxRange.style.zIndex = input === maxRange ? "6" : "5";
     });
   });
 
@@ -105,8 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const bound = input.dataset.bound || "max";
       if (stat) {
         syncStatValue(stat, bound);
-        // ensure ordering and update track
-        if (typeof clampRangePair === 'function') clampRangePair(stat);
+        clampRangePair(stat, bound);
       }
 
       updateRangeLabels();
@@ -117,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const bound = input.dataset.bound || "max";
       if (stat) {
         syncStatValue(stat, bound);
+        clampRangePair(stat, bound);
       }
 
       updateRangeLabels();
@@ -187,5 +175,32 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+
+  const filterPanel = document.getElementById("filterPanel");
+  const filterWrapper = document.querySelector(".filter-wrapper");
+
+  function closeFilterPanel() {
+    if (filterPanel) {
+      filterPanel.classList.remove("active");
+    }
+  }
+
+  document.addEventListener("click", event => {
+    if (
+      filterPanel &&
+      filterWrapper &&
+      filterPanel.classList.contains("active") &&
+      !filterWrapper.contains(event.target)
+    ) {
+      closeFilterPanel();
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeFilterPanel();
+    }
+  });
 
 });

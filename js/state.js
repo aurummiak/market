@@ -7,10 +7,10 @@ let activeFilters = {
     region: [],
     drop: [],
     stats: {
-        def: { min: 0, max: 0 },
-        reduction: { min: 0, max: 0 },
-        resist: { min: 0, max: 0 },
-        damage: { min: 0, max: 0 },
-        accuracy: { min: 0, max: 0 }
+        def: { min: 0, max: 2000 },
+        reduction: { min: 0, max: 2000 },
+        resist: { min: 0, max: 2000 },
+        damage: { min: 0, max: 2000 },
+        accuracy: { min: 0, max: 2000 }
     }
 };

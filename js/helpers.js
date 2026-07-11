@@ -144,27 +144,30 @@ function syncStatValue(stat, bound = "max") {
   valueInput.value = clampedValue;
 }
 
-function clampRangePair(stat) {
+function clampRangePair(stat, changedBound = null) {
   const minRange = getRangeInput(stat, "min");
   const maxRange = getRangeInput(stat, "max");
 
   if (!minRange || !maxRange) return;
 
-  let minVal = Number(minRange.value);
-  let maxVal = Number(maxRange.value);
+  let minValue = Number(minRange.value);
+  let maxValue = Number(maxRange.value);
 
-  if (minVal > maxVal) {
-    // keep a 1-step gap or swap
-    if (minRange === document.activeElement) {
-      maxVal = minVal;
-      maxRange.value = maxVal;
-      const maxInput = getValueInput(stat, "max"); if (maxInput) maxInput.value = maxVal;
+  if (minValue > maxValue) {
+    if (changedBound === "min") {
+      minValue = maxValue;
+      minRange.value = String(minValue);
     } else {
-      minVal = maxVal;
-      minRange.value = minVal;
-      const minInput = getValueInput(stat, "min"); if (minInput) minInput.value = minVal;
+      maxValue = minValue;
+      maxRange.value = String(maxValue);
     }
   }
+
+  const minValueInput = getValueInput(stat, "min");
+  const maxValueInput = getValueInput(stat, "max");
+
+  if (minValueInput) minValueInput.value = minRange.value;
+  if (maxValueInput) maxValueInput.value = maxRange.value;
 
   updateRangeTrack(stat);
 }
@@ -172,23 +175,35 @@ function clampRangePair(stat) {
 function updateRangeTrack(stat) {
   const minRange = getRangeInput(stat, "min");
   const maxRange = getRangeInput(stat, "max");
+
   if (!minRange || !maxRange) return;
 
-  const min = Number(minRange.min) || 0;
-  const max = Number(maxRange.max) || 100;
+  const container = minRange.closest(".range-sliders");
+  if (!container) return;
 
-  const minVal = Number(minRange.value);
-  const maxVal = Number(maxRange.value);
+  const minimum = Number(minRange.min) || 0;
+  const maximum = Number(minRange.max) || 100;
+  const minValue = Number(minRange.value);
+  const maxValue = Number(maxRange.value);
+  const span = maximum - minimum || 1;
 
-  const range = max - min || 1;
-  const minPercent = ((minVal - min) / range) * 100;
-  const maxPercent = ((maxVal - min) / range) * 100;
+  const minPercent = ((minValue - minimum) / span) * 100;
+  const maxPercent = ((maxValue - minimum) / span) * 100;
 
-  const gradient = `linear-gradient(to right, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.12) ${minPercent}%, var(--primary) ${minPercent}%, var(--primary) ${maxPercent}%, rgba(255,255,255,0.12) ${maxPercent}%, rgba(255,255,255,0.12) 100%)`;
+  container.style.setProperty("--range-min", `${minPercent}%`);
+  container.style.setProperty("--range-max", `${maxPercent}%`);
 
-  // apply gradient to both sliders so track is visible
-  minRange.style.background = gradient;
-  maxRange.style.background = gradient;
+  /*
+   * Когда ползунки находятся рядом, активный ползунок должен быть выше.
+   * Иначе один кружок может перекрывать второй.
+   */
+  if (maxValue - minValue <= Number(minRange.step || 1) * 2) {
+    minRange.style.zIndex = minValue >= maximum ? "5" : "4";
+    maxRange.style.zIndex = minValue >= maximum ? "4" : "5";
+  } else {
+    minRange.style.zIndex = "4";
+    maxRange.style.zIndex = "5";
+  }
 }
 
 function getStatValue(stat) {
