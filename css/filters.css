@@ -653,3 +653,253 @@
 .range-sliders > input[type="range"]::-moz-range-thumb:active {
   cursor: grabbing;
 }
+
+.range-ui-track{
+    position:absolute;
+
+    left:9px;
+    right:9px;
+
+    top:50%;
+
+    height:4px;
+
+    transform:translateY(-50%);
+}
+
+.range-left,
+.range-center,
+.range-right{
+    position:absolute;
+    top:0;
+    height:100%;
+    border-radius:999px;
+}
+
+.range-left{
+    left:0;
+    background:#5d5d5d;
+}
+
+.range-center{
+    background:var(--primary);
+}
+
+.range-right{
+    right:0;
+    background:#5d5d5d;
+}
+/* Stable dual-handle slider */
+.range-sliders {
+    --thumb-size: 18px;
+    --track-height: 4px;
+
+    position: relative;
+    width: 100%;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+/* Native inputs store values only. The visible UI is rendered separately. */
+.range-sliders > input[type="range"] {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.range-sliders::before,
+.range-sliders::after {
+    content: none !important;
+    display: none !important;
+}
+
+.range-ui-track {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--thumb-size) / 2);
+    right: calc(var(--thumb-size) / 2);
+    height: var(--track-height);
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .22);
+    cursor: pointer;
+    touch-action: none;
+}
+
+.range-ui-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 999px;
+    background: var(--primary);
+    pointer-events: none;
+}
+
+.range-ui-handle {
+    position: absolute;
+    top: 50%;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    padding: 0;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    background: var(--bg-card);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    touch-action: none;
+    z-index: 2;
+}
+
+.range-ui-handle:hover,
+.range-ui-handle:focus-visible {
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, .4),
+        0 0 0 4px rgba(220, 38, 38, .16);
+    outline: none;
+}
+
+.range-ui-handle.is-dragging,
+.range-ui-handle:active {
+    cursor: grabbing;
+    z-index: 3;
+}
+
+/* Slider response tuning: handles must follow the active fill without delay. */
+.range-ui-handle {
+    transition: box-shadow 80ms ease, border-color 80ms ease, background-color 80ms ease;
+    will-change: left;
+}
+
+.range-ui-handle.is-dragging {
+    transition: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .32);
+}
+
+.range-ui-fill {
+    transition: none;
+    will-change: left, width;
+}
+
+/* Compact filter panel and three-row stat layout */
+.filter-panel {
+    width: 560px;
+    max-width: calc(100vw - 32px);
+    max-height: 78vh;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.filters-content {
+    display: grid;
+    grid-template-columns: 145px minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+}
+
+.filers-group {
+    min-width: 0;
+}
+
+.range-group {
+    min-width: 0;
+    gap: 12px;
+}
+
+.range-row {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 7px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.range-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.range-row-label {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px !important;
+    align-items: center !important;
+}
+
+.range-row-label .range-title {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0 0 1px;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.range-row-label .filters.number-field {
+    display: contents;
+}
+
+.range-value-input {
+    width: 100%;
+    min-width: 0;
+    height: 30px;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+/* Smaller circular handles. Slider logic and track colours stay unchanged. */
+.range-sliders {
+    --thumb-size: 14px;
+    height: 24px;
+}
+
+.range-ui-handle {
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    border: 2px solid var(--primary);
+    background: #050505;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .45);
+}
+
+.range-ui-handle:hover,
+.range-ui-handle:focus-visible {
+    background: #050505;
+    border-color: var(--primary);
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, .45),
+        0 0 0 3px rgba(220, 38, 38, .13);
+}
+
+.range-ui-handle.is-dragging {
+    background: #050505;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+}
+
+.filter-actions {
+    margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+    .filter-panel {
+        width: auto;
+        max-width: none;
+        padding: 14px;
+    }
+
+    .filters-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .range-row-label {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

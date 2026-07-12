@@ -53,7 +53,13 @@ function clearFilters() {
   updateRangeLabels();
   // update visual tracks for all stats
   ["def","reduction","resist","damage","accuracy"].forEach(stat => {
-    if (typeof updateRangeTrack === 'function') updateRangeTrack(stat);
+    if (typeof updateRangeTrack === "function") {
+      updateRangeTrack(stat);
+    }
+
+    if (typeof refreshCustomRangeSlider === "function") {
+      refreshCustomRangeSlider(stat);
+    }
   });
 
   filterProducts();

@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (stat) {
         syncStatValue(stat, bound);
         clampRangePair(stat, bound);
+        refreshCustomRangeSlider(stat);
       }
 
       updateRangeLabels();
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (stat) {
         syncStatValue(stat, bound);
         clampRangePair(stat, bound);
+        refreshCustomRangeSlider(stat);
       }
 
       updateRangeLabels();
@@ -116,11 +118,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('#filterPanel .range-sliders').forEach(group => {
     const minRange = group.querySelector('input[type="range"][data-bound="min"]');
     const maxRange = group.querySelector('input[type="range"][data-bound="max"]');
+
     if (minRange) minRange.value = String(minRange.min || 0);
     if (maxRange) maxRange.value = String(maxRange.max || 0);
-    const stat = (minRange || maxRange)?.dataset?.stat;
-    if (stat && typeof updateRangeTrack === 'function') updateRangeTrack(stat);
   });
+
+  initializeCustomRangeSliders();
 
   renderProducts();
 
