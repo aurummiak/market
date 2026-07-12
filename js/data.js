@@ -240,7 +240,8 @@ const products = {
 
       cover: "img/objects/object3_1.png",
       images: [
-        "img/objects/object2_1.png"
+        "img/objects/object2_1.png",
+        "img/objects/object3_2.png"
       ],
       description: "Тяжёлая броня S-grade для танков и воинов.",
       details: ["Регион: Украина", "Тип: броня", "Грейд: S-grade", "Дроп: Красный лут"]
