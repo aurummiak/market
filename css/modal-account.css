@@ -417,3 +417,100 @@
     padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
   }
 }
+
+
+/* Full-width account table on tablet and mobile */
+@media (max-width: 1024px) {
+  .account-modal-box .modal-scroll,
+  .account-modal-box .details-list {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .account-modal-box .skills-table {
+    display: table;
+
+    width: 100%;
+    min-width: 100%;
+    max-width: none;
+
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .account-modal-box .skills-table thead,
+  .account-modal-box .skills-table tbody {
+    width: 100%;
+  }
+
+  .account-modal-box .skills-table tr {
+    width: 100%;
+  }
+
+  .account-modal-box .skills-table th,
+  .account-modal-box .skills-table td {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    vertical-align: middle;
+  }
+
+  .account-modal-box .skills-table th:first-child,
+  .account-modal-box .skills-table td:first-child {
+    width: 28%;
+  }
+
+  .account-modal-box .skills-table th:nth-child(2),
+  .account-modal-box .skills-table td:nth-child(2),
+  .account-modal-box .skills-table th:nth-child(3),
+  .account-modal-box .skills-table td:nth-child(3),
+  .account-modal-box .skills-table th:nth-child(4),
+  .account-modal-box .skills-table td:nth-child(4) {
+    width: 12%;
+    text-align: center;
+  }
+
+  .account-modal-box .skills-table th:last-child,
+  .account-modal-box .skills-table td:last-child {
+    width: 36%;
+  }
+}
+
+@media (max-width: 560px) {
+  .account-modal-box .skills-table {
+    width: 100%;
+    min-width: 100%;
+    table-layout: fixed;
+  }
+
+  .account-modal-box .skills-table th,
+  .account-modal-box .skills-table td {
+    padding: 9px 6px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .account-modal-box .skills-table th:first-child,
+  .account-modal-box .skills-table td:first-child {
+    width: 30%;
+  }
+
+  .account-modal-box .skills-table th:nth-child(2),
+  .account-modal-box .skills-table td:nth-child(2),
+  .account-modal-box .skills-table th:nth-child(3),
+  .account-modal-box .skills-table td:nth-child(3),
+  .account-modal-box .skills-table th:nth-child(4),
+  .account-modal-box .skills-table td:nth-child(4) {
+    width: 11%;
+  }
+
+  .account-modal-box .skills-table th:last-child,
+  .account-modal-box .skills-table td:last-child {
+    width: 37%;
+  }
+}
