@@ -206,4 +206,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  const scrollTopButton = document.getElementById("scrollTopButton");
+
+  function updateScrollTopButton() {
+    if (!scrollTopButton) return;
+
+    const shouldShow = window.scrollY > 300;
+
+    scrollTopButton.classList.toggle("visible", shouldShow);
+  }
+
+  if (scrollTopButton) {
+    window.addEventListener("scroll", updateScrollTopButton, {
+      passive: true
+    });
+
+    scrollTopButton.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    updateScrollTopButton();
+  } document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeFilterPanel();
+    }
+  });
+
 });

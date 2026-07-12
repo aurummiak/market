@@ -1,0 +1,93 @@
+.scroll-top-button {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background: #050505;
+  border: 2px solid #dc2626;
+  border-radius: 50%;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 0 14px rgba(220, 38, 38, 0.16);
+
+  color: #ffffff;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(12px) scale(0.9);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  z-index: 100;
+}
+
+.scroll-top-button svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scroll-top-button.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top-button:hover {
+  background: #991b1b;
+  border-color: #ef4444;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(220, 38, 38, 0.32);
+}
+
+.scroll-top-button:active {
+  transform: scale(0.94);
+}
+
+.scroll-top-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .scroll-top-button {
+    right: 16px;
+    bottom: 16px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .scroll-top-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
