@@ -972,3 +972,22 @@ img.exit-cross {
     min-height: 54px;
   }
 }
+
+
+/* Stat tooltips must render above all modal content */
+.modal-box,
+.modal-info,
+.modal-scroll,
+.details-list,
+.stats-list {
+  overflow: visible;
+}
+
+.stat-tag:hover {
+  z-index: 200;
+}
+
+.stat-tag::before,
+.stat-tag::after {
+  z-index: 2000;
+}

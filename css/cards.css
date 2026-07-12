@@ -2,13 +2,16 @@
   background: var(--bg-card);
   border: 1px solid var(--border-main);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
   cursor: pointer;
   transition: var(--transition);
   box-shadow: var(--shadow-card);
 }
 
 .card:hover {
+  z-index: 50;
   transform: translateY(-6px);
   border-color: rgba(220, 38, 38, .30);
 
@@ -17,8 +20,12 @@
 }
 
 .card-cover {
-  height: 210px;
   position: relative;
+  height: 210px;
+
+  border-radius:
+    var(--radius-lg) var(--radius-lg) 0 0;
+
   overflow: hidden;
 }
 
@@ -69,7 +76,9 @@
   gap: 8px;
   flex-wrap: wrap;
 
-  z-index: 5;
+  overflow: visible;
+
+  z-index: 80;
 }
 
 .badge {
@@ -108,6 +117,8 @@
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .12);
   position: relative;
+
+  z-index: 81;
 }
 
 .badge.region::before {
@@ -175,6 +186,10 @@
   transition: var(--transition);
 
   z-index: 99;
+}
+
+.badge.region:hover {
+  z-index: 100;
 }
 
 .badge.region:hover::before,
@@ -289,4 +304,43 @@
   .stat-tag::after {
     display: none;
   }
+}
+
+
+/* Tooltip overflow fix for stat tags */
+.card {
+  position: relative;
+  overflow: visible;
+}
+
+.card:hover {
+  z-index: 40;
+}
+
+.card-cover {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+}
+
+.card-body {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.meta {
+  position: relative;
+  overflow: visible;
+}
+
+.stat-tag {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-tag:hover {
+  z-index: 60;
+}
+
+.stat-tag::before,
+.stat-tag::after {
+  z-index: 1000;
 }

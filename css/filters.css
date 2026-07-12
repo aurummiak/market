@@ -912,3 +912,60 @@ button.range-ui-handle {
     background: #141416;
     outline: 4px solid red;
 }
+
+/* Wide desktop filter panel */
+@media (min-width: 1025px) {
+  .filter-panel {
+    width: min(1120px, calc(100vw - 80px));
+    max-width: none;
+    max-height: min(620px, calc(100vh - 130px));
+
+    padding: 22px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .filters-content {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .filers-group {
+    display: grid;
+    align-content: start;
+    gap: 18px;
+  }
+
+  .range-group {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 18px 20px;
+    align-items: start;
+  }
+
+  .range-group > h4 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .range-row {
+    min-width: 0;
+    padding: 14px;
+
+    background: rgba(255, 255, 255, .025);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 14px;
+  }
+
+  .range-row:last-child {
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  .filter-actions {
+    margin-top: 18px;
+  }
+}
