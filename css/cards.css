@@ -215,7 +215,8 @@
 }
 
 .meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto;
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 18px;

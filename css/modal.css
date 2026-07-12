@@ -675,6 +675,7 @@ img.exit-cross {
     font-size: 13px;
     font-weight: 900;
     position: relative;
+        justify-content: center;
 }
 
 .stat-tag img {
@@ -900,7 +901,7 @@ img.exit-cross {
   }
 
   .modal-main-img {
-    width: 100%;
+    /* width: 100%; */
     height: clamp(300px, 48vw, 400px);
   }
 
