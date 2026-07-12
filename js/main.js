@@ -235,4 +235,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  const tooltip = document.getElementById("tooltip");
+
+document.querySelectorAll("[data-tooltip]").forEach(el => {
+
+    el.addEventListener("mouseenter", () => {
+        tooltip.textContent = el.dataset.tooltip;
+        tooltip.classList.add("show");
+    });
+
+    el.addEventListener("mouseleave", () => {
+        tooltip.classList.remove("show");
+    });
+
+    el.addEventListener("mousemove", e => {
+
+        tooltip.style.left = `${e.clientX}px`;
+        tooltip.style.top = `${e.clientY - 40}px`;
+
+    });
+
 });
+
+});
+
