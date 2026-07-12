@@ -1,8 +1,8 @@
 const statLabels = {
-    def: "Сопротивление умениям",
+    def: "Защита",
     reduction: "Урон",
     resist: "Точность",
-    damage: "Защита",
+    damage: "Сопротивление умениям",
     accuracy: "Снижение урона"
 };
 
