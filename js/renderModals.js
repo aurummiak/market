@@ -70,6 +70,7 @@ function openAccountModal(product) {
   `;
 
   initModalMainImage();
+  initAccountThumbCarousel();
   modal.scrollTop = 0;
 }
 
@@ -244,9 +245,83 @@ function renderModalThumbs(product) {
     return "";
   }
 
-  return product.images.map((img, index) => `
-    <img src="${img}" onclick="changeMainImage('${img}', ${index})">
-  `).join("");
+  /*
+   * На планшетах и мобильных сохраняем прежнюю сетку.
+   * На десктопе выводим автопрокручиваемую карусель:
+   * одновременно видно ровно три миниатюры.
+   */
+  if (window.innerWidth <= 1024) {
+    return product.images.map((img, index) => `
+      <img src="${img}" alt="${product.title} ${index + 1}">
+    `).join("");
+  }
+
+  const carouselImages = [...product.images, ...product.images];
+
+  return `
+    <div class="account-thumbs-carousel" aria-hidden="true">
+      <div class="account-thumbs-track">
+        ${carouselImages.map((img, index) => `
+          <img
+            src="${img}"
+            alt=""
+            draggable="false"
+            data-original-index="${index % product.images.length}"
+          >
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function initAccountThumbCarousel() {
+  if (window.innerWidth <= 1024) return;
+
+  const carousel = document.querySelector(
+    ".account-modal-box .account-thumbs-carousel"
+  );
+  const track = carousel?.querySelector(".account-thumbs-track");
+
+  if (!carousel || !track) return;
+
+  let animationFrameId = null;
+  let lastTimestamp = 0;
+  let paused = false;
+
+  const speed = 18; // pixels per second
+
+  function animate(timestamp) {
+    if (!lastTimestamp) {
+      lastTimestamp = timestamp;
+    }
+
+    const deltaSeconds = (timestamp - lastTimestamp) / 1000;
+    lastTimestamp = timestamp;
+
+    if (!paused) {
+      carousel.scrollLeft += speed * deltaSeconds;
+
+      const resetPoint = track.scrollWidth / 2;
+
+      if (carousel.scrollLeft >= resetPoint) {
+        carousel.scrollLeft -= resetPoint;
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  carousel.addEventListener("mouseenter", () => {
+    paused = true;
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    paused = false;
+  });
+
+  animationFrameId = requestAnimationFrame(animate);
+
+  carousel.dataset.animationFrameId = String(animationFrameId);
 }
 
 function initModalMainImage() {

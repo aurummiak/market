@@ -514,3 +514,162 @@
     width: 37%;
   }
 }
+
+
+/* Fixed desktop account modal with independently scrolling details */
+@media (min-width: 1025px) {
+  .account-modal-box {
+    width: min(1180px, calc(100vw - 64px));
+    height: min(760px, calc(100vh - 64px));
+    max-width: 1180px;
+    max-height: 760px;
+
+    display: grid;
+    grid-template-columns: minmax(440px, .9fr) minmax(0, 1.1fr);
+
+    overflow: hidden;
+  }
+
+  .account-modal-box .modal-gallery {
+    height: 100%;
+    min-height: 0;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) 104px auto;
+    gap: 12px;
+
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  .account-modal-box .modal-fixed-top {
+    min-width: 0;
+    padding: 16px 18px 14px;
+  }
+
+  .account-modal-box .modal-fixed-top h2 {
+    margin-bottom: 12px;
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .account-modal-box .modal-main-img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    overflow: hidden;
+  }
+
+  .account-modal-box .modal-main-img > img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .account-modal-box .modal-thumbs {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 104px;
+    overflow: hidden;
+  }
+
+  .account-thumbs-carousel {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    scrollbar-width: none;
+
+    pointer-events: none;
+  }
+
+  .account-thumbs-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .account-thumbs-track {
+    height: 100%;
+    width: max-content;
+
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .account-thumbs-track img {
+    width: calc((min(1180px, calc(100vw - 64px)) * .405 - 56px) / 3);
+    min-width: 126px;
+    max-width: 184px;
+    height: 100%;
+
+    display: block;
+    flex: 0 0 auto;
+
+    object-fit: cover;
+    object-position: center;
+
+    border: 2px solid transparent;
+    border-radius: 12px;
+
+    user-select: none;
+  }
+
+  .account-modal-box .modal-fixed-bottom {
+    padding: 14px 18px 18px;
+  }
+
+  .account-modal-box .modal-fixed-bottom .price {
+    margin-bottom: 10px;
+  }
+
+  .account-modal-box .modal-info {
+    height: 100%;
+    min-height: 0;
+
+    padding: 0;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .account-modal-box .modal-scroll {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    padding: 48px 38px 38px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .account-modal-box .modal-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .account-modal-box .modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .account-modal-box .modal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(220, 38, 38, .45);
+    border-radius: 999px;
+  }
+
+  .account-modal-box .details-list {
+    overflow: visible;
+  }
+
+  .account-modal-box .extra-modal-text {
+    margin-bottom: 8px;
+  }
+}
