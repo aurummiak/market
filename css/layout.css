@@ -140,6 +140,7 @@ nav a:hover {
 .products {
     margin: 0 8% 70px;
     display: grid;
+    align-items: stretch;
     grid-template-columns: repeat(5, 1fr);
     gap: 26px;
 }

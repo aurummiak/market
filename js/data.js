@@ -65,166 +65,222 @@ const products = {
         "Продажа: Голым!"
       ]
     },
-    {
-      title: "Класс. Нож  Ур.  87.72%",
-      category: "ranked",
-      price: 3900,
-      region: "Украина",
-      drop: "Красный лут",
-      typeClass: "red",
-      cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      ],
-      cover: "img/product2_1.jpg",
-      images: [
-        "img/product2_1.jpg",
-        "img/product2_2.jpg"
-      ],
-      stats: {
-        def: 406,
-        reduction: 229,
-        resist: 467,
-        damage: 404,
-        accuracy: 470
-      },
-      skills: [
-        { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
-        { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
-        { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
-        { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
-        { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
-        { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
-      ],
-      description: "Магический персонаж для PvP и фарма.",
-      details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
-    },
-    {
-      title: "Арбалет 84,31% RU [Эрика]",
-      category: "premium",
-      price: 5900,
-      region: "Россия",
-      drop: "Золотой лут",
-      typeClass: "gold",
-      cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      ],
 
-      cover: "img/product1_1.jpg",
-      images: [
-        "img/product1_1.jpg",
-        "img/product1_2.jpg",
-        "img/product1_3.jpg"
-      ],
-      stats: {
-        def: 1280,
-        reduction: 740,
-        resist: 920,
-        damage: 1550,
-        accuracy: 1180
-      },
-      skills: [
-        { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
-        { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
-        { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
-        { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
-        { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
-        { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
-      ],
-      cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      ],
-      description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Защитаа 176, Шанс Тройного Защитаа 40 , Блокировка Оружия 159, Увеличение Защитаа от Оружия 326%, Увеличение Защитаа от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
-      details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
-    },
     {
-      title: "Класс. Нож  Ур.  87.72%",
-      category: "ranked",
-      price: 3900,
-      region: "Украина",
-      drop: "Красный лут",
-      typeClass: "red",
-      cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      ],
+  title: "Маг 86 Ур. 47,7% (Кластер - Зигхард)",
+  category: "premium",
+  price: 140000,
+  region: "Россия",
+  drop: "Золотой лут",
+  typeClass: "gold",
+  cardStats: [
+    { icon: "img/tags/damage.png", label: "Защита", value: 543 },
+    { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 321 },
+    { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 600 },
+    { icon: "img/tags/reduction.png", label: "Урон", value: 522 },
+    { icon: "img/tags/resistance.png", label: "Точность", value: 611 }
+  ],
+  cover: "img/test-real/product2_1.png",
+  images: [
+    "img/test-real/product2_2.png",
+    "img/test-real/product2_3.png",
+    "img/test-real/product2_4.png",
+    "img/test-real/product2_5.png",
+    "img/test-real/product2_6.png",
+    "img/test-real/product2_7.png",
+    "img/test-real/product2_8.png",
+    "img/test-real/product2_9.png",
+    "img/test-real/product2_10.png",
+  ],
+  stats: {
+    def: 543,
+    reduction: 321,
+    resist: 600,
+    damage: 522,
+    accuracy: 611
+  },
+  skills: [
+    { name: "Эратона", a: 12, b: 12, c: 12, note: "3 скилла" },
+    { name: "Полина", a: 12, b: 9, c: 10, note: "2 скилла" },
+    { name: "Терси", a: 9, b: 9, c: 9, note: "2 скилла" },
+    { name: "Невитт", a: 12, b: 12, c: 12, note: "3 скилла" },
+    { name: "Масия", a: 10, b: 9, c: 9, note: "2 скилла" },
+    { name: "Калли", a: 11, b: 10, c: 11, note: "2 скилла" },
+    { name: "Анаким", a: 9, b: 9, c: 9, note: "1 скилл" },
+    { name: "Одиэль", a: 9, b: 8, c: 9, note: "1 скилл" },
+    { name: "Канапель", a: 8, b: 7, c: 7, note: "1 скилл" },
+    { name: "Марис", a: 7, b: 5, c: 6, note: "1 скилл" },
+    { name: "Анаис", a: 7, b: 6, c: 7, note: "" }
+  ],
+  description: "ℹ️ Другие Характеристики: Шанс Двойного Урона 179%, Шанс Тройного Урона 68%, Блокировка Оружия 218%, Увеличение Урона от Оружия 358%, Увеличение Урона от Умений 495%, Сопротивление Оглушению 228%, Шанс оглушения 158%.<br><br>💯 Коллекции Вещей: Общие: 49,03%.<br>Донат Коллы Закрыты Частично❗️<br><br>🔥 В НАЛИЧИИ ОРФЕЯ, ЭЛЬВИНА Х3❗️РАУЛЬ Х2❗️РАГРА❗️ИРМИНА Х2❗️<br>🟣 Фиол Карты: 41 шт. (17 шт. пробуждено и 7 продвинуто) + 1 Золотой Камень!<br>🔴Красные Карты: 107шт. МАХ пробуда и продвижение<br><br>🔥 В НАЛИЧИИ АНТАРАС Х3❗️ФАФУРИОН Х3 (ПРОБУДА АНТАРАСОМ)❗️ЛИНДВИОР Х1❗️<br>🟣 Фиол Агатионы: 17 шт. все пробуда х2 + 2 Золотых Камня!<br>🔴 Красные Агатионы: 47 шт. (47 шт. пробуждено + 17 продвинуто).<br>:check: Стихийное пробуждение агатионов: Фиолетовых - ур.1 (1 шт.), Красных - ур.1 (17 шт.) Синих - ур.2 (44 шт.)<br><br>🔥 В НАЛИЧИИ ВЛАДЫЧЕСТВО И ДОСТОИНСТВО 🔥<br>⚜️ Фиол Скиллы: 5 шт. Метеор, Хаос, Гравитация, Стигма, Ледяной Шторм + Первое Имперское Владение + 2 за адену (5-ый сундук с фиол скиллом за 120кк орденов куплен).<br>📕 Красные Скиллы: Все Красные Скиллы, кроме Гдд!<br>🔖 Другие скиллы: Инвиз на Ножа, Красный Танец, Феникс на Глада, Незаметность и Сброс движения на Ножа, Возмездие на Танка.<br>📖 Скиллы Наследника: 37 шт. Красных + 6 ФИОЛ!<br>📜 Артефакты: Фиолетовые 1 шт., Красные 30 шт. (8 шт. в класс).<br>🟪 Фиолетовые Вещи:<br>Диадема Тайн +5<br>Набедренники Падшего Ангела +5<br>Пламя Паагрио +5<br>Плащ Света Невитт +5<br>Символ Тайн +4<br>Мантия Тайн +5 (Преображение +1)<br>Драконник Сапоги +5 (2 души)<br>Ожерелье Архимага +0<br>Кольцо Династий +0<br><br>(В сломе Астрап +9 и Т1 Пухи +7 и +8 на Мага/ Глада) со слов продавца!<br><br>🟥 Красные Вещи: +7 Кровавый Небулит, +6 Набедренники Духа Шилен (привяз.), +3 Кристалл забвения (привяз.), +1 Пояс Эратоны, +3 Кольцо Величия, Сияющие кольцо.<br><br>💸 Донатная Бижа: +7 Блесс. Футболка Мудрости, +7 Серьга Земли, +7 Блесс. Серьга Огня, +6 Блесс. Серьга Ветра, +6 Браслет Берсерка, +6 Браслет Стража, +6 Печать Евы Блесс, +6 Печать Паагрио, +4 Руна Мудрости, +3 Руна Силы, +6 Блесс. Брошь Веры, +6 Брошь Отваги, +6 Подвеска, +6 Забрало Доблести, +6 Горжет Боевого Духа, +3 Карманные Часы Вечности.<br><br>⚠️ Транспорт и Облики: 4 красных транспорта и 2 красных облика.<br><br>⚙️ Печати Духа:<br>Заряд Души 10+3. Атака 10+1. Хранитель 10+0. Завоевание 10+0. Дуэль 10-2. Энергия 10+3. Самоконтроль 8-0. Воля 7+0. Терпимость 7+0. Вдохновение 5-2. Мастер: Клятва 4+3. Порядок 4+2.<br><br>💠 Пробуждение:<br>Эратона 12-12-12 + 3 скилла; Полина 12-9-10 + 2 скилла; Терси 9-9-9 + 2 скилла; Невитт 12-12-12 + 3 скилла; Масия 10-9-9 + 2 скилла; Калли 11-10-11 + 2 скилла; Анаким 9-9-9 + 1 скилл; Одиэль 9-8-9 + 1 скилл; Канапель 8-7-7 +1 скилл; Марис 7-5-6 +1 скилл; Мастер Анаис 7-6-7.<br><br>😈 Кристалл Души:<br>Прогресс по часовой стрелке: XXIII (4 скилла), XXII (3 скилла), XXV (4 скилла), XVI (3 скилла), XVII (3 скилла), XX (4 скилла), XVIII (3 скилла).<br>Все Красные Души!<br>В наличии 15 Фиол Душ!<br><br>⚔️ Мастерство:<br>Маг Фиол Мастерство<br><br>🧰 Пожитки: 3 млрд аден, 5,8кк орденов славы, 50/50 эликсиров скрафчено, Сигма Фулл + 4 скилла, 316 часов замка, 68к кубков виталки, 43кк знаков поручения, альты 55+лвл на серверах.<br><br>💸Цена: 140к руб.одетым/ 40 т.р. голым",
+  details: [
+    "Регион: Россия",
+    "Класс: Маг",
+    "Уровень: 86",
+    "Дроп: Золотой лут",
+    "Вход: по номеру телефона"
+  ]
+}
+    // {
+    //   title: "Класс. Нож  Ур.  87.72%",
+    //   category: "ranked",
+    //   price: 3900,
+    //   region: "Украина",
+    //   drop: "Красный лут",
+    //   typeClass: "red",
+    //   cardStats: [
+    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
+    //   ],
+    //   cover: "img/product2_1.jpg",
+    //   images: [
+    //     "img/product2_1.jpg",
+    //     "img/product2_2.jpg"
+    //   ],
+    //   stats: {
+    //     def: 406,
+    //     reduction: 229,
+    //     resist: 467,
+    //     damage: 404,
+    //     accuracy: 470
+    //   },
+    //   skills: [
+    //     { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+    //     { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+    //     { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+    //     { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+    //     { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+    //     { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+    //   ],
+    //   description: "Магический персонаж для PvP и фарма.",
+    //   details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
+    // },
+    // {
+    //   title: "Арбалет 84,31% RU [Эрика]",
+    //   category: "premium",
+    //   price: 5900,
+    //   region: "Россия",
+    //   drop: "Золотой лут",
+    //   typeClass: "gold",
+    //   cardStats: [
+    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
+    //   ],
 
-      cover: "img/product2_1.jpg",
-      images: [
-        "img/product2_1.jpg",
-        "img/product2_2.jpg"
-      ],
-      stats: {
-        def: 406,
-        reduction: 229,
-        resist: 467,
-        damage: 404,
-        accuracy: 470
-      },
-      skills: [
-        { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
-        { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
-        { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
-        { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
-        { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
-        { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
-      ],
-      description: "Магический персонаж для PvP и фарма.",
-      details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
-    },
-    {
-      title: "Маг 85,53% RU [леона]",
-      category: "cheap",
-      price: 1900,
-      region: "Россия",
-      drop: "Фиолетовый лут",
-      typeClass: "purple",
-      cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      ],
+    //   cover: "img/product1_1.jpg",
+    //   images: [
+    //     "img/product1_1.jpg",
+    //     "img/product1_2.jpg",
+    //     "img/product1_3.jpg"
+    //   ],
+    //   stats: {
+    //     def: 1280,
+    //     reduction: 740,
+    //     resist: 920,
+    //     damage: 1550,
+    //     accuracy: 1180
+    //   },
+    //   skills: [
+    //     { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+    //     { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+    //     { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+    //     { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+    //     { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+    //     { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+    //   ],
+    //   cardStats: [
+    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
+    //   ],
+    //   description: "Другие Характеристики: Крит Атака 173 , Шанс Двойного Защитаа 176, Шанс Тройного Защитаа 40 , Блокировка Оружия 159, Увеличение Защитаа от Оружия 326%, Увеличение Защитаа от Умений 334%, Сопротивление Оглушению , Шанс Оглушения",
+    //   details: ["Регион: Россия", "Класс: Titan", "Уровень: 85", "Дроп: Золотой лут"]
+    // },
+    // {
+    //   title: "Класс. Нож  Ур.  87.72%",
+    //   category: "ranked",
+    //   price: 3900,
+    //   region: "Украина",
+    //   drop: "Красный лут",
+    //   typeClass: "red",
+    //   cardStats: [
+    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
+    //   ],
 
-      cover: "img/product3_1.jpg",
-      images: [
-        "img/product3_1.jpg",
-        "img/product3_2.jpg",
-        "img/product3_3.jpg"
-      ],
-      stats: {
-        def: 420,
-        reduction: 260,
-        resist: 380,
-        damage: 520,
-        accuracy: 340
-      },
-      skills: [
-        { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
-        { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
-        { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
-        { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
-        { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
-        { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
-      ],
-      description: "Бюджетный аккаунт Lineage 2 для старта.",
-      details: ["Регион: Россия", "Уровень: 76", "Тип: стартовый аккаунт", "Дроп: Фиолетовый лут"]
-    }
+    //   cover: "img/product2_1.jpg",
+    //   images: [
+    //     "img/product2_1.jpg",
+    //     "img/product2_2.jpg"
+    //   ],
+    //   stats: {
+    //     def: 406,
+    //     reduction: 229,
+    //     resist: 467,
+    //     damage: 404,
+    //     accuracy: 470
+    //   },
+    //   skills: [
+    //     { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+    //     { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+    //     { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+    //     { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+    //     { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+    //     { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+    //   ],
+    //   description: "Магический персонаж для PvP и фарма.",
+    //   details: ["Регион: Украина", "Класс: Archmage", "Уровень: 82", "Дроп: Красный лут"]
+    // },
+    // {
+    //   title: "Маг 85,53% RU [леона]",
+    //   category: "cheap",
+    //   price: 1900,
+    //   region: "Россия",
+    //   drop: "Фиолетовый лут",
+    //   typeClass: "purple",
+    //   cardStats: [
+    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
+    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
+    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
+    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
+    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
+    //   ],
+
+    //   cover: "img/product3_1.jpg",
+    //   images: [
+    //     "img/product3_1.jpg",
+    //     "img/product3_2.jpg",
+    //     "img/product3_3.jpg"
+    //   ],
+    //   stats: {
+    //     def: 420,
+    //     reduction: 260,
+    //     resist: 380,
+    //     damage: 520,
+    //     accuracy: 340
+    //   },
+    //   skills: [
+    //     { name: "Канапель", a: 11, b: 11, c: 11, note: "2 скилла" },
+    //     { name: "Марис", a: 9, b: 9, c: 9, note: "2 скилла" },
+    //     { name: "Анаис", a: 8, b: 10, c: 8, note: "" },
+    //     { name: "Тиада", a: 8, b: 9, c: 9, note: "" },
+    //     { name: "Истхина", a: 8, b: 8, c: 8, note: "" },
+    //     { name: "Экимус", a: 7, b: 7, c: 6, note: "" }
+    //   ],
+    //   description: "Бюджетный аккаунт Lineage 2 для старта.",
+    //   details: ["Регион: Россия", "Уровень: 76", "Тип: стартовый аккаунт", "Дроп: Фиолетовый лут"]
+    // }
   ],
 
   items: [
