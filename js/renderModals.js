@@ -284,44 +284,160 @@ function initAccountThumbCarousel() {
 
   if (!carousel || !track) return;
 
+  /*
+   * Если предыдущая карточка была закрыта, останавливаем её animation frame.
+   */
+  if (typeof window.accountThumbCarouselCleanup === "function") {
+    window.accountThumbCarouselCleanup();
+  }
+
   let animationFrameId = null;
   let lastTimestamp = 0;
-  let paused = false;
+  let isHovered = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScrollLeft = 0;
+  let resumeTimeoutId = null;
 
-  const speed = 18; // pixels per second
+  const autoplaySpeed = 18; // px/sec
+  const resetPoint = () => track.scrollWidth / 2;
+
+  function normalizeScrollPosition() {
+    const point = resetPoint();
+
+    if (!point) return;
+
+    if (carousel.scrollLeft >= point) {
+      carousel.scrollLeft -= point;
+    } else if (carousel.scrollLeft < 0) {
+      carousel.scrollLeft += point;
+    }
+  }
+
+  function pauseTemporarily(delay = 1200) {
+    window.clearTimeout(resumeTimeoutId);
+
+    resumeTimeoutId = window.setTimeout(() => {
+      lastTimestamp = 0;
+    }, delay);
+  }
 
   function animate(timestamp) {
     if (!lastTimestamp) {
       lastTimestamp = timestamp;
     }
 
-    const deltaSeconds = (timestamp - lastTimestamp) / 1000;
+    const deltaSeconds = Math.min(
+      .05,
+      (timestamp - lastTimestamp) / 1000
+    );
+
     lastTimestamp = timestamp;
 
-    if (!paused) {
-      carousel.scrollLeft += speed * deltaSeconds;
-
-      const resetPoint = track.scrollWidth / 2;
-
-      if (carousel.scrollLeft >= resetPoint) {
-        carousel.scrollLeft -= resetPoint;
-      }
+    if (!isHovered && !isDragging) {
+      carousel.scrollLeft += autoplaySpeed * deltaSeconds;
+      normalizeScrollPosition();
     }
 
-    animationFrameId = requestAnimationFrame(animate);
+    animationFrameId = window.requestAnimationFrame(animate);
   }
 
+  /*
+   * Перетаскивание курсором.
+   */
+  carousel.addEventListener("pointerdown", event => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+
+    event.preventDefault();
+
+    isDragging = true;
+    dragStartX = event.clientX;
+    dragStartScrollLeft = carousel.scrollLeft;
+
+    carousel.classList.add("is-dragging");
+    carousel.setPointerCapture(event.pointerId);
+  });
+
+  carousel.addEventListener("pointermove", event => {
+    if (!isDragging) return;
+
+    event.preventDefault();
+
+    const deltaX = event.clientX - dragStartX;
+
+    carousel.scrollLeft = dragStartScrollLeft - deltaX;
+    normalizeScrollPosition();
+  });
+
+  function stopDragging(event) {
+    if (!isDragging) return;
+
+    isDragging = false;
+    carousel.classList.remove("is-dragging");
+
+    if (
+      event?.pointerId !== undefined &&
+      carousel.hasPointerCapture(event.pointerId)
+    ) {
+      carousel.releasePointerCapture(event.pointerId);
+    }
+
+    pauseTemporarily();
+  }
+
+  carousel.addEventListener("pointerup", stopDragging);
+  carousel.addEventListener("pointercancel", stopDragging);
+  carousel.addEventListener("lostpointercapture", stopDragging);
+
+  /*
+   * Колесо мыши прокручивает миниатюры горизонтально.
+   */
+  carousel.addEventListener(
+    "wheel",
+    event => {
+      event.preventDefault();
+
+      const wheelDelta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)
+          ? event.deltaX
+          : event.deltaY;
+
+      carousel.scrollLeft += wheelDelta;
+      normalizeScrollPosition();
+      pauseTemporarily();
+    },
+    { passive: false }
+  );
+
   carousel.addEventListener("mouseenter", () => {
-    paused = true;
+    isHovered = true;
   });
 
   carousel.addEventListener("mouseleave", () => {
-    paused = false;
+    isHovered = false;
+    stopDragging();
+    lastTimestamp = 0;
   });
 
-  animationFrameId = requestAnimationFrame(animate);
+  /*
+   * Не допускаем нативное перетаскивание картинок.
+   */
+  carousel.querySelectorAll("img").forEach(image => {
+    image.addEventListener("dragstart", event => {
+      event.preventDefault();
+    });
+  });
 
-  carousel.dataset.animationFrameId = String(animationFrameId);
+  animationFrameId = window.requestAnimationFrame(animate);
+
+  window.accountThumbCarouselCleanup = () => {
+    if (animationFrameId !== null) {
+      window.cancelAnimationFrame(animationFrameId);
+    }
+
+    window.clearTimeout(resumeTimeoutId);
+    window.accountThumbCarouselCleanup = null;
+  };
 }
 
 function initModalMainImage() {
@@ -451,6 +567,10 @@ function syncDiamondAmount(value) {
 }
 
 function closeModal() {
+  if (typeof window.accountThumbCarouselCleanup === "function") {
+    window.accountThumbCarouselCleanup();
+  }
+
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modalContent");
 

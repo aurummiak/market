@@ -673,3 +673,44 @@
     margin-bottom: 8px;
   }
 }
+
+
+/* Interactive desktop thumbnail carousel */
+@media (min-width: 1025px) {
+  .account-thumbs-carousel {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    pointer-events: auto;
+    cursor: grab;
+
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .account-thumbs-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .account-thumbs-carousel.is-dragging {
+    cursor: grabbing;
+  }
+
+  .account-thumbs-carousel.is-dragging,
+  .account-thumbs-carousel.is-dragging * {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .account-thumbs-track {
+    pointer-events: none;
+  }
+
+  .account-thumbs-track img {
+    pointer-events: none;
+  }
+}
