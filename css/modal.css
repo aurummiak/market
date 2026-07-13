@@ -836,10 +836,10 @@ img.exit-cross {
   .close {
     position: fixed;
     top: max(10px, env(safe-area-inset-top));
-    right: 10px;
+    right: 24px;
     width: 40px;
     height: 40px;
-    background: rgba(10, 10, 11, .92);
+    background: black;
   }
 
   .modal-main-img {
@@ -942,10 +942,10 @@ img.exit-cross {
   .close {
     position: fixed;
     top: max(10px, env(safe-area-inset-top));
-    right: 10px;
+    right: 24px;
     width: 40px;
     height: 40px;
-    background: rgba(10, 10, 11, .94);
+    background: black;
     backdrop-filter: blur(12px);
   }
 

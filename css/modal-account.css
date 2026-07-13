@@ -427,6 +427,10 @@
     min-width: 0;
   }
 
+  .skills-table{
+    border-radius: initial;
+  }
+
   .account-modal-box .skills-table {
     display: table;
 
