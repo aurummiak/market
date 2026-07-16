@@ -217,7 +217,7 @@
 
 .meta {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 80px);
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 18px;
@@ -333,36 +333,36 @@
 }
 
 
-#tooltip{
-    position:fixed;
+#tooltip {
+  position: fixed;
 
-    padding:8px 12px;
+  padding: 8px 12px;
 
-    border-radius:12px;
+  border-radius: 12px;
 
-    background:#161616;
-    color:#fff;
+  background: #161616;
+  color: #fff;
 
-    font-size:13px;
+  font-size: 13px;
 
-    pointer-events:none;
+  pointer-events: none;
 
-    opacity:0;
+  opacity: 0;
 
-    transform:translateY(6px);
+  transform: translateY(6px);
 
-    transition:.18s;
+  transition: .18s;
 
-    z-index:999999;
+  z-index: 999999;
 }
 
-#tooltip.show{
-    opacity:1;
-    transform:translateY(0);
+#tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Robust card height and price alignment */
-.products > .card {
+.products>.card {
   align-self: stretch;
   height: auto;
   min-height: 100%;
@@ -400,6 +400,7 @@
 }
 
 @media (max-width: 700px) {
+
   .card-accounts .card-body h3,
   .card-items .card-body h3 {
     min-height: 0;
