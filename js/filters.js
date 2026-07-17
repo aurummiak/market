@@ -4,7 +4,7 @@ function toggleFilterPanel() {
 
 function applyFilters() {
   activeFilters.region = getCheckedValues("region");
-  activeFilters.drop = getCheckedValues("drop");
+  // activeFilters.drop = getCheckedValues("drop");
 
   activeFilters.stats = {
     def: getStatValue("def"),

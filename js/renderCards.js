@@ -9,7 +9,7 @@ function renderAccountCard(product) {
         </span>
 
         <span class="badge type ${product.typeClass}">
-          ${product.drop}
+          ${product.class}
         </span>
       </div>
     </div>
@@ -32,9 +32,9 @@ function renderItemCard(product) {
       <img src="${product.cover}" alt="${product.title}">
 
       <div class="badges">
-        <span class="badge type ${product.typeClass}">
-          ${product.drop}
-        </span>
+      <!--  <span class="badge type ${product.typeClass}">
+          ${product.class}
+        </span>--!>
       </div>
     </div>
 
@@ -101,10 +101,10 @@ function renderProducts() {
     card.className = `card card-${currentCategory}`;
 
     card.dataset.title = product.title || "";
-    card.dataset.category = product.category || "";
+    card.dataset.category = product.class || "";
     card.dataset.price = product.price || 0;
     card.dataset.region = product.region || "";
-    card.dataset.drop = product.drop || "";
+    card.dataset.class = product.class || "";
 
     if (product.stats) {
       card.dataset.def = product.stats.def || 0;

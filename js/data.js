@@ -2,10 +2,9 @@ const products = {
   accounts: [
     {
       title: "Дестр 88 Ур. 61% (Кластер Барц)",
-      category: "premium",
       price: 210000,
       region: "Россия",
-      drop: "Золотой лут",
+      class: "ОРБ",
       typeClass: "gold",
       cardStats: [
         { icon: "img/tags/damage.png", label: "Защита", value: 571 },
@@ -71,7 +70,7 @@ const products = {
       category: "premium",
       price: 140000,
       region: "Россия",
-      drop: "Золотой лут",
+      class: "НОЖ",
       typeClass: "gold",
       cardStats: [
         { icon: "img/tags/damage.png", label: "Защита", value: 543 },
@@ -126,7 +125,7 @@ const products = {
       category: "premium",
       price: 18000,
       region: "Россия",
-      drop: "Золотой лут",
+      class: "МАГ",
       typeClass: "gold",
       cardStats: [
         { icon: "img/tags/damage.png", label: "Защита", value: 353 },
@@ -186,77 +185,8 @@ const products = {
   ],
 
   items: [
-    // {
-    //   title: "Ветер Сайхи",
-    //   category: "premium",
-    //   price: 4500,
-    //   region: "Россия",
-    //   drop: "Золотой лут",
-    //   typeClass: "gold",
-    //   cardStats: [
-    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-    //   ],
-
-    //   cover: "img/objects/object1_1.png",
-    //   images: [
-    //     "img/objects/object1_2.png",
-    //   ],
-    //   description: "Редкий лук S-grade для персонажей дальнего боя.",
-    //   details: ["Регион: Россия", "Тип: оружие", "Грейд: S-grade", "Дроп: Золотой лут"]
-    // },
-    // {
-    //   title: "Перчатки Падшего Ангела",
-    //   category: "ranked",
-    //   price: 3600,
-    //   region: "Украина",
-    //   drop: "Красный лут",
-    //   typeClass: "red",
-    //   cardStats: [
-    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-    //   ],
-
-    //   cover: "img/objects/object3_1.png",
-    //   images: [
-    //     "img/objects/object2_1.png",
-    //     "img/objects/object3_2.png"
-    //   ],
-    //   description: "Тяжёлая броня S-grade для танков и воинов.",
-    //   details: ["Регион: Украина", "Тип: броня", "Грейд: S-grade", "Дроп: Красный лут"]
-    // },
-    // {
-    //   title: "+5 Перчатки из ДК",
-    //   category: "cheap",
-    //   price: 2500,
-    //   region: "Россия",
-    //   drop: "Фиолетовый лут",
-    //   typeClass: "purple",
-    //   cardStats: [
-    //     { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-    //     { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-    //     { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-    //     { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-    //     { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-    //   ],
-
-    //   cover: "img/objects/object3_1.png",
-    //   images: [
-    //     "img/objects/object3_2.png",
-    //     "img/objects/object3_3.png"
-    //   ],
-    //   description: "Пак игровой валюты для покупки экипировки и ресурсов.",
-    //   details: ["Регион: Россия", "Тип: игровая валюта", "Передача: вручную", "Дроп: Фиолетовый лут"]
-    // }
-
-
-       {
+  
+    {
       title: "+7 Уконбасара",
       category: "cheap",
       price: 2500,

@@ -245,11 +245,7 @@ function renderModalThumbs(product) {
     return "";
   }
 
-  /*
-   * На планшетах и мобильных сохраняем прежнюю сетку.
-   * На десктопе выводим автопрокручиваемую карусель:
-   * одновременно видно ровно три миниатюры.
-   */
+
   if (window.innerWidth <= 1024) {
     return product.images.map((img, index) => `
       <img src="${img}" alt="${product.title} ${index + 1}">
