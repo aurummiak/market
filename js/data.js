@@ -7,11 +7,11 @@ const products = {
       class: "ОРБ",
       typeClass: "gold",
       cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 571 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 449 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 609 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 630 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 693 }
+        { icon: "img/accounts/stats/defense.png", label: "Защита", value: 571 },
+        { icon: "img/accounts/stats/dmg_reduction.png", label: "Снижение урона", value: 449 },
+        { icon: "img/accounts/stats/resist_abilities.png", label: "Сопротивление умениям", value: 609 },
+        { icon: "img/accounts/stats/damage.png", label: "Урон", value: 630 },
+        { icon: "img/accounts/stats/accuracy.png", label: "Точность", value: 693 }
       ],
       cover: "img/test-real/product1_1.webp",
       images: [
@@ -32,9 +32,9 @@ const products = {
         "img/test-real/product1_16.webp",
       ],
       stats: {
-        def: 571,
-        reduction: 449,
-        resist: 609,
+        defense: 571,
+        dmg_reduction: 449,
+        resist_abilities: 609,
         damage: 630,
         accuracy: 693
       },
@@ -73,11 +73,11 @@ const products = {
       class: "НОЖ",
       typeClass: "gold",
       cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 543 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 321 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 600 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 522 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 611 }
+        { icon: "img/accounts/stats/defense.png", label: "Защита", value: 543 },
+        { icon: "img/accounts/stats/dmg_reduction.png", label: "Снижение урона", value: 321 },
+        { icon: "img/accounts/stats/resist_abilities.png", label: "Сопротивление умениям", value: 600 },
+        { icon: "img/accounts/stats/damage.png", label: "Урон", value: 522 },
+        { icon: "img/accounts/stats/accuracy.png", label: "Точность", value: 611 }
       ],
       cover: "img/test-real/product2_1.png",
       images: [
@@ -92,9 +92,9 @@ const products = {
         "img/test-real/product2_10.png",
       ],
       stats: {
-        def: 543,
-        reduction: 321,
-        resist: 600,
+        defense: 543,
+        dmg_reduction: 321,
+        resist_abilities: 600,
         damage: 522,
         accuracy: 611
       },
@@ -128,11 +128,11 @@ const products = {
       class: "МАГ",
       typeClass: "gold",
       cardStats: [
-        { icon: "img/tags/damage.png", label: "Защита", value: 353 },
-        { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 226 },
-        { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 465 },
-        { icon: "img/tags/reduction.png", label: "Урон", value: 349 },
-        { icon: "img/tags/resistance.png", label: "Точность", value: 382 }
+        { icon: "img/accounts/stats/defense.png", label: "Защита", value: 353 },
+        { icon: "img/accounts/stats/dmg_reduction.png", label: "Снижение урона", value: 226 },
+        { icon: "img/accounts/stats/resist_abilities.png", label: "Сопротивление умениям", value: 465 },
+        { icon: "img/accounts/stats/damage.png", label: "Урон", value: 349 },
+        { icon: "img/accounts/stats/accuracy.png", label: "Точность", value: 382 }
       ],
       cover: "img/test-real/prod3/1.png",
       images: [
@@ -155,9 +155,9 @@ const products = {
         "img/test-real/prod3/18.png"
       ],
       stats: {
-        def: 353,
-        reduction: 226,
-        resist: 465,
+        defense: 353,
+        dmg_reduction: 226,
+        resist_abilities: 465,
         damage: 349,
         accuracy: 382
       },
@@ -193,13 +193,7 @@ const products = {
       region: "Россия",
       drop: "Фиолетовый лут",
       typeClass: "purple",
-      // cardStats: [
-      //   { icon: "img/tags/damage.png", label: "Защита", value: 570 },
-      //   { icon: "img/tags/accuracy.png", label: "Снижение урона", value: 430 },
-      //   { icon: "img/tags/defence.png", label: "Сопротивление умениям", value: 690 },
-      //   { icon: "img/tags/reduction.png", label: "Урон", value: 285 },
-      //   { icon: "img/tags/resistance.png", label: "Точность", value: 910 }
-      // ],
+   
 
       cover: "img/test-real/items/item1/0.png",
       images: [

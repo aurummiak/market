@@ -1,17 +1,17 @@
 const statLabels = {
-    def: "Защита",
-    reduction: "Урон",
-    resist: "Точность",
-    damage: "Сопротивление умениям",
-    accuracy: "Снижение урона"
+  defense: "Защита",
+  dmg_reduction: "Снижение урона",
+  resist_abilities: "Сопротивление умениям",
+  accuracy: "Точность",
+  damage: "Урон"
 };
 
 function renderCardStats(product) {
-    if (!product.cardStats || !Array.isArray(product.cardStats)) {
-        return "";
-    }
+  if (!product.cardStats || !Array.isArray(product.cardStats)) {
+    return "";
+  }
 
-    return product.cardStats.map(stat => `
+  return product.cardStats.map(stat => `
     <span class="tag stat-tag" data-tooltip="${stat.label}: ${stat.value}">
       <img
         src="${stat.icon}"
@@ -24,21 +24,21 @@ function renderCardStats(product) {
 }
 
 function formatPrice(price) {
-    return price.toLocaleString("ru-RU") + " ₽";
+  return price.toLocaleString("ru-RU") + " ₽";
 }
 
 function renderStats(product) {
-    if (!product.stats) return "";
+  if (!product.stats) return "";
 
-    const icons = {
-        damage: "img/tags/damage.png",
-        accuracy: "img/tags/accuracy.png",
-        def: "img/tags/defence.png",
-        reduction: "img/tags/reduction.png",
-        resist: "img/tags/resistance.png"
-    };
+  const icons = {
+    defense: "img/accounts/stats/defense.png",
+    dmg_reduction: "img/accounts/stats/dmg_reduction.png",
+    resist_abilities: "img/accounts/stats/resist_abilities.png",
+    accuracy: "img/accounts/stats/accuracy.png",
+    damage: "img/accounts/stats/damage.png"
+  };
 
-    return `
+  return `
     <div class="stats-list">
       ${Object.entries(product.stats).map(([key, value]) => `
         <div class="stat-line">
@@ -56,9 +56,9 @@ function renderStats(product) {
 }
 
 function renderSkills(product) {
-    if (!product.skills) return "";
+  if (!product.skills) return "";
 
-    return `
+  return `
     <table class="skills-table">
       <thead>
         <tr>
@@ -85,34 +85,34 @@ function renderSkills(product) {
 }
 
 function getCheckedValues(name) {
-    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
-        .map(input => input.value);
+  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+    .map(input => input.value);
 }
 
 function sanitizeNumericValue(value, min = 0, max = 2000) {
-    const digitsOnly = String(value ?? "").replace(/\D/g, "");
+  const digitsOnly = String(value ?? "").replace(/\D/g, "");
 
-    if (!digitsOnly) {
-        return "";
-    }
+  if (!digitsOnly) {
+    return "";
+  }
 
-    const numericValue = Number(digitsOnly);
+  const numericValue = Number(digitsOnly);
 
-    if (!Number.isFinite(numericValue)) {
-        return "";
-    }
+  if (!Number.isFinite(numericValue)) {
+    return "";
+  }
 
-    const clampedValue = Math.min(max, Math.max(min, Math.floor(numericValue)));
-    return String(clampedValue);
+  const clampedValue = Math.min(max, Math.max(min, Math.floor(numericValue)));
+  return String(clampedValue);
 }
 
 function enforceNumericInput(input, min = 0, max = 2000) {
-    if (!input) return;
+  if (!input) return;
 
-    const sanitizedValue = sanitizeNumericValue(input.value, min, max);
-    input.value = sanitizedValue;
+  const sanitizedValue = sanitizeNumericValue(input.value, min, max);
+  input.value = sanitizedValue;
 
-    return sanitizedValue;
+  return sanitizedValue;
 }
 
 function getRangeInput(stat, bound = "max") {
@@ -197,10 +197,6 @@ function updateRangeTrack(stat) {
     container.updateCustomRange();
   }
 
-  /*
-   * Когда ползунки находятся рядом, активный ползунок должен быть выше.
-   * Иначе один кружок может перекрывать второй.
-   */
   if (maxValue - minValue <= Number(minRange.step || 1) * 2) {
     minRange.style.zIndex = minValue >= maximum ? "5" : "4";
     maxRange.style.zIndex = minValue >= maximum ? "4" : "5";

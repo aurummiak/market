@@ -449,11 +449,11 @@ function renderStats(product) {
   if (!product.stats) return "";
 
   const icons = {
-    damage: "img/tags/damage.png",
-    accuracy: "img/tags/accuracy.png",
-    def: "img/tags/defence.png",
-    reduction: "img/tags/reduction.png",
-    resist: "img/tags/resistance.png"
+    defense: "img/accounts/stats/defense.png",
+    dmg_reduction: "img/accounts/stats/dmg_reduction.png",
+    resist_abilities: "img/accounts/stats/resist_abilities.png",
+    damage: "img/accounts/stats/damage.png",
+    accuracy: "img/accounts/stats/accuracy.png"
   };
 
   return `

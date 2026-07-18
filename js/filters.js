@@ -4,14 +4,13 @@ function toggleFilterPanel() {
 
 function applyFilters() {
   activeFilters.region = getCheckedValues("region");
-  // activeFilters.drop = getCheckedValues("drop");
 
   activeFilters.stats = {
-    def: getStatValue("def"),
-    reduction: getStatValue("reduction"),
-    resist: getStatValue("resist"),
-    damage: getStatValue("damage"),
-    accuracy: getStatValue("accuracy")
+    defense: getStatValue("defense"),
+    dmg_reduction: getStatValue("dmg_reduction"),
+    resist_abilities: getStatValue("resist_abilities"),
+    accuracy: getStatValue("accuracy"),
+    damage: getStatValue("damage")
   };
 
   filterProducts();
@@ -43,16 +42,16 @@ function clearFilters() {
   activeFilters.drop = [];
 
   activeFilters.stats = {
-    def: { min: 0, max: 2000 },
-    reduction: { min: 0, max: 2000 },
-    resist: { min: 0, max: 2000 },
-    damage: { min: 0, max: 2000 },
-    accuracy: { min: 0, max: 2000 }
+    defense: { min: 0, max: 2000 },
+    dmg_reduction: { min: 0, max: 2000 },
+    resist_abilities: { min: 0, max: 2000 },
+    accuracy: { min: 0, max: 2000 },
+    damage: { min: 0, max: 2000 }
   };
 
   updateRangeLabels();
   // update visual tracks for all stats
-  ["def","reduction","resist","damage","accuracy"].forEach(stat => {
+  ["defense", "dmg_reduction", "resist_abilities", "accuracy", "damage"].forEach(stat => {
     if (typeof updateRangeTrack === "function") {
       updateRangeTrack(stat);
     }
@@ -82,11 +81,11 @@ function matchesStats(card) {
   };
 
   return (
-    checkBetween(card.dataset.def, activeFilters.stats.def) &&
-    checkBetween(card.dataset.reduction, activeFilters.stats.reduction) &&
-    checkBetween(card.dataset.resist, activeFilters.stats.resist) &&
-    checkBetween(card.dataset.damage, activeFilters.stats.damage) &&
-    checkBetween(card.dataset.accuracy, activeFilters.stats.accuracy)
+    checkBetween(card.dataset.defense, activeFilters.stats.defense) &&
+    checkBetween(card.dataset.dmg_reduction, activeFilters.stats.dmg_reduction) &&
+    checkBetween(card.dataset.resist_abilities, activeFilters.stats.resist_abilities) &&
+    checkBetween(card.dataset.accuracy, activeFilters.stats.accuracy) &&
+    checkBetween(card.dataset.damage, activeFilters.stats.damage)
   );
 }
 

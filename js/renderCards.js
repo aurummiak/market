@@ -107,11 +107,12 @@ function renderProducts() {
     card.dataset.class = product.class || "";
 
     if (product.stats) {
-      card.dataset.def = product.stats.def || 0;
-      card.dataset.reduction = product.stats.reduction || 0;
-      card.dataset.resist = product.stats.resist || 0;
+      card.dataset.defense = product.stats.defense || 0;
+      card.dataset.dmg_reduction = product.stats.dmg_reduction || 0;
+      card.dataset.resist_abilities = product.stats.resist_abilities || 0;
       card.dataset.damage = product.stats.damage || 0;
       card.dataset.accuracy = product.stats.accuracy || 0;
+
     }
 
     card.innerHTML = renderCardContent(product);
