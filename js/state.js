@@ -6,6 +6,7 @@ let viewerIndex = 0;
 let activeFilters = {
     region: [],
     drop: [],
+    price: { min: 0, max: 250000 },
     stats: {
         defense: { min: 0, max: 2000 },
         dmg_reduction: { min: 0, max: 2000 },

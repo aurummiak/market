@@ -5,6 +5,8 @@ function toggleFilterPanel() {
 function applyFilters() {
   activeFilters.region = getCheckedValues("region");
 
+  activeFilters.price = getStatValue("price");
+
   activeFilters.stats = {
     defense: getStatValue("defense"),
     dmg_reduction: getStatValue("dmg_reduction"),
@@ -40,6 +42,7 @@ function clearFilters() {
 
   activeFilters.region = [];
   activeFilters.drop = [];
+  activeFilters.price = { min: 0, max: 250000 };
 
   activeFilters.stats = {
     defense: { min: 0, max: 2000 },
@@ -51,7 +54,7 @@ function clearFilters() {
 
   updateRangeLabels();
   // update visual tracks for all stats
-  ["defense", "dmg_reduction", "resist_abilities", "accuracy", "damage"].forEach(stat => {
+  ["price", "defense", "dmg_reduction", "resist_abilities", "accuracy", "damage"].forEach(stat => {
     if (typeof updateRangeTrack === "function") {
       updateRangeTrack(stat);
     }
@@ -89,6 +92,21 @@ function matchesStats(card) {
   );
 }
 
+
+function matchesPrice(card) {
+  if (currentCategory !== "accounts") return true;
+
+  const price = Number(card.dataset.price);
+  const minimum = Number(activeFilters.price?.min);
+  const maximum = Number(activeFilters.price?.max);
+
+  if (!Number.isFinite(price)) return false;
+  if (Number.isFinite(minimum) && price < minimum) return false;
+  if (Number.isFinite(maximum) && price > maximum) return false;
+
+  return true;
+}
+
 function filterProducts() {
   const search = document.getElementById("searchInput").value.toLowerCase();
   const cards = document.querySelectorAll(".card");
@@ -115,6 +133,7 @@ function filterProducts() {
       matchesSearch &&
       matchesRegion &&
       matchesDrop &&
+      matchesPrice(card) &&
       matchesStats(card);
 
     card.style.display = isVisible ? "block" : "none";

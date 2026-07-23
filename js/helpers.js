@@ -3,7 +3,8 @@ const statLabels = {
   dmg_reduction: "Снижение урона",
   resist_abilities: "Сопротивление умениям",
   accuracy: "Точность",
-  damage: "Урон"
+  damage: "Урон",
+  price: "Цена"
 };
 
 function renderCardStats(product) {

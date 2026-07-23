@@ -58,7 +58,6 @@ function openAccountModal(product) {
         <div class="modal-scroll">
           <div class="details-list">
             ${renderStats(product)}
-            ${renderSkills(product)}
           </div>
 
           <p class="extra-modal-text">
@@ -71,6 +70,7 @@ function openAccountModal(product) {
 
   initModalMainImage();
   initAccountThumbCarousel();
+  updateActiveModalThumb();
   modal.scrollTop = 0;
 }
 
@@ -248,7 +248,12 @@ function renderModalThumbs(product) {
 
   if (window.innerWidth <= 1024) {
     return product.images.map((img, index) => `
-      <img src="${img}" alt="${product.title} ${index + 1}">
+      <img
+        src="${img}"
+        alt="${product.title} ${index + 1}"
+        data-original-index="${index}"
+        onclick="changeMainImage('${img}', ${index}); updateActiveModalThumb();"
+      >
     `).join("");
   }
 
@@ -260,9 +265,12 @@ function renderModalThumbs(product) {
         ${carouselImages.map((img, index) => `
           <img
             src="${img}"
-            alt=""
+            alt="${product.title} ${index % product.images.length + 1}"
             draggable="false"
             data-original-index="${index % product.images.length}"
+            tabindex="0"
+            role="button"
+            aria-label="Показать изображение ${index % product.images.length + 1}"
           >
         `).join("")}
       </div>
@@ -421,6 +429,32 @@ function initAccountThumbCarousel() {
   carousel.querySelectorAll("img").forEach(image => {
     image.addEventListener("dragstart", event => {
       event.preventDefault();
+    });
+
+    image.addEventListener("click", event => {
+      if (carousel.classList.contains("is-dragging")) return;
+
+      event.stopPropagation();
+
+      const imageIndex = Number(image.dataset.originalIndex);
+
+      if (!Number.isInteger(imageIndex)) return;
+
+      changeMainImage(viewerImages[imageIndex], imageIndex);
+      updateActiveModalThumb();
+    });
+
+    image.addEventListener("keydown", event => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      event.preventDefault();
+
+      const imageIndex = Number(image.dataset.originalIndex);
+
+      if (!Number.isInteger(imageIndex)) return;
+
+      changeMainImage(viewerImages[imageIndex], imageIndex);
+      updateActiveModalThumb();
     });
   });
 
@@ -610,9 +644,20 @@ function showNextModalImage(event) {
 
 function updateModalMainImage() {
   const modalMainImg = document.getElementById("modalMainImg");
+
   if (modalMainImg && viewerImages && viewerImages.length > 0) {
     modalMainImg.src = viewerImages[modalImageIndex];
+    modalMainImg.onclick = () => openImageViewer(viewerImages, modalImageIndex);
   }
+
+  updateActiveModalThumb();
+}
+
+function updateActiveModalThumb() {
+  document.querySelectorAll(".account-modal-box .modal-thumbs img").forEach(image => {
+    const imageIndex = Number(image.dataset.originalIndex);
+    image.classList.toggle("active", imageIndex === modalImageIndex);
+  });
 }
 
 function changeMainImage(src, index) {

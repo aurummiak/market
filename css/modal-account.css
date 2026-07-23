@@ -718,3 +718,41 @@
     pointer-events: none;
   }
 }
+
+
+/* Wider account gallery on desktop; details panel keeps its existing structure */
+@media (min-width: 1025px) {
+  .account-modal-box {
+    width: min(1380px, calc(100vw - 48px));
+    max-width: 1380px;
+    grid-template-columns: minmax(560px, 1.28fr) minmax(560px, 1fr);
+  }
+
+  .account-thumbs-track img {
+    width: clamp(150px, calc((100vw - 160px) / 7), 210px);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .account-thumbs-track {
+    pointer-events: auto;
+  }
+
+  .account-modal-box .modal-thumbs img.active {
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 1px rgba(220, 38, 38, .35),
+      0 0 18px rgba(220, 38, 38, .24);
+  }
+
+  .account-modal-box .modal-thumbs img:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+
+/* Hide legacy account tables */
+.account-modal-box .skills-table {
+  display: none !important;
+}

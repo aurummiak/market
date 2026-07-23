@@ -94,6 +94,73 @@
           </div>
 
 
+
+          <div class="range-group account-price-filter">
+            <h4>Цена аккаунта</h4>
+
+            <div class="range-row">
+              <label class="range-row-label">
+                <span class="range-title">Цена, ₽</span>
+
+                <div class="filters number-field">
+                  <input
+                    class="range-value-input"
+                    id="priceMinValue"
+                    type="text"
+                    data-stat="price"
+                    data-bound="min"
+                    min="0"
+                    max="250000"
+                    value="0"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                    placeholder="от"
+                  >
+
+                  <input
+                    class="range-value-input"
+                    id="priceMaxValue"
+                    type="text"
+                    data-stat="price"
+                    data-bound="max"
+                    min="0"
+                    max="250000"
+                    value="250000"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                    placeholder="до"
+                  >
+                </div>
+              </label>
+
+              <div class="range-sliders">
+                <input
+                  type="range"
+                  name="price"
+                  data-stat="price"
+                  data-bound="min"
+                  min="0"
+                  max="250000"
+                  step="1000"
+                  value="0"
+                >
+
+                <input
+                  type="range"
+                  name="price"
+                  data-stat="price"
+                  data-bound="max"
+                  min="0"
+                  max="250000"
+                  step="1000"
+                  value="250000"
+                >
+              </div>
+            </div>
+          </div>
+
           <div class="range-group">
             <h4>Статы персонажа</h4>
 
